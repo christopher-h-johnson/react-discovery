@@ -1,15 +1,15 @@
-import {CircularProgress, Grid, makeStyles, useMediaQuery} from '@material-ui/core'
+import { CircularProgress, Grid, makeStyles, useMediaQuery } from '@material-ui/core'
 import {
   ES,
   HitStats,
   ViewSwitcherToggle,
-  useMinimalResultViewerStyles,
+  useMinimalResultViewerStyles
 } from '@react-discovery/components'
-import {ESCore, usePrevious} from '@react-discovery/core'
-import {ImageGridViewer, ListFilters, MinWidthResultsGrid, ViewTypeSwitcher} from '.'
-import React, {ReactElement, useEffect} from 'react'
-import {getCurrentLanguage, getViewType} from "@react-discovery/configuration"
-import {useTranslation} from "react-i18next"
+import { ESCore, usePrevious } from '@react-discovery/core'
+import { ImageGridViewer, ListFilters, MinWidthResultsGrid, ViewTypeSwitcher } from '.'
+import React, { ReactElement, useEffect } from 'react'
+import { getCurrentLanguage, getViewType } from '@react-discovery/configuration'
+import { useTranslation } from 'react-i18next'
 
 export const useStyles = makeStyles((): any => ({
   gridActions: {
@@ -19,12 +19,12 @@ export const useStyles = makeStyles((): any => ({
   },
   main: {
     display: 'flex',
-    padding: 20,
-  },
+    padding: 20
+  }
 }))
 
 export const ResultsList: React.FC<any> = (): ReactElement => {
-  const {i18n} = useTranslation(['common', 'vocab'])
+  const { i18n } = useTranslation(['common', 'vocab'])
   const classes: any = useMinimalResultViewerStyles({})
   const mainClasses: any = useStyles({})
   const currentLanguage = getCurrentLanguage()
@@ -41,16 +41,16 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
   const hits = ESCore.state.getHits()
 
   return (
-    matches ?
-      <Grid
+    matches
+      ? <Grid
         alignItems="center"
         container
         direction="column"
         justify="center"
         spacing={3}
       >
-        {hits ?
-          <Grid item style={{width: '100%'}} xs={10}>
+        {hits
+          ? <Grid item style={{ width: '100%' }} xs={10}>
             <Grid
               className={mainClasses.gridActions}
               container
@@ -60,9 +60,9 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
               <ViewSwitcherToggle/>
             </Grid>
             <ListFilters/>
-            {viewType === 'grid' ?
-              <ImageGridViewer/> :
-              <ViewTypeSwitcher/>
+            {viewType === 'grid'
+              ? <ImageGridViewer/>
+              : <ViewTypeSwitcher/>
             }
             <Grid
               alignItems="center"
@@ -76,6 +76,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
           </Grid>
           : <CircularProgress className={classes.progress}/>
         }
-      </Grid> : <MinWidthResultsGrid/>
+      </Grid>
+      : <MinWidthResultsGrid/>
   )
 }

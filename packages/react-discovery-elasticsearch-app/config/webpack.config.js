@@ -1,39 +1,35 @@
-const fs = require('fs');
-const isWsl = require('is-wsl');
-const path = require('path');
-const webpack = require('webpack');
-const resolve = require('resolve');
-const PnpWebpackPlugin = require('pnp-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const paths = require('./paths');
-const modules = require('./modules');
-const getClientEnvironment = require('./env');
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const fs = require('fs')
+const isWsl = require('is-wsl')
+const path = require('path')
+const webpack = require('webpack')
+const resolve = require('resolve')
+const PnpWebpackPlugin = require('pnp-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+const paths = require('./paths')
+const modules = require('./modules')
+const getClientEnvironment = require('./env')
+const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
+const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false'
+const useTypeScript = fs.existsSync(paths.appTsConfig)
 
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
-const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
-const useTypeScript = fs.existsSync(paths.appTsConfig);
-
-module.exports = function(webpackEnv) {
-  const isEnvDevelopment = webpackEnv === 'development';
-  const isEnvProduction = webpackEnv === 'production';
+module.exports = function (webpackEnv) {
+  const isEnvDevelopment = webpackEnv === 'development'
+  const isEnvProduction = webpackEnv === 'production'
   const publicPath = isEnvProduction
     ? paths.servedPath
-    : isEnvDevelopment && '/';
+    : isEnvDevelopment && '/'
   const publicUrl = isEnvProduction
     ? publicPath.slice(0, -1)
-    : isEnvDevelopment && '';
-  const env = getClientEnvironment(publicUrl);
+    : isEnvDevelopment && ''
+  const env = getClientEnvironment(publicUrl)
   return {
     bail: isEnvProduction,
     devtool: isEnvProduction
@@ -42,73 +38,59 @@ module.exports = function(webpackEnv) {
     entry: [
       isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
-      paths.appIndexJs,
+      paths.appIndexJs
     ].filter(Boolean),
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     module: {
       rules: [
-        { parser: { requireEnsure: false } },
         {
           oneOf: [
             {
               include: paths.appSrc,
               test: /\.(ts|tsx)$/,
               use: [
-                {loader: 'react-hot-loader/webpack'},
-                {loader: 'istanbul-instrumenter-loader',
-                  options: { esModules: true }
-                },
-                {loader: 'awesome-typescript-loader'}
+                { loader: 'react-hot-loader/webpack' },
+                { loader: 'ts-loader' }
               ]
-            },
-          ],
-        },
+            }
+          ]
+        }
       ],
-      strictExportPresence: true,
-    },
-    node: {
-      child_process: 'empty', //eslint-disable-line
-      dgram: 'empty',
-      dns: 'mock',
-      fs: 'empty',
-      http2: 'empty',
-      module: 'empty',
-      net: 'empty',
-      tls: 'empty',
+      strictExportPresence: true
     },
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: !isWsl,
-          sourceMap: false,
-          terserOptions: {
-            compress: {
-              comparisons: false,
-              ecma: 5,
-              inline: 2,
-              warnings: false,
-            },
-            mangle: {
-              safari10: true,
-            },
-            output: {
-              ascii_only: true, //eslint-disable-line
-              comments: false,
-              ecma: 5,
-            },
-            parse: {
-              ecma: 8,
-            },
-          },
-        }),
+        (compiler) => {
+          new TerserPlugin({
+            parallel: !isWsl,
+            terserOptions: {
+              compress: {
+                comparisons: false,
+                ecma: 5,
+                inline: 2,
+                warnings: false
+              },
+              mangle: {
+                safari10: true
+              },
+              output: {
+                ascii_only: true, //eslint-disable-line
+                comments: false,
+                ecma: 5
+              },
+              parse: {
+                ecma: 8
+              }
+            }
+          }).apply(compiler)
+        }
       ],
       runtimeChunk: true,
       splitChunks: {
         chunks: 'all',
-        name: false,
-      },
+        name: false
+      }
     },
     output: {
       chunkFilename: isEnvProduction
@@ -124,10 +106,9 @@ module.exports = function(webpackEnv) {
       filename: isEnvProduction
         ? 'static/js/[name].[contenthash:8].js'
         : isEnvDevelopment && 'static/js/bundle.js',
-      futureEmitAssets: true,
       path: isEnvProduction ? paths.appBuild : undefined,
       pathinfo: isEnvDevelopment,
-      publicPath,
+      publicPath
     },
     performance: false,
     plugins: [
@@ -136,27 +117,26 @@ module.exports = function(webpackEnv) {
           {},
           {
             inject: true,
-            template: paths.appHtml,
+            template: paths.appHtml
           },
           isEnvProduction
             ? {
-              minify: {
-                collapseWhitespace: true,
-                keepClosingSlash: true,
-                minifyCSS: true,
-                minifyJS: true,
-                minifyURLs: true,
-                removeComments: true,
-                removeEmptyAttributes: true,
-                removeRedundantAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                useShortDoctype: true,
-              },
-            }
+                minify: {
+                  collapseWhitespace: true,
+                  keepClosingSlash: true,
+                  minifyCSS: true,
+                  minifyJS: true,
+                  minifyURLs: true,
+                  removeComments: true,
+                  removeEmptyAttributes: true,
+                  removeRedundantAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  useShortDoctype: true
+                }
+              }
             : undefined
         )
       ),
-      new webpack.IgnorePlugin({resourceRegExp: /@blueprintjs\/(core|icons)/}),
       isEnvProduction &&
         shouldInlineRuntimeChunk &&
         new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
@@ -165,57 +145,34 @@ module.exports = function(webpackEnv) {
       new webpack.DefinePlugin(env.stringified),
       isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
       isEnvDevelopment && new CaseSensitivePathsPlugin(),
-      isEnvDevelopment &&
-        new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
         generate: (seed, files) => {
-          const manifestFiles = files.reduce(function(manifest, file) {
-            manifest[file.name] = file.path;
-            return manifest;
-          }, seed);
+          const manifestFiles = files.reduce(function (manifest, file) {
+            manifest[file.name] = file.path
+            return manifest
+          }, seed)
           return {
-            files: manifestFiles,
-          };
+            files: manifestFiles
+          }
         },
-        publicPath,
+        publicPath
       }),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
+      }),
       isEnvProduction &&
         new WorkboxWebpackPlugin.GenerateSW({
-          clientsClaim: true,
           exclude: [/\.map$/, /asset-manifest\.json$/],
-          importWorkboxFrom: 'cdn',
-          navigateFallback: publicUrl + '/index.html',
-          navigateFallbackBlacklist: [
-            new RegExp('^/_'),
-            new RegExp('/[^/]+\\.[^/]+$'),
-          ],
+          navigateFallback: publicUrl + '/index.html'
         }),
       useTypeScript &&
-        new ForkTsCheckerWebpackPlugin({
-          async: isEnvDevelopment,
-          checkSyntacticErrors: true,
-          formatter: isEnvProduction ? typescriptFormatter : undefined,
-          reportFiles: [
-            '**',
-            '!**/__tests__/**',
-            '!**/?(*.)(spec|test).*',
-            '!**/src/setupProxy.*',
-            '!**/src/setupTests.*',
-          ],
-          silent: true,
-          tsconfig: paths.appTsConfig,
-          typescript: resolve.sync('typescript', {
-            basedir: paths.appNodeModules,
-          }),
-          useTypescriptIncrementalApi: true,
-          watch: paths.appSrc,
-        }),
+        new ForkTsCheckerWebpackPlugin()
     ].filter(Boolean),
     resolve: {
       alias: {
-        'react-native': 'react-native-web',
+        'react-native': 'react-native-web'
       },
       extensions: paths.moduleFileExtensions
         .map(ext => `.${ext}`)
@@ -223,13 +180,13 @@ module.exports = function(webpackEnv) {
       modules: ['node_modules', paths.appNodeModules].concat(modules.additionalModulePaths || []),
       plugins: [
         PnpWebpackPlugin,
-        new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-      ],
+        new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson])
+      ]
     },
     resolveLoader: {
       plugins: [
-        PnpWebpackPlugin.moduleLoader(module),
-      ],
-    },
-  };
-};
+        PnpWebpackPlugin.moduleLoader(module)
+      ]
+    }
+  }
+}

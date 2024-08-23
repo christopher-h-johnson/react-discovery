@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
+    "composite": true,
     "paths": { "*": ["@types/*"] },
     "declaration": true,
     "module": "commonjs",
@@ -13,7 +14,6 @@
     "moduleResolution": "node",
     "noEmitOnError": false,
     "noUnusedParameters":true,
-    "noImplicitUseStrict":true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports":true,
     "resolveJsonModule": true,
@@ -22,7 +22,6 @@
       "es5", "es2015", "es2017", "dom"
     ],
     "types": [
-      "cypress",
       "node"
     ],
     "typeRoots": [
@@ -33,7 +32,8 @@
 
   "include":[
     "./src/**/*.ts",
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./src/_test_/**/*.json"
   ],
   "exclude": [
     "node_modules"

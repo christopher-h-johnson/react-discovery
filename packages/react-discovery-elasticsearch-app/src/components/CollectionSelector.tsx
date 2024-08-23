@@ -1,16 +1,16 @@
-import {ESCore, IElasticSearchQuery, usePrevious} from "@react-discovery/core"
-import {FormControl, ListItemText, MenuItem, Select, makeStyles} from "@material-ui/core"
+import { ESCore, IElasticSearchQuery, usePrevious } from '@react-discovery/core'
+import { FormControl, ListItemText, MenuItem, Select, makeStyles } from '@material-ui/core'
 import {
   ICollection,
   getCollectionByKey,
   getCollections,
   getCurrentCollection,
   getCurrentSearchContext,
-  setCurrentCollection,
-} from "@react-discovery/configuration"
-import React, {ReactElement, useEffect, useState} from "react"
-import {useDispatch} from "react-redux"
-import {useNavigation} from "react-navi"
+  setCurrentCollection
+} from '@react-discovery/configuration'
+import React, { ReactElement, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigation } from 'react-navi'
 
 const useStyles = makeStyles((): any => ({
   primary: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles((): any => ({
     fontWeight: 500,
     letterSpacing: '.01785714em',
     lineHeight: '1.25rem'
-  },
+  }
 }))
 
 export const CollectionSelector: React.FC<any> = (): ReactElement => {
@@ -40,7 +40,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
       setIsInitialized(true)
     }
     if (prevJsonCollection !== jsonCollection) {
-      const {initialFilter, refinementListFilters, searchFields, sortFields} = collectionObj
+      const { initialFilter, refinementListFilters, searchFields, sortFields } = collectionObj
       const aggs = ESCore.builders.buildAggs(refinementListFilters)
       const qs: IElasticSearchQuery = {
         aggs,
@@ -49,9 +49,9 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
         searchFields,
         size: size || 20,
         sortFields,
-        stringInput: null,
+        stringInput: null
       }
-      dispatch(ESCore.state.setQueryFields({...qs}))
+      dispatch(ESCore.state.setQueryFields({ ...qs }))
       if (isInitialized) {
         navigation.navigate(currentSearchContext)
       }
@@ -76,13 +76,13 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
         key={key}
         value={key}
       >
-        <ListItemText classes={{primary: classes.primary}}>{value}</ListItemText>
+        <ListItemText classes={{ primary: classes.primary }}>{value}</ListItemText>
       </MenuItem>)
   }
 
   const handleIndexChange = (event): void => {
     const currentCollection = event.target.value as string
-    dispatch(setCurrentCollection({currentCollection}))
+    dispatch(setCurrentCollection({ currentCollection }))
   }
 
   return (
@@ -90,14 +90,14 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
       <Select
         MenuProps={{
           anchorOrigin: {
-            horizontal: "left",
-            vertical: "bottom",
+            horizontal: 'left',
+            vertical: 'bottom'
           },
-          getContentAnchorEl: null,
+          getContentAnchorEl: null
         }}
         inputProps={{
           id: 'index-native',
-          name: 'currentIndex',
+          name: 'currentIndex'
         }}
         onChange={handleIndexChange}
         value={currentCollection}

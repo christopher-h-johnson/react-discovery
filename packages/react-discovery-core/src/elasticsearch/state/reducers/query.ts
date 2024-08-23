@@ -1,4 +1,4 @@
-import {ReducerBuilder, reducerWithInitialState} from 'typescript-fsa-reducers'
+import { ReducerBuilder, reducerWithInitialState } from 'typescript-fsa-reducers'
 import {
   setAggs,
   setFrom,
@@ -10,19 +10,19 @@ import {
   setSize,
   setSortFields,
   setTypeDef
-} from "../actions"
-import {IElasticSearchQuery} from "../../index"
+} from '../actions'
+import { IElasticSearchQuery } from '../../index'
 
 export const query = (initialState): ReducerBuilder<IElasticSearchQuery> => reducerWithInitialState(initialState)
-  .case(setAggs, (state, {aggs}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setAggs, (state, { aggs }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     aggs
   }))
-  .case(setGroupField, (state, {groupField}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setGroupField, (state, { groupField }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
-    groupField,
+    groupField
   }))
-  .case(setQueryFields, (state, {aggs, filters, searchFields, size, sortFields, from, stringInput}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setQueryFields, (state, { aggs, filters, searchFields, size, sortFields, from, stringInput }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     aggs,
     filters,
@@ -30,33 +30,33 @@ export const query = (initialState): ReducerBuilder<IElasticSearchQuery> => redu
     searchFields,
     size,
     sortFields,
-    stringInput,
+    stringInput
   }))
-  .case(setQueryInput, (state, {stringInput}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setQueryInput, (state, { stringInput }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
-    stringInput,
+    stringInput
   }))
-  .case(setTypeDef, (state, {typeDef}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setTypeDef, (state, { typeDef }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
-    typeDef,
+    typeDef
   }))
-  .case(setSearchFields, (state, {searchFields}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setSearchFields, (state, { searchFields }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
-    searchFields,
+    searchFields
   }))
-  .case(setSortFields, (state, {sortFields}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setSortFields, (state, { sortFields }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
-    sortFields,
+    sortFields
   }))
-  .case(setFrom, (state, {from}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setFrom, (state, { from }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     from
   }))
-  .case(setSize, (state, {size}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setSize, (state, { size }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     size
   }))
-  .case(setSelectedFilters, (state, {field, filters}): ReducerBuilder<IElasticSearchQuery> => ({
+  .case(setSelectedFilters, (state, { field, filters }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     filters: {
       ...state.filters,

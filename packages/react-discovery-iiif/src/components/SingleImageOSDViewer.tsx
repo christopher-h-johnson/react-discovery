@@ -1,7 +1,7 @@
-import React, {ReactElement, useEffect, useRef, useState} from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import OpenSeadragon from 'openseadragon'
-import {makeStyles} from "@material-ui/core"
-import {usePrevious} from "@react-discovery/core"
+import { makeStyles } from '@material-ui/core'
+import { usePrevious } from '@react-discovery/core'
 
 export interface ISingleImageOsdComponentProps {
   classes?: any;
@@ -22,12 +22,12 @@ export const SingleImageOSDViewer: React.FC<ISingleImageOsdComponentProps> = (pr
   const [isInitialized, setIsInitialized] = useState(false)
   const [osd, setOsd] = useState(null)
   const osdRef = useRef(null)
-  const {image} = props
+  const { image } = props
   const prevImage = usePrevious(image)
 
   const defaultOsdProps = (): {} => {
-    let showNavigator = false
-    let showReferenceStrip = false
+    const showNavigator = false
+    const showReferenceStrip = false
     const ajaxHeaders = {
       // "x-requested-with": "XMLHttpRequest",
     }
@@ -51,7 +51,7 @@ export const SingleImageOSDViewer: React.FC<ISingleImageOsdComponentProps> = (pr
       showRotationControl: false,
       showSequenceControl: false,
       showZoomControl: false,
-      visibilityRatio: 0.5,
+      visibilityRatio: 0.5
     }
   }
 

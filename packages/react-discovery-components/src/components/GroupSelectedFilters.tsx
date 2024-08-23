@@ -1,9 +1,9 @@
-import {Chip, List} from '@material-ui/core'
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {IOverridableStyledComponent} from ".."
-import {useDispatch} from "react-redux"
-import {useGroupSelectedFiltersStyles} from '../styles'
+import { Chip, List } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { IOverridableStyledComponent } from '..'
+import { useDispatch } from 'react-redux'
+import { useGroupSelectedFiltersStyles } from '../styles'
 
 export const GroupSelectedFilters: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || useGroupSelectedFiltersStyles({})
@@ -12,8 +12,8 @@ export const GroupSelectedFilters: React.FC<IOverridableStyledComponent> = (prop
 
   const onClose = (field: string, filter: any): void => {
     const newFilters = filters[field].filter((f): boolean => f !== filter)
-    dispatch(ESCore.state.setSelectedFilters({field, filters: newFilters}))
-    dispatch(ESCore.state.setFrom({from: 0}))
+    dispatch(ESCore.state.setSelectedFilters({ field, filters: newFilters }))
+    dispatch(ESCore.state.setFrom({ from: 0 }))
   }
 
   const buildFilters = (filters): ReactElement[] => {
@@ -34,9 +34,8 @@ export const GroupSelectedFilters: React.FC<IOverridableStyledComponent> = (prop
   }
 
   return (
-    <List component="nav" style={{display: 'flex'}}>
+    <List component="nav" style={{ display: 'flex' }}>
       {buildFilters(filters)}
     </List>
   )
 }
-

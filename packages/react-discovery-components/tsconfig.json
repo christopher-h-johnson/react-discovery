@@ -1,11 +1,16 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib",
     "resolveJsonModule": true
   },
+  "extends": "../../tsconfig.json",
   "include": [
     "./src"
+  ],
+  "references": [
+    {
+      "path": "../react-discovery-core"
+    }
   ],
   "typedocOptions": {
     "mode": "modules",

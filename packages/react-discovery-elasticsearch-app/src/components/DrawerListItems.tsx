@@ -1,11 +1,11 @@
-import {Badge, ListItem, ListItemIcon, ListItemText, Tooltip} from "@material-ui/core"
-import {Description, Home, PictureInPicture, Search, Settings} from "@material-ui/icons"
-import {NavLink, useCurrentRoute} from "react-navi"
-import React, {ReactElement, forwardRef, useEffect, useState} from "react"
-import {getCurrentSearchContext} from '@react-discovery/configuration'
-import {getNumberOfWorkspaceNodes} from "@react-discovery/workspace"
-import {usePrevious} from "@react-discovery/core"
-import {useTranslation} from "react-i18next"
+import { Badge, ListItem, ListItemIcon, ListItemText, Tooltip } from '@material-ui/core'
+import { Description, Home, PictureInPicture, Search, Settings } from '@material-ui/icons'
+import { NavLink, useCurrentRoute } from 'react-navi'
+import React, { ReactElement, forwardRef, useEffect, useState } from 'react'
+import { getCurrentSearchContext } from '@react-discovery/configuration'
+import { getNumberOfWorkspaceNodes } from '@react-discovery/workspace'
+import { usePrevious } from '@react-discovery/core'
+import { useTranslation } from 'react-i18next'
 
 export const DrawerListItems: React.FC<any> = (): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
@@ -14,7 +14,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
   const prevRoute = usePrevious(route)
   const numberOfNodes = getNumberOfWorkspaceNodes()
   const [selectedIndex, setSelectedIndex] = React.useState(0)
-  const {t} = useTranslation('common')
+  const { t } = useTranslation('common')
 
   const listItems = [
     {
@@ -46,7 +46,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
       index: 4,
       path: '/settings',
       text: 'Settings'
-    },
+    }
   ]
 
   useEffect((): any => {
@@ -62,7 +62,6 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
       startItem && setSelectedIndex(startItem.index)
     }
   }, [route, prevRoute])
-
 
   const buildListItemIcon = (item: string): any => {
     switch (item) {
@@ -87,7 +86,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
   }
 
   const handleListItemClick = ({}, index): void => {
-    setSelectedIndex(index);
+    setSelectedIndex(index)
   }
 
   // eslint-disable-next-line react/display-name
@@ -101,7 +100,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
         key={item.index}
         onClick={(event): void => handleListItemClick(event, i)}
         selected={selectedIndex === i}
-        style={{color: '#2f2c2c', textDecoration: 'none'}}
+        style={{ color: '#2f2c2c', textDecoration: 'none' }}
       >
         <Tooltip
           key={item.key}

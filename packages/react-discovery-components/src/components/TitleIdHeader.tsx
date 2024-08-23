@@ -1,10 +1,10 @@
-import {FlexBox, InnerHtmlValue} from "."
-import {Link, useCurrentRoute} from 'react-navi'
-import React, {ReactElement} from "react"
-import {getCurrentCollection, getCurrentSearchContext, getRootContext} from "@react-discovery/configuration"
-import {CardHeader} from "@material-ui/core"
-import {ESCore} from "@react-discovery/core"
-import {useDispatch} from 'react-redux'
+import { FlexBox, InnerHtmlValue } from '.'
+import { Link, useCurrentRoute } from 'react-navi'
+import React, { ReactElement } from 'react'
+import { getCurrentCollection, getCurrentSearchContext, getRootContext } from '@react-discovery/configuration'
+import { CardHeader } from '@material-ui/core'
+import { ESCore } from '@react-discovery/core'
+import { useDispatch } from 'react-redux'
 
 interface ITitleIdHeader {
   docIndex?: string;
@@ -15,7 +15,7 @@ interface ITitleIdHeader {
 }
 
 export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => {
-  const {addButton, docIndex, id, optionsMenu, title} = props
+  const { addButton, docIndex, id, optionsMenu, title } = props
   const currentCollection = docIndex || getCurrentCollection()
   const rootContext = getRootContext()
   const docIndexContext = rootContext + '/' + docIndex
@@ -25,7 +25,7 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
   const pathname = route.url.pathname
 
   const handleIdQuery = () => {
-    dispatch(ESCore.state.setQueryInput({stringInput: id}))
+    dispatch(ESCore.state.setQueryInput({ stringInput: id }))
   }
 
   const buildTitleHeaderForPathName = (): ReactElement => {
@@ -36,9 +36,9 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
             data-testid='detail-link'
             href={`/detail/${currentCollection}/${id}`}
           >
-            <CardHeader style={{width: '100%'}} title={<InnerHtmlValue value={title}/>}/>
+            <CardHeader style={{ width: '100%' }} title={<InnerHtmlValue value={title}/>}/>
           </Link>
-          <div style={{flexGrow: 1}}/>
+          <div style={{ flexGrow: 1 }}/>
           {optionsMenu}
         </FlexBox>
       )
@@ -49,9 +49,9 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
             href={`${currentSearchContext}?q=${id}`}
             onClick={handleIdQuery}
           >
-            <CardHeader style={{width: '100%'}} title={<InnerHtmlValue value={title}/>}/>
+            <CardHeader style={{ width: '100%' }} title={<InnerHtmlValue value={title}/>}/>
           </Link>
-          <div style={{flexGrow: 1}}/>
+          <div style={{ flexGrow: 1 }}/>
           {addButton}
           {optionsMenu}
         </FlexBox>

@@ -1,5 +1,5 @@
-import {ICollection, IDocType, IHitComponent, ILanguage, IRefinementListFilters} from "../.."
-import {useSelector} from "react-redux"
+import { ICollection, IDocType, IHitComponent, ILanguage, IRefinementListFilters } from '../..'
+import { useSelector } from 'react-redux'
 
 export const getCollections = (): string[] => {
   return useSelector((state: any): string[] => state.config.collections)
@@ -43,8 +43,8 @@ export const getHitComponents = (): IHitComponent[] => {
 }
 
 export const getHitComponentConfig = (type): IHitComponent => {
-  return useSelector((state: any): IHitComponent => state.config.collections[state.config.currentCollection].hitComponents
-    && state.config.collections[state.config.currentCollection].hitComponents.filter((hc) => hc.hitComponent === type)[0])
+  return useSelector((state: any): IHitComponent => state.config.collections[state.config.currentCollection].hitComponents &&
+    state.config.collections[state.config.currentCollection].hitComponents.filter((hc) => hc.hitComponent === type)[0])
 }
 
 export const getIsPersisted = (): boolean => {

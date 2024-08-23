@@ -1,23 +1,23 @@
-import {CollectionSelector, SizeSelector} from '.'
-import {FormatLineSpacing, Search} from "@material-ui/icons"
-import {List, ListItem, ListItemIcon, ListItemText, Typography, makeStyles} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {useTranslation} from "react-i18next"
+import { CollectionSelector, SizeSelector } from '.'
+import { FormatLineSpacing, Search } from '@material-ui/icons'
+import { List, ListItem, ListItemIcon, ListItemText, Typography, makeStyles } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme): any => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     maxWidth: 640,
-    minWidth: 400,
+    minWidth: 400
   },
   sliderRoot: {
-    width: 300,
-  },
+    width: 300
+  }
 }))
 
 export const Settings: React.FC<any> = (): ReactElement => {
   const classes: any = useStyles({})
-  const {t} = useTranslation(['common'])
+  const { t } = useTranslation(['common'])
 
   return (
     <div className={classes.root}>

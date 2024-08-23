@@ -1,10 +1,10 @@
-import {makeStyles} from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 
 export const useMosaicStyles = makeStyles((): any => ({
   '@global': {
     '.mosaic': {
       height: '100%',
-      width: '100%',
+      width: '100%'
     },
     '.mosaic .mosaic-zero-state': {
       bottom: 6,
@@ -14,10 +14,10 @@ export const useMosaicStyles = makeStyles((): any => ({
       right: 6,
       top: 6,
       width: 'auto',
-      zIndex: 1,
+      zIndex: 1
     },
     '.mosaic, .mosaic > *': {
-      boxSizing: 'border-box',
+      boxSizing: 'border-box'
     },
     '.mosaic-drop-target': {
     },
@@ -27,7 +27,7 @@ export const useMosaicStyles = makeStyles((): any => ({
       left: 0,
       position: 'absolute',
       right: 0,
-      top: 0,
+      top: 0
     },
     '.mosaic-drop-target .drop-target-container .drop-target': {
       background: 'rgba(0, 0, 0, 0.2)',
@@ -38,53 +38,53 @@ export const useMosaicStyles = makeStyles((): any => ({
       position: 'absolute',
       right: '0',
       top: '0',
-      zIndex: 5,
+      zIndex: 5
     },
     '.mosaic-drop-target .drop-target-container .drop-target.bottom': {
-      top: 'calc(100% -  30% )',
+      top: 'calc(100% -  30% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover': {
-      opacity: 1,
+      opacity: 1
     },
     '.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.bottom': {
-      top: 'calc(100% -  50% )',
+      top: 'calc(100% -  50% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.left': {
-      right: 'calc(100% -  50% )',
+      right: 'calc(100% -  50% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.right': {
-      left: 'calc(100% -  50% )',
+      left: 'calc(100% -  50% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.drop-target-hover.top': {
-      bottom: 'calc(100% -  50% )',
+      bottom: 'calc(100% -  50% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.left': {
-      right: 'calc(100% -  30% )',
+      right: 'calc(100% -  30% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.right': {
-      left: 'calc(100% -  30% )',
+      left: 'calc(100% -  30% )'
     },
     '.mosaic-drop-target .drop-target-container .drop-target.top': {
-      bottom: 'calc(100% -  30% )',
+      bottom: 'calc(100% -  30% )'
     },
 
     '.mosaic-drop-target .drop-target-container.-dragging': {
-      display: 'block',
+      display: 'block'
     },
     '.mosaic-drop-target.drop-target-hover .drop-target-container': {
-      display: 'block',
+      display: 'block'
     },
     '.mosaic-drop-target.mosaic > .drop-target-container .drop-target.bottom': {
-      top: 'calc(100% -  10px )',
+      top: 'calc(100% -  10px )'
     },
     '.mosaic-drop-target.mosaic > .drop-target-container .drop-target.left': {
-      right: 'calc(100% -  10px )',
+      right: 'calc(100% -  10px )'
     },
     '.mosaic-drop-target.mosaic > .drop-target-container .drop-target.right': {
-      left: 'calc(100% -  10px )',
+      left: 'calc(100% -  10px )'
     },
     '.mosaic-drop-target.mosaic > .drop-target-container .drop-target.top': {
-      bottom: 'calc(100% -  10px )',
+      bottom: 'calc(100% -  10px )'
     },
     '.mosaic-root': {
       background: '#d9d9da',
@@ -92,59 +92,59 @@ export const useMosaicStyles = makeStyles((): any => ({
       left: 76,
       position: 'absolute',
       right: 3,
-      top: 63,
+      top: 63
     },
     '.mosaic-split': {
       position: 'absolute',
       touchAction: 'none',
-      zIndex: 1,
+      zIndex: 1
     },
     '.mosaic-split .mosaic-split-line': {
-      position: 'absolute',
+      position: 'absolute'
     },
     '.mosaic-split.-column': {
       cursor: 'ns-resize',
       height: 6,
-      marginTop: -3,
+      marginTop: -3
     },
     '.mosaic-split.-column .mosaic-split-line': {
       bottom: 3,
       left: 0,
       right: 0,
-      top: 3,
+      top: 3
     },
     '.mosaic-split.-row': {
       cursor: 'ew-resize',
       marginLeft: -3,
-      width: 6,
+      width: 6
     },
     '.mosaic-split.-row .mosaic-split-line': {
       bottom: '0',
       left: 3,
       right: 3,
-      top: '0',
+      top: '0'
     },
     '.mosaic-tile': {
       margin: 3,
-      position: 'absolute',
+      position: 'absolute'
     },
 
     '.mosaic-tile > *': {
       height: '100%',
-      width: '100%',
+      width: '100%'
     },
     '.mosaic-window .mosaic-preview .mosaic-window-body, .mosaic-preview .mosaic-preview .mosaic-window-body': {
       alignItems: 'center',
       display: 'flex',
       fallbacks: {
-        W: 'center',
+        W: 'center'
       },
       flexDirection: 'column',
       justifyContent: 'center',
-      W: 'center',
+      W: 'center'
     },
     '.mosaic-window .mosaic-preview h4, .mosaic-preview .mosaic-preview h4': {
-      marginBottom: 10,
+      marginBottom: 10
     },
     '.mosaic-window .mosaic-preview, .mosaic-preview .mosaic-preview': {
       border: '1px solid black',
@@ -152,13 +152,13 @@ export const useMosaicStyles = makeStyles((): any => ({
       maxHeight: 400,
       position: 'absolute',
       width: '100%',
-      zIndex: 0,
+      zIndex: 0
     },
     '.mosaic-window .mosaic-window-additional-actions-bar .bp3-button, .mosaic-preview .mosaic-window-additional-actions-bar .bp3-button': {
-      margin: '0',
+      margin: '0'
     },
     '.mosaic-window .mosaic-window-additional-actions-bar .bp3-button:after, .mosaic-preview .mosaic-window-additional-actions-bar .bp3-button:after': {
-      display: 'none',
+      display: 'none'
     },
     '.mosaic-window .mosaic-window-additional-actions-bar, .mosaic-preview .mosaic-window-additional-actions-bar': {
       background: 'white',
@@ -166,7 +166,7 @@ export const useMosaicStyles = makeStyles((): any => ({
       display: 'flex',
       fallbacks:
         {
-          display: '-webkit-box',
+          display: '-webkit-box'
         },
       height: 0,
       justifyContent: 'flex-end',
@@ -176,7 +176,7 @@ export const useMosaicStyles = makeStyles((): any => ({
       right: 0,
       top: 30,
       W: 'end',
-      zIndex: 3,
+      zIndex: 3
     },
     '.mosaic-window .mosaic-window-body, .mosaic-preview .mosaic-window-body': {
       background: 'black',
@@ -185,7 +185,7 @@ export const useMosaicStyles = makeStyles((): any => ({
       overflow: 'scroll',
       position: 'relative',
       W: 1,
-      zIndex: 1,
+      zIndex: 1
     },
     '.mosaic-window .mosaic-window-body-overlay, .mosaic-preview .mosaic-window-body-overlay': {
       background: 'white',
@@ -196,19 +196,19 @@ export const useMosaicStyles = makeStyles((): any => ({
       position: 'absolute',
       right: 0,
       top: 0,
-      zIndex: 2,
+      zIndex: 2
     },
     '.mosaic-window .mosaic-window-controls .separator, .mosaic-preview .mosaic-window-controls .separator': {
       borderLeft: '1px solid black',
       height: 20,
-      margin: '5px 4px',
+      margin: '5px 4px'
     },
     '.mosaic-window .mosaic-window-controls, .mosaic-preview .mosaic-window-controls': {
       display: 'flex',
       fallbacks: {
-        display: '-webkit-box',
+        display: '-webkit-box'
       },
-      height: '100%',
+      height: '100%'
     },
     '.mosaic-window .mosaic-window-title, .mosaic-preview .mosaic-window-title': {
       flex: '1',
@@ -216,7 +216,7 @@ export const useMosaicStyles = makeStyles((): any => ({
       overflow: 'hidden',
       paddingLeft: 15,
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
+      whiteSpace: 'nowrap'
     },
     '.mosaic-window .mosaic-window-toolbar, .mosaic-preview .mosaic-window-toolbar': {
       alignItems: 'center',
@@ -224,46 +224,46 @@ export const useMosaicStyles = makeStyles((): any => ({
       boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
       display: 'flex',
       fallbacks: {
-        W: 'justify',
+        W: 'justify'
       },
       flexShrink: 0,
       height: 30,
       justifyContent: 'space-between',
       W: 'center',
-      zIndex: 4,
+      zIndex: 4
     },
     '.mosaic-window .mosaic-window-toolbar.draggable, .mosaic-preview .mosaic-window-toolbar.draggable': {
-      cursor: 'move',
+      cursor: 'move'
     },
     '.mosaic-window, .mosaic-preview': {
       boxShadow: '0 0 1px rgba(0, 0, 0, 0.2)',
       display: 'flex',
       fallbacks:
         {
-          W: 'vertical',
+          W: 'vertical'
         },
       flexDirection: 'column',
       overflow: 'hidden',
       position: 'relative',
-      W: 'normal',
+      W: 'normal'
     },
     '.mosaic-window.additional-controls-open .mosaic-window-additional-actions-bar, .mosaic-preview.additional-controls-open .mosaic-window-additional-actions-bar': {
-      height: 30,
+      height: 30
     },
     '.mosaic-window.additional-controls-open .mosaic-window-body-overlay, .mosaic-preview.additional-controls-open .mosaic-window-body-overlay': {
-      display: 'block',
+      display: 'block'
     },
     '.mosaic:not(.mosaic-blueprint-theme) .mosaic-default-control.close-button:before': {
-      content: '\'Close\'',
+      content: '\'Close\''
     },
     '.mosaic:not(.mosaic-blueprint-theme) .mosaic-default-control.expand-button:before': {
-      content: '\'Expand\'',
+      content: '\'Expand\''
     },
     '.mosaic:not(.mosaic-blueprint-theme) .mosaic-default-control.replace-button:before': {
-      content: '\'Replace\'',
+      content: '\'Replace\''
     },
     '.mosaic:not(.mosaic-blueprint-theme) .mosaic-default-control.split-button:before': {
-      content: '\'Split\'',
-    },
+      content: '\'Split\''
+    }
   }
 }))

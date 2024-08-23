@@ -1,19 +1,19 @@
-import {ESCore, usePrevious} from "@react-discovery/core"
+import { ESCore, usePrevious } from '@react-discovery/core'
 import {
   Mosaic,
   MosaicNode,
   MosaicParent,
   MosaicWindow,
   createBalancedTreeFromLeaves,
-  getLeaves,
+  getLeaves
 } from 'react-mosaic-component'
-import React, {ReactElement, Suspense, useEffect} from 'react'
-import {getWorkspaceLayout, getWorkspaceViewIdMap, removeViewId, setWorkspaceLayout} from './state'
-import {ZeroState} from "."
-import {createRandomNode} from './utils'
-import {makeStyles} from "@material-ui/core"
-import {useDispatch} from "react-redux"
-import {useMosaicStyles} from "./styles"
+import React, { ReactElement, Suspense, useEffect } from 'react'
+import { getWorkspaceLayout, getWorkspaceViewIdMap, removeViewId, setWorkspaceLayout } from './state'
+import { ZeroState } from '.'
+import { createRandomNode } from './utils'
+import { makeStyles } from '@material-ui/core'
+import { useDispatch } from 'react-redux'
+import { useMosaicStyles } from './styles'
 
 export interface IWorkspaceMosaic {
   currentNode?: MosaicNode<number> | null;
@@ -30,13 +30,13 @@ const useStyles = makeStyles(() => ({
   toolbarRoot: {
     flexGrow: 1,
     width: '100%'
-  },
+  }
 }))
 
 const VIEW_COMPONENT_PATH = './views'
 
 export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement => {
-  const {windowAppBar} = props
+  const { windowAppBar } = props
   const dispatch = useDispatch()
   useMosaicStyles({})
   const classes = useStyles({})
@@ -50,17 +50,17 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
   const prevLayout = usePrevious(workspaceLayout)
 
   const buildWorkspaceLayout: any = (): MosaicNode<string> => {
-    const windowInstances = Object.keys(viewIdMap).sort();
-    const leaveKeys = getLeaves(workspaceLayout);
-    if (windowInstances && (!windowInstances.every(e => leaveKeys.includes(e))
-      || !leaveKeys.every(e => windowInstances.includes(e)))) {
-      return createBalancedTreeFromLeaves(windowInstances);
+    const windowInstances = Object.keys(viewIdMap).sort()
+    const leaveKeys = getLeaves(workspaceLayout)
+    if (windowInstances && (!windowInstances.every(e => leaveKeys.includes(e)) ||
+      !leaveKeys.every(e => windowInstances.includes(e)))) {
+      return createBalancedTreeFromLeaves(windowInstances)
     }
-    return workspaceLayout;
+    return workspaceLayout
   }
 
   const onChange = (currentNode: MosaicParent<string> | null): void => {
-    dispatch(setWorkspaceLayout({layout: currentNode}))
+    dispatch(setWorkspaceLayout({ layout: currentNode }))
   }
 
   const renderTile = (id, path): ReactElement => {
@@ -91,17 +91,17 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
   }
 
   useEffect((): void => {
-    dispatch(setWorkspaceLayout({layout: buildWorkspaceLayout()}))
+    dispatch(setWorkspaceLayout({ layout: buildWorkspaceLayout() }))
     if (Object.is(workspaceLayout, prevLayout)) {
-      dispatch(setWorkspaceLayout({layout: workspaceLayout}))
+      dispatch(setWorkspaceLayout({ layout: workspaceLayout }))
     }
 
     if (viewIdMap !== prevViewIdMap) {
-      dispatch(setWorkspaceLayout({layout: buildWorkspaceLayout()}))
+      dispatch(setWorkspaceLayout({ layout: buildWorkspaceLayout() }))
     }
   }, [workspaceLayout, prevLayout, prevViewIdMap, viewIdMap])
 
-  const zeroStateView = <div style={{margin: 'auto', position: 'absolute'}}><ZeroState createNode={createNode}/></div>
+  const zeroStateView = <div style={{ margin: 'auto', position: 'absolute' }}><ZeroState createNode={createNode}/></div>
 
   return (
     <div className={classes.root}>

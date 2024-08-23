@@ -1,5 +1,5 @@
-import React, {ReactElement} from "react"
-import {useInnerHtmlValueStyles} from '../styles'
+import React, { ReactElement } from 'react'
+import { useInnerHtmlValueStyles } from '../styles'
 
 interface IInnerHtmlValue {
   classes?: any;
@@ -8,8 +8,8 @@ interface IInnerHtmlValue {
 
 export const InnerHtmlValue: React.FC<IInnerHtmlValue> = (props): ReactElement => {
   const classes: any = props.classes || useInnerHtmlValueStyles({})
-  const {value} = props
+  const { value } = props
   return (
-    <div className={classes.values} dangerouslySetInnerHTML={{__html: value}}/>
+    <div className={classes.values} dangerouslySetInnerHTML={{ __html: value }}/>
   )
 }

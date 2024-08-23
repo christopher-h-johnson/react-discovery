@@ -1,14 +1,14 @@
-import {Grid, GridListTile, IconButton, makeStyles, Typography, withStyles} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {SingleImageOSDViewer, buildTileSourceForGridViewerImage, } from "@react-discovery/iiif"
-import {getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject} from "@react-discovery/configuration"
-import {Close} from "@material-ui/icons"
-import {ESCore} from '@react-discovery/core'
-import {ViewTypeSwitcher} from "./ViewTypeSwitcher"
-import {useDispatch} from "react-redux"
+import { Grid, GridListTile, IconButton, makeStyles, Typography, withStyles } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { SingleImageOSDViewer, buildTileSourceForGridViewerImage } from '@react-discovery/iiif'
+import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
+import { Close } from '@material-ui/icons'
+import { ESCore } from '@react-discovery/core'
+import { ViewTypeSwitcher } from './ViewTypeSwitcher'
+import { useDispatch } from 'react-redux'
 import uuid from 'uuid'
-import {buildHighlightedValueForHit, InnerHtmlValue, TitleIdHeader} from "@react-discovery/components"
-import {Domain} from "@react-discovery/views"
+import { buildHighlightedValueForHit, InnerHtmlValue, TitleIdHeader } from '@react-discovery/components'
+import { Domain } from '@react-discovery/views'
 
 const useStyles = makeStyles((): any => ({
   closeIcon: {
@@ -41,8 +41,8 @@ const useStyles = makeStyles((): any => ({
 
 const ColoredButton = withStyles(() => ({
   root: {
-    color: 'white',
-  },
+    color: 'white'
+  }
 }))(IconButton)
 
 export const ImageGridViewer: React.FC<any> = (): ReactElement => {
@@ -55,7 +55,7 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
   const dispatch = useDispatch()
 
   const handleRemove = (): void => {
-    dispatch(setCurrentGridViewerObject({gridViewerObject: null}))
+    dispatch(setCurrentGridViewerObject({ gridViewerObject: null }))
   }
 
   const buildCloseIcon = (): ReactElement => {
@@ -78,8 +78,8 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
       className={classes.flexSection}
       container
     >
-      {image ?
-        <>
+      {image
+        ? <>
           <Grid className={classes.gridRoot} item xs={7}>
             <ViewTypeSwitcher/>
           </Grid>
@@ -91,8 +91,8 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
               title={title}
             />
           </Grid>
-        </> :
-        <Grid className={classes.gridRoot} item xs={12}>
+        </>
+        : <Grid className={classes.gridRoot} item xs={12}>
           <ViewTypeSwitcher/>
         </Grid>
       }

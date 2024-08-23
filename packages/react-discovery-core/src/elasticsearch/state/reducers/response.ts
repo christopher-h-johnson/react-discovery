@@ -1,15 +1,15 @@
-import {IHit, IResponse} from "../../.."
-import {fetchElasticSearchDocument, fetchElasticSearchResponse} from '../actions'
-import {reducerWithInitialState} from 'typescript-fsa-reducers'
+import { IHit, IResponse } from '../../..'
+import { fetchElasticSearchDocument, fetchElasticSearchResponse } from '../actions'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 const initialState: IResponse = {
   aggregations: null,
   docs: {},
   hits: {
     hits: [],
-    numFound: 0,
+    numFound: 0
   },
-  url: null,
+  url: null
 }
 
 const buildInnerHitHighlight = (highlight) => {
@@ -29,7 +29,7 @@ const buildInnerHits = (hit): IHit[] => {
         _source: hit._source,
         field: key,
         highlighting: buildInnerHitHighlight(hit.highlight),
-        id: hit._id,
+        id: hit._id
       }
     })
   })
@@ -42,7 +42,7 @@ const buildDocs = (result): IHit[] => {
       _source: hit._source,
       highlighting: hit.highlight || {},
       id: hit._id,
-      innerHits: hit.inner_hits ? buildInnerHits(hit) : [],
+      innerHits: hit.inner_hits ? buildInnerHits(hit) : []
     }
   })
 }
@@ -60,7 +60,7 @@ export const response = reducerWithInitialState(initialState)
     ...state,
     updating: true
   }))
-  .case(fetchElasticSearchResponse.async.done, (state: IResponse, {params, result}): IResponse => ({
+  .case(fetchElasticSearchResponse.async.done, (state: IResponse, { params, result }): IResponse => ({
     ...state,
     aggregations: result.aggregations ? result.aggregations : state.aggregations,
     hits: {
@@ -68,28 +68,28 @@ export const response = reducerWithInitialState(initialState)
       numFound: buildNumFound(result)
     },
     updating: false,
-    url: params.url,
+    url: params.url
   }))
   .case(fetchElasticSearchResponse.async.failed, (state, { error }): IResponse => ({
     ...state,
     error,
-    updating: false,
+    updating: false
   }))
   .case(fetchElasticSearchDocument.async.started, (state): IResponse => ({
     ...state,
     updating: true
   }))
-  .case(fetchElasticSearchDocument.async.done, (state: IResponse, {params, result}): IResponse => ({
+  .case(fetchElasticSearchDocument.async.done, (state: IResponse, { params, result }): IResponse => ({
     ...state,
     docs: {
       ...state.docs,
       [result._id]: result
     },
     updating: false,
-    url: params.url,
+    url: params.url
   }))
   .case(fetchElasticSearchDocument.async.failed, (state, { error }): IResponse => ({
     ...state,
     error,
-    updating: false,
+    updating: false
   }))

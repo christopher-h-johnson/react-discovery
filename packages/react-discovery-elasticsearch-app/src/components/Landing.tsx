@@ -1,17 +1,17 @@
-import {Button, Card, CardContent, CardMedia, Grid, makeStyles} from '@material-ui/core'
-import React, {ReactElement} from 'react'
+import { Button, Card, CardContent, CardMedia, Grid, makeStyles } from '@material-ui/core'
+import React, { ReactElement } from 'react'
 import { NavLink } from 'react-navi'
-import {getCurrentSearchContext} from '@react-discovery/configuration'
+import { getCurrentSearchContext } from '@react-discovery/configuration'
 const useStyles = makeStyles((): any => ({
   card: {
     margin: '4px',
     maxHeight: 300,
     maxWidth: 300,
-    minWidth: 300,
+    minWidth: 300
   },
   media: {
-    height: 250,
-  },
+    height: 250
+  }
 }))
 
 export const Landing: React.FC<any> = (): ReactElement => {
@@ -23,15 +23,15 @@ export const Landing: React.FC<any> = (): ReactElement => {
       index: 0,
       linkPath: '/workspace',
       text: 'Workspace',
-      title: 'View Workspace',
+      title: 'View Workspace'
     },
     {
       imageSrc: 'https://iiif.bodleian.ox.ac.uk/iiif/image/b2c352ee-1356-4c8c-9c11-7c6d7f3587b2/full/256,/0/default.jpg',
       index: 1,
       linkPath: currentSearchcontext,
       text: 'Search',
-      title: 'Search',
-    },
+      title: 'Search'
+    }
   ]
 
   const buildCards = (cards): ReactElement[] => {
@@ -62,11 +62,10 @@ export const Landing: React.FC<any> = (): ReactElement => {
         justify="center"
         spacing={3}
       >
-        <Grid item style={{display: 'flex'}} xs={8}>
+        <Grid item style={{ display: 'flex' }} xs={8}>
           {buildCards(cards)}
         </Grid>
       </Grid>
     </>
   )
 }
-

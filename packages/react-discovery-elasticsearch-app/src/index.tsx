@@ -5,8 +5,7 @@ import {Router, View} from 'react-navi'
 import {getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap, setViewIdMap} from "@react-discovery/workspace"
 import {mount, route} from 'navi'
 import thunkMiddleware, {ThunkMiddleware} from 'redux-thunk'
-import ApolloClient from 'apollo-boost';
-import {ApolloProvider} from '@apollo/react-hooks';
+import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client'
 import {DetailView} from '@react-discovery/views'
 import {ElasticSearchProvider} from "@react-discovery/core"
 import {Provider} from 'react-redux'
@@ -59,9 +58,11 @@ const store: Store = createStore(
 )
 
 const client = new ApolloClient({
-  uri: 'https://apollo.iiif.cloud'
+  uri: 'https://apollo.iiif.cloud',
+  cache: new InMemoryCache()
 });
 
+// @ts-ignore
 ReactDOM.render(
   <Router routes={routes}>
     <Provider store={store}>

@@ -1,16 +1,16 @@
-import {Annotations, Descriptions, Digitalisate, HitAbstract, Info, ItemActionBar, ThumbnailGrid} from '.'
-import {Card, CardContent, Divider, Grid} from "@material-ui/core"
-import {Domain, HitViewOptionsMenu, useHitViewStyles} from '@react-discovery/views'
-import {ESCore, IHit} from "@react-discovery/core"
-import React, {ReactElement} from "react"
+import { Annotations, Descriptions, Digitalisate, HitAbstract, Info, ItemActionBar, ThumbnailGrid } from '.'
+import { Card, CardContent, Divider, Grid } from '@material-ui/core'
+import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
+import { ESCore, IHit } from '@react-discovery/core'
+import React, { ReactElement } from 'react'
 import {
   TitleIdHeader,
   ValueDisplay,
   buildHighlightedValueForHit,
   getFirstManifestFromHit
 } from '@react-discovery/components'
-import {getHitComponentConfig, getItemViewType, getViewType} from "@react-discovery/configuration"
-import {getNumberOfWorkspaceNodesForId, setViewIdMap} from '@react-discovery/workspace'
+import { getHitComponentConfig, getItemViewType, getViewType } from '@react-discovery/configuration'
+import { getNumberOfWorkspaceNodesForId, setViewIdMap } from '@react-discovery/workspace'
 
 interface IDefaultItemComponent {
   classes: any;
@@ -26,7 +26,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
   }
   const classes: any = useHitViewStyles({})
   const searchFields = ESCore.state.getSearchFields()
-  const {hit, i} = props
+  const { hit, i } = props
   const id = hit && hit._source.id
   const itemViewType = hit && getItemViewType(id)
   const viewType = getViewType()
@@ -46,7 +46,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
         hit={hit}
         key={key}
         separator={true}
-        style={{flex: 'auto'}}
+        style={{ flex: 'auto' }}
         variant='body2'
       />
     )
@@ -78,7 +78,8 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
   }
   const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
 
-  return hit && viewType !== 'expanded' ? (
+  return hit && viewType !== 'expanded'
+    ? (
     <Card className={classes.root} key={i}>
       <Grid
         container
@@ -94,7 +95,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
             optionsMenu={optionsMenu}
             title={title}
           />
-          <div style={{display: 'flex'}}>
+          <div style={{ display: 'flex' }}>
             <div className={classes.details}>
               <CardContent
                 className={classes.content}
@@ -102,11 +103,11 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
                 <ValueDisplay
                   field={Domain.DOC_SUBTITLE_FIELD}
                   hit={hit}
-                  style={{flex: 'auto'}}
+                  style={{ flex: 'auto' }}
                   variant='h6'
                 />
               </CardContent>
-              <Divider style={{margin: 12}} variant="middle"/>
+              <Divider style={{ margin: 12 }} variant="middle"/>
               {buildItemViewForType(itemViewType)}
               <HitAbstract hit={hit}/>
             </div>
@@ -115,7 +116,8 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
         <ThumbnailGrid hit={hit} id={id} item={item} manifest={manifest}/>
       </Grid>
     </Card>
-  ) : null
+      )
+    : null
 }
 
 export default Kulturobjekt

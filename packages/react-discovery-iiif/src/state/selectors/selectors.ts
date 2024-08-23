@@ -1,4 +1,4 @@
-import {useSelector} from "react-redux"
+import { useSelector } from 'react-redux'
 
 export const getInApolloRequest = (): any[] => {
   return useSelector((state: any): any[] => state.iiif.apollo)
@@ -10,8 +10,6 @@ export const getCurrentManifestsInCollection = (): any => {
 }
 
 export const getThumbnail = (manifestId): string => {
-  return useSelector((state: any): any => state.iiif.responses && state.iiif.responses[manifestId]
-    && state.iiif.responses[manifestId].imageServices)
+  return useSelector((state: any): any => state.iiif.responses && state.iiif.responses[manifestId] &&
+    state.iiif.responses[manifestId].imageServices)
 }
-
-

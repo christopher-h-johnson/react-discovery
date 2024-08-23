@@ -1,11 +1,22 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "outDir": "./lib"
   },
+  "extends": "../../tsconfig.json",
   "include": [
     "./src"
+  ],
+  "references": [
+    {
+      "path": "../react-discovery-components"
+    },
+    {
+      "path": "../react-discovery-core"
+    },
+    {
+      "path": "../react-discovery-views"
+    }
   ],
   "typedocOptions": {
     "mode": "modules",
