@@ -16,7 +16,7 @@ import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { SimpleImageViewer } from '@react-discovery/iiif'
 import { getCurrentCollection } from '@react-discovery/configuration'
-import uuid from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 
 interface IDetailView {
   actions: any;
@@ -150,7 +150,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
       container
       direction="column"
       justify="center"
-      key={uuid()}
+      key={uuidv4()}
       spacing={3}
     >
       {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}

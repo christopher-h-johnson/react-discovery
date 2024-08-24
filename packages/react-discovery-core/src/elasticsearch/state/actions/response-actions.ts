@@ -1,6 +1,7 @@
 import { IFetchElasticSearchDocumentParams, IState, Succ } from '../../..'
 import { IFetchElasticSearchResponseParams } from '../../index'
 import actionCreatorFactory from 'typescript-fsa'
+import { encode } from 'base-64'
 import { asyncFactory } from 'typescript-fsa-redux-thunk'
 const create = actionCreatorFactory()
 const FETCH_ELASTICSEARCH_RESPONSE = 'FETCH_ELASTICSEARCH_RESPONSE'
@@ -8,13 +9,19 @@ const FETCH_ELASTICSEARCH_DOCUMENT = 'FETCH_ELASTICSEARCH_DOCUMENT'
 const SET_RESPONSE_ERROR = 'SET_RESPONSE_ERROR'
 const createAsync = asyncFactory<IState>(create)
 export const setResponseError = create<{error: string}>(SET_RESPONSE_ERROR)
+const username = process.env.REACT_APP_SEARCH_API_USERNAME
+const password = process.env.REACT_APP_SEARCH_API_PASSWORD
+const encoded = encode(username + ':' + password)
 
 export const fetchElasticSearchResponse = createAsync<IFetchElasticSearchResponseParams, Succ>(FETCH_ELASTICSEARCH_RESPONSE,
   async (params: IFetchElasticSearchResponseParams): Promise<string> => {
     try {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
+      headers.append('Authorization', 'Basic ' + encoded)
+      // eslint-disable-next-line no-undef
       const cache: RequestCache = 'default'
+      // eslint-disable-next-line no-undef
       const mode: RequestMode = 'cors'
       const init = {
         body: params.json,
@@ -39,8 +46,15 @@ export const fetchElasticSearchDocument = createAsync<IFetchElasticSearchDocumen
   async (params: IFetchElasticSearchDocumentParams): Promise<string> => {
     try {
       const headers = new Headers()
+      const username = process.env.REACT_APP_SEARCH_API_USERNAME
+      const password = process.env.REACT_APP_SEARCH_API_PASSWORD
+      const encoded = encode(username + ':' + password)
+      console.log(encoded)
       headers.append('Content-Type', 'application/json')
+      headers.append('Authorization', 'Basic ' + encoded)
+      // eslint-disable-next-line no-undef
       const cache: RequestCache = 'default'
+      // eslint-disable-next-line no-undef
       const mode: RequestMode = 'cors'
       const init = {
         cache,

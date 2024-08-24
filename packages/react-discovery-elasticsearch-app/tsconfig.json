@@ -8,26 +8,6 @@
   "include": [
     "./src"
   ],
-  "references": [
-    {
-      "path": "../react-discovery-components"
-    },
-    {
-      "path": "../react-discovery-core"
-    },
-    {
-      "path": "../react-discovery-i18n"
-    },
-    {
-      "path": "../react-discovery-iiif"
-    },
-    {
-      "path": "../react-discovery-views"
-    },
-    {
-      "path": "../react-discovery-workspace"
-    }
-  ],
   "typedocOptions": {
     "mode": "modules",
     "out": "docs"

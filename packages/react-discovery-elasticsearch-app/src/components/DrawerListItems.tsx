@@ -85,6 +85,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
     }
   }
 
+  // eslint-disable-next-line no-empty-pattern
   const handleListItemClick = ({}, index): void => {
     setSelectedIndex(index)
   }

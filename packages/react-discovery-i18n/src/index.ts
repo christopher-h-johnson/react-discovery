@@ -1,6 +1,6 @@
-import i18n from "i18next"
-import {initReactI18next} from 'react-i18next'
-import resources from "./resources"
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import resources from './resources'
 
 i18n
   .use(initReactI18next)
@@ -8,7 +8,7 @@ i18n
     defaultNS: 'common',
     fallbackLng: 'en',
     interpolation: {
-      escapeValue: false,
+      escapeValue: false
     },
     lng: 'en',
     ns: ['common', 'vocab'],
@@ -17,9 +17,9 @@ i18n
       transEmptyNodeValue: '',
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
       transSupportBasicHtmlNodes: true,
-      useSuspense: false,
+      useSuspense: false
     },
     resources
-  });
+  })
 
-export default i18n;
+export default i18n

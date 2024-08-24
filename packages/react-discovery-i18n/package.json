@@ -6,15 +6,15 @@
   },
   "description": "react discovery internationalization",
   "license": "Apache-2.0",
-  "main": "lib/index.js",
+  "main": "lib/src/index.js",
   "name": "@react-discovery/i18n",
   "repository": {
     "type": "git",
     "url": "git@github.com:christopher-h-johnson/react-discovery.git"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --build --verbose"
   },
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "version": "0.2.0"
 }

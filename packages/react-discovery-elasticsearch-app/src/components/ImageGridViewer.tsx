@@ -1,4 +1,4 @@
-import { Grid, GridListTile, IconButton, makeStyles, Typography, withStyles } from '@material-ui/core'
+import { Grid, IconButton, makeStyles, withStyles } from '@material-ui/core'
 import React, { ReactElement } from 'react'
 import { SingleImageOSDViewer, buildTileSourceForGridViewerImage } from '@react-discovery/iiif'
 import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
@@ -6,8 +6,8 @@ import { Close } from '@material-ui/icons'
 import { ESCore } from '@react-discovery/core'
 import { ViewTypeSwitcher } from './ViewTypeSwitcher'
 import { useDispatch } from 'react-redux'
-import uuid from 'uuid'
-import { buildHighlightedValueForHit, InnerHtmlValue, TitleIdHeader } from '@react-discovery/components'
+import { v4 as uuidv4 } from 'uuid'
+import { buildHighlightedValueForHit, TitleIdHeader } from '@react-discovery/components'
 import { Domain } from '@react-discovery/views'
 
 const useStyles = makeStyles((): any => ({
@@ -85,7 +85,7 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
           </Grid>
           <Grid className={classes.gridViewer} item xs={5}>
             {buildCloseIcon()}
-            <SingleImageOSDViewer image={image} key={uuid()}/>
+            <SingleImageOSDViewer image={image} key={uuidv4()}/>
             <TitleIdHeader
               id={id}
               title={title}

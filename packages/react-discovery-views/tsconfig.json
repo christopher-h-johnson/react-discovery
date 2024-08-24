@@ -1,22 +1,12 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "resolveJsonModule": true
   },
   "extends": "../../tsconfig.json",
   "include": [
     "./src"
-  ],
-  "references": [
-    {
-      "path": "../react-discovery-components"
-    },
-    {
-      "path": "../react-discovery-core"
-    },
-    {
-      "path": "../react-discovery-iiif"
-    }
   ],
   "typedocOptions": {
     "mode": "modules",

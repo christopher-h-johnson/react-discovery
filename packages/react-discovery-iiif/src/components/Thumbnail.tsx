@@ -3,9 +3,8 @@ import React, { ReactElement } from 'react'
 import { getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
 import { buildThumbnailReference } from '../utils'
 import clsx from 'clsx'
-import gql from 'graphql-tag'
 import { useDispatch } from 'react-redux'
-import { useQuery } from '@apollo/react-hooks'
+import { gql, useQuery } from '@apollo/client'
 import { useThumbnailStyles } from '@react-discovery/components'
 
 interface IThumbnail {
@@ -17,12 +16,14 @@ interface IThumbnail {
   thumbnail?: string;
 }
 
+// noinspection GraphQLUnresolvedReference
 const GET_THUMBNAIL = gql`
           query Thumbnail($manifestId: String!) {
               manifest(id: $manifestId)
           {thumbnail{id, type, service {id, profile}}}
           }`
 
+// noinspection GraphQLUnresolvedReference
 const GET_THUMBNAIL_DESCRIPTORS = gql`
           query Summary($manifestId: String!) {
               manifest(id: $manifestId)

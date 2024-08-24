@@ -1,7 +1,8 @@
 import { Button, Card, CardContent, CardMedia, Grid, makeStyles } from '@material-ui/core'
-import React, { ReactElement } from 'react'
 import { NavLink } from 'react-navi'
+import React, { ReactElement } from 'react'
 import { getCurrentSearchContext } from '@react-discovery/configuration'
+
 const useStyles = makeStyles((): any => ({
   card: {
     margin: '4px',

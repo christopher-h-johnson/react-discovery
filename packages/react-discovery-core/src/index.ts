@@ -1,7 +1,12 @@
-import {IConfig} from "@react-discovery/configuration"
+import { IConfig } from '@react-discovery/configuration'
 
 export * from './elasticsearch'
 export * from './hooks'
+
+export interface IBucket {
+  key: string;
+  docCount: number;
+}
 
 export interface IAggregation {
   buckets: IBucket[];
@@ -9,19 +14,6 @@ export interface IAggregation {
 
 export interface IAggregations {
   [field: string]: IAggregation;
-}
-
-export interface IBucket {
-  key: string;
-  docCount: number;
-}
-
-export interface IHits {
-  hits: IHit[];
-  total?: {
-    value: number;
-  };
-  numFound: number;
 }
 
 export interface IHit {
@@ -33,10 +25,18 @@ export interface IHit {
   innerHits?: any;
 }
 
+export interface IHits {
+  hits: IHit[];
+  total?: {
+    value: number;
+  };
+  numFound: number;
+}
+
 export type IInnerHitField = Record<string, IHits>
 
 export interface IInnerHits {
-  "inner_hits": IInnerHitField;
+  'inner_hits': IInnerHitField;
 }
 
 export type IDocument = Record<string, IHit>

@@ -10,7 +10,6 @@ import {
 } from '@react-discovery/configuration'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigation } from 'react-navi'
 
 const useStyles = makeStyles((): any => ({
   primary: {
@@ -32,7 +31,6 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
   const currentSearchContext = getCurrentSearchContext()
   const jsonCollection = JSON.stringify(collectionObj)
   const prevJsonCollection = usePrevious(jsonCollection)
-  const navigation = useNavigation()
   const size = ESCore.state.getSize()
 
   useEffect((): void => {
@@ -53,7 +51,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
       }
       dispatch(ESCore.state.setQueryFields({ ...qs }))
       if (isInitialized) {
-        navigation.navigate(currentSearchContext)
+        // navigation.navigate(currentSearchContext)
       }
     }
   }, [prevJsonCollection, jsonCollection])

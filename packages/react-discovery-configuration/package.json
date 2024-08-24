@@ -6,7 +6,7 @@
   },
   "description": "react discovery configuration",
   "license": "Apache-2.0",
-  "main": "lib/index.js",
+  "main": "lib/src/index.js",
   "name": "@react-discovery/configuration",
   "repository": {
     "type": "git",
@@ -15,6 +15,6 @@
   "scripts": {
     "build": "tsc"
   },
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "version": "0.2.0"
 }

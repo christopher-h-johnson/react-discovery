@@ -7,11 +7,6 @@
   "include": [
     "./src"
   ],
-  "references": [
-    {
-      "path": "../react-discovery-configuration"
-    }
-  ],
   "typedocOptions": {
     "mode": "modules",
     "out": "docs"

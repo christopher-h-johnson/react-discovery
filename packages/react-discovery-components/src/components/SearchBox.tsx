@@ -14,7 +14,7 @@ export const SearchBox: React.FC<any> = (): ReactElement => {
   const currentSearchContext = getCurrentSearchContext()
   const dispatch = useDispatch()
   const [values, setValues] = React.useState('')
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
   const route = useCurrentRoute()
   const pathname = route.url.pathname
 
@@ -30,7 +30,7 @@ export const SearchBox: React.FC<any> = (): ReactElement => {
   const handleSubmit = (e): void => {
     e.preventDefault()
     if (pathname !== currentSearchContext) {
-      navigation.navigate(currentSearchContext)
+      // navigation.navigate(currentSearchContext)
     }
     dispatch(ESCore.state.setQueryInput({ stringInput: values }))
     dispatch(setSelectedIndex({ selectedIndex: 0 }))

@@ -1,7 +1,0 @@
-{
-  "files": [],
-  "references": [{ "path": "packages/react-discovery-components" }, { "path": "packages/react-discovery-configuration" },
-    {"path": "packages/react-discovery-core"},{"path": "packages/react-discovery-elasticsearch-app"},
-    {"path": "packages/react-discovery-i18n"}, {"path": "packages/react-discovery-iiif"},
-    {"path": "packages/react-discovery-views"}, {"path": "packages/react-discovery-workspace"}]
-}

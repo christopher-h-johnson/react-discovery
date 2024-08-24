@@ -1,44 +1,78 @@
 {
+  "atom": {
+    "rewriteTsconfig": false
+  },
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "composite": true,
-    "paths": { "*": ["@types/*"] },
     "declaration": true,
-    "module": "commonjs",
-    "target": "es5",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "skipLibCheck": true,
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es2015",
+      "es2017",
+      "dom"
+    ],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": false,
-    "noUnusedParameters":true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports":true,
+    "noUnusedParameters": true,
+    "outDir": "lib",
+    "paths": {
+      "*": [
+        "@types/*"
+      ]
+    },
     "resolveJsonModule": true,
-    "jsx": "react",
-    "lib":[
-      "es5", "es2015", "es2017", "dom"
-    ],
-    "types": [
-      "node"
-    ],
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types",
       "./src/@types"
+    ],
+    "types": [
+      "node"
     ]
   },
-
-  "include":[
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+  ],
+  "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "./src/_test_/**/*.json"
   ],
-  "exclude": [
-    "node_modules"
-  ],
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "references": [
+    {
+      "path": "packages/react-discovery-components"
+    },
+    {
+      "path": "packages/react-discovery-configuration"
+    },
+    {
+      "path": "packages/react-discovery-core"
+    },
+    {
+      "path": "packages/react-discovery-elasticsearch-app"
+    },
+    {
+      "path": "packages/react-discovery-i18n"
+    },
+    {
+      "path": "packages/react-discovery-iiif"
+    },
+    {
+      "path": "packages/react-discovery-views"
+    },
+    {
+      "path": "packages/react-discovery-workspace"
+    }
+  ]
 }

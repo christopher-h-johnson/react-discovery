@@ -23,6 +23,7 @@ export const SizeSelector: React.FC<any> = (): ReactElement => {
     }
   ]
 
+  // eslint-disable-next-line no-empty-pattern
   const handleSizeChange = ({}, value): void => {
     dispatch(setSelectedIndex({ selectedIndex: 0 }))
     dispatch(ESCore.state.setSize({ size: value }))

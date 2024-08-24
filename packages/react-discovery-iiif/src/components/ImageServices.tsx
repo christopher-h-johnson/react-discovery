@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react'
 import { OSDViewer } from '.'
 import { buildTileSources } from '../utils'
-import gql from 'graphql-tag'
 import { makeStyles } from '@material-ui/core'
-import { useQuery } from '@apollo/react-hooks'
+import { gql, useQuery } from '@apollo/client'
 
 interface IImageServices {
   classes?: any;
@@ -17,6 +16,7 @@ export const useThumbnailStyles = makeStyles((): any => ({
   }
 }))
 
+// noinspection GraphQLUnresolvedReference
 const GET_IMAGE_SERVICES = gql`
           query ImageServices($manifestId: String!, $type: String!) {
             imageServices(manifestId: $manifestId, 
@@ -24,6 +24,7 @@ const GET_IMAGE_SERVICES = gql`
             {id, type, profile}
           }`
 
+// noinspection GraphQLUnresolvedReference
 const GET_IMAGE_SERVICES_V2 = gql`
           query ImageServicesv2NoProfile($manifestId: String!) {
             imageServicesv2NoProfile(manifestId: $manifestId)

@@ -14,7 +14,7 @@ import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import { Tune } from '@material-ui/icons'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import uuid from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 const ExpansionPanel = withStyles({
   expanded: {},
@@ -119,7 +119,7 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
         classes={classes}
         field={refinementListFilters[id].field}
         id={id}
-        key={uuid()}
+        key={uuidv4()}
         label={t(`vocab:${refinementListFilters[id].label}`)}
         size={refinementListFilters[id].size}
       />))

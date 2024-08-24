@@ -38,6 +38,7 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
   const { t } = useTranslation('vocab')
   const value = getSelectedTabForId(id) || 0
 
+  // eslint-disable-next-line no-empty-pattern
   const handleChange = ({}, newValue: number): void => {
     dispatch(setCurrentSelectedTab({ currentSelectedTab: newValue, id }))
     dispatch(setViewType({ viewType: 'compact' }))
@@ -78,6 +79,9 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
   }
 
   const buildIconForEntityType = (type): ReactElement => {
+    const DIGITALISAT = <Image fontSize='default' style={{ padding: '5px' }}/>
+    const BESCHREIBUNG = <Book fontSize='default' style={{ padding: '5px' }}/>
+    const ANNOTATION = <ChatBubble fontSize='default' style={{ padding: '5px' }}/>
     switch (type) {
       case 'index':
         return (
@@ -92,13 +96,10 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
       case 'info':
         return <Info fontSize='default' style={{ padding: '5px' }}/>
       case Domain.MEDIA:
-        const DIGITALISAT = <Image fontSize='default' style={{ padding: '5px' }}/>
         return buildStyledBadge(DIGITALISAT, type)
       case Domain.DESCRIPTION:
-        const BESCHREIBUNG = <Book fontSize='default' style={{ padding: '5px' }}/>
         return buildStyledBadge(BESCHREIBUNG, type)
       case Domain.ANNOTATION:
-        const ANNOTATION = <ChatBubble fontSize='default' style={{ padding: '5px' }}/>
         return buildStyledBadge(ANNOTATION, type)
       default:
         return (
