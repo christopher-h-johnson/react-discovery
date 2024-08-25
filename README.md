@@ -44,9 +44,7 @@ REACT_APP_SEARCH_API_COLLECTION=hsp2
 ### Build and Start React App
  ```bash
  $ npm install
- $ lerna bootstrap --hoist
- $ lerna run build
- $ lerna run start
+ $ npm build
 ```
 
 ### Continuous Deployment Elasticsearch App

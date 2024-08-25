@@ -4,8 +4,8 @@ import {
   digitalisatDisplayFields,
   facetDisplayFields,
   personDisplayFields
-} from "./displayFields"
-import {Domain} from "./enum"
+} from './displayFields'
+import { Domain } from './enum'
 
 export const domainEntitySpec = [
   {
@@ -31,5 +31,5 @@ export const domainEntitySpec = [
     isNested: false,
     nestedDisplayFields: null,
     type: Domain.ANNOTATION
-  },
+  }
 ]

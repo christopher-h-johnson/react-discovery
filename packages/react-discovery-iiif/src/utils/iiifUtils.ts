@@ -1,4 +1,4 @@
-import {IIIF} from '../enum'
+import { IIIF } from '../enum'
 
 export const buildThumbnailReference = (thumbnail) => {
   let thumbnailLink

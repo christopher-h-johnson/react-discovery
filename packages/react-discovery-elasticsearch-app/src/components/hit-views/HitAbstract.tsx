@@ -1,8 +1,8 @@
-import {Divider, List, ListItem, ListSubheader, Typography} from "@material-ui/core"
-import {FieldLabel, InnerHtmlValue} from "@react-discovery/components"
-import React, {ReactElement} from "react"
-import {IHit} from "@react-discovery/core"
-import {useHitViewStyles} from "@react-discovery/views"
+import { Divider, List, ListItem, ListSubheader, Typography } from '@material-ui/core'
+import { FieldLabel, InnerHtmlValue } from '@react-discovery/components'
+import React, { ReactElement } from 'react'
+import { IHit } from '@react-discovery/core'
+import { useHitViewStyles } from '@react-discovery/views'
 
 interface IHitAbstract {
   hit: IHit;
@@ -10,7 +10,7 @@ interface IHitAbstract {
 
 export const HitAbstract: React.FC<IHitAbstract> = (props): ReactElement => {
   const classes: any = useHitViewStyles({})
-  const {hit} = props
+  const { hit } = props
   const buildFieldValueHits = (values) => {
     return values.map((v, i) => {
       return (
@@ -33,7 +33,7 @@ export const HitAbstract: React.FC<IHitAbstract> = (props): ReactElement => {
 
   const buildNestedHighlights = (hit: IHit): any => {
     const highlights: any[] = hit && hit.highlighting
-    return Object.entries(highlights).map(([ field, values]: any, i) => {
+    return Object.entries(highlights).map(([field, values]: any, i) => {
       const normalizedField = field.split('.').pop()
       return (
         <ListItem
@@ -50,8 +50,8 @@ export const HitAbstract: React.FC<IHitAbstract> = (props): ReactElement => {
 
   return (
     <>
-      {Object.keys(hit.highlighting).length ?
-        <List
+      {Object.keys(hit.highlighting).length
+        ? <List
           dense={true}
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
@@ -60,7 +60,8 @@ export const HitAbstract: React.FC<IHitAbstract> = (props): ReactElement => {
           }
         >
           {buildNestedHighlights(hit)}
-        </List> : null
+        </List>
+        : null
       }
       </>
   )

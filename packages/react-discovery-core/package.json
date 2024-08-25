@@ -1,35 +1,13 @@
 {
-  "name": "@react-discovery/core",
-  "license": "Apache 2.0",
-  "keywords": [
-    "solr",
-    "react",
-    "redux",
-    "material-ui ",
-    "react-component",
-    "typescript"
-  ],
-  "version": "0.2.0",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "author": {
-    "name": "Christopher Johnson",
-    "email": "chjohnson39@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ubleipzig/react-discovery.git"
-  },
-  "scripts": {
-    "build": "tsc"
-  },
-  "peerDependencies": {
-    "react": ">= 16",
-    "react-dom": ">= 16"
+    "email": "chjohnson39@gmail.com",
+    "name": "Christopher Johnson"
   },
   "dependencies": {
-    "@react-discovery/configuration": "file:../react-discovery-configuration",
+    "@react-discovery/configuration": "*",
+    "@types/base-64": "^1.0.2",
     "@types/react-redux": "^7.1.0",
+    "base-64": "^1.0.0",
     "lodash": "^4.17.14",
     "query-string": "^6.5.0",
     "react-navi": "^0.12.7",
@@ -38,9 +16,28 @@
     "typescript-fsa-redux-thunk": "^2.1.2",
     "uuidv5": "^1.0.0"
   },
-  "devDependencies": {
-    "@types/react": "^16.8.14",
-    "eslint": "^5.16.0",
-    "typescript": "^3.5.1"
-  }
+  "keywords": [
+    "solr",
+    "react",
+    "redux",
+    "material-ui ",
+    "react-component",
+    "typescript"
+  ],
+  "license": "Apache 2.0",
+  "main": "lib/src/index.js",
+  "name": "@react-discovery/core",
+  "peerDependencies": {
+    "react": ">= 16",
+    "react-dom": ">= 16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christopher-h-johnson/react-discovery.git"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "types": "lib/src/index.d.ts",
+  "version": "0.2.0"
 }

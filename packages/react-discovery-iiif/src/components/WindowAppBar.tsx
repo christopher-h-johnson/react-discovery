@@ -1,57 +1,57 @@
-import {AppBar, IconButton, Toolbar, Typography, makeStyles} from "@material-ui/core"
-import {Close, ZoomOutMap} from "@material-ui/icons"
+import { AppBar, IconButton, Toolbar, Typography, makeStyles } from '@material-ui/core'
+import { Close, ZoomOutMap } from '@material-ui/icons'
 import {
   MosaicContext,
-  MosaicWindowContext,
+  MosaicWindowContext
 } from 'react-mosaic-component'
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {buildHighlightedValueForHit} from "@react-discovery/components"
-import {useDispatch} from "react-redux"
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { buildHighlightedValueForHit } from '@react-discovery/components'
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles((theme): any => ({
   appBar: {
     backgroundColor: '#FFF'
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(2)
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
+      display: 'block'
     },
     marginRight: theme.spacing(2),
     marginTop: theme.spacing(2),
     maxWidth: '65%'
-  },
+  }
 }))
 
 export const WindowAppBar = (props): ReactElement => {
   const classes: any = useStyles({})
-  const {dataId, id, removeViewId} = props
+  const { dataId, id, removeViewId } = props
   const docs = ESCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[dataId] : null
   const title = doc && (buildHighlightedValueForHit('titel_t', doc) || buildHighlightedValueForHit('title', doc))
   const dispatch = useDispatch()
 
   const handleRemove = (): void => {
-    dispatch(removeViewId({id}))
+    dispatch(removeViewId({ id }))
   }
 
   return (
     <AppBar
-      classes={{colorPrimary: classes.appBar}}
+      classes={{ colorPrimary: classes.appBar }}
       position="static"
     >
       <MosaicContext.Consumer>
-        {({mosaicActions}) => (
+        {({ mosaicActions }) => (
           <MosaicWindowContext.Consumer>
-            {({mosaicWindowActions}) => (
+            {({ mosaicWindowActions }) => (
               <Toolbar variant="dense">
                 <Typography
                   className={classes.title}

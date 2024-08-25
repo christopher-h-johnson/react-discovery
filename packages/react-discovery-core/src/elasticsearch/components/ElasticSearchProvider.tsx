@@ -1,13 +1,13 @@
-import React, {ReactElement, useEffect, useState} from "react"
-import {buildAggs, queryBuilder} from "../query-builders"
-import {fetchElasticSearchResponse, getDefaultQuery, getFrom, getSize, getStringInput, setQueryFields} from "../state"
-import {getCollections, getCurrentCollection, getCurrentSearchContext, setCurrentCollection, setSelectedIndex} from "@react-discovery/configuration"
-import {useCurrentRoute, useNavigation} from 'react-navi'
-import {ElasticSearchConstants} from "../enum"
-import {IElasticSearchQuery} from "../index"
-import {pushHistory} from "../../history"
-import {useDispatch} from 'react-redux'
-import {usePrevious} from '../../hooks'
+import React, { ReactElement, useEffect, useState } from 'react'
+import { buildAggs, queryBuilder } from '../query-builders'
+import { fetchElasticSearchResponse, getDefaultQuery, getFrom, getSize, getStringInput, setQueryFields } from '../state'
+import { getCollections, getCurrentCollection, getCurrentSearchContext, setCurrentCollection, setSelectedIndex } from '@react-discovery/configuration'
+import { useCurrentRoute, useNavigation } from 'react-navi'
+import { ElasticSearchConstants } from '../enum'
+import { IElasticSearchQuery } from '../index'
+import { pushHistory } from '../../history'
+import { useDispatch } from 'react-redux'
+import { usePrevious } from '../../hooks'
 
 interface IElasticSearchProvider {
   useHistory?: boolean;
@@ -15,7 +15,7 @@ interface IElasticSearchProvider {
 
 export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
-  const {useHistory} = props
+  const { useHistory } = props
   const from = getFrom()
   const size = getSize()
   const navigation = useNavigation()
@@ -32,7 +32,7 @@ export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): 
   const dispatch = useDispatch()
 
   const fetchResponse = (url): boolean => {
-    dispatch(fetchElasticSearchResponse.action({json, url}))
+    dispatch(fetchElasticSearchResponse.action({ json, url }))
     return true
   }
 
@@ -42,9 +42,9 @@ export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): 
     const pathnameParts = route.url.pathname.split('/')
     const q = route.url.query.q || pathnameParts[3]
     const urlCollection = pathnameParts[2] || process.env.REACT_APP_SEARCH_API_COLLECTION
-    urlCollection && dispatch(setCurrentCollection({currentCollection: urlCollection}))
+    urlCollection && dispatch(setCurrentCollection({ currentCollection: urlCollection }))
     const url = process.env.REACT_APP_SEARCH_API_HOST + urlCollection + ElasticSearchConstants.SEARCH
-    const {initialFilter, refinementListFilters, searchFields, sortFields} = collections[urlCollection]
+    const { initialFilter, refinementListFilters, searchFields, sortFields } = collections[urlCollection]
     const aggs = buildAggs(refinementListFilters)
     const initialQueryState: IElasticSearchQuery = {
       aggs,
@@ -53,10 +53,10 @@ export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): 
       searchFields,
       size: size || 20,
       sortFields,
-      stringInput: q,
+      stringInput: q
     }
-    dispatch(setQueryFields({...initialQueryState}))
-    dispatch(setSelectedIndex({selectedIndex: currentPage}))
+    dispatch(setQueryFields({ ...initialQueryState }))
+    dispatch(setSelectedIndex({ selectedIndex: currentPage }))
     return url
   }
 

@@ -1,15 +1,15 @@
-import {ArrowDownward, ArrowUpward} from '@material-ui/icons'
-import {IOverridableStyledComponent} from ".."
-import {FormControl, IconButton, Input, InputLabel, NativeSelect} from '@material-ui/core'
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {ISortField} from "@react-discovery/configuration"
-import {useDispatch} from "react-redux"
-import {useSortingSelectorStyles} from "../styles"
-import {useTranslation} from "react-i18next"
+import { ArrowDownward, ArrowUpward } from '@material-ui/icons'
+import { IOverridableStyledComponent } from '..'
+import { FormControl, IconButton, Input, InputLabel, NativeSelect } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { ISortField } from '@react-discovery/configuration'
+import { useDispatch } from 'react-redux'
+import { useSortingSelectorStyles } from '../styles'
+import { useTranslation } from 'react-i18next'
 
 export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
-  const {t} = useTranslation('vocab')
+  const { t } = useTranslation('vocab')
   const classes: any = props.classes || useSortingSelectorStyles({})
   const dispatch = useDispatch()
   const sortFields = ESCore.state.getSortFields()
@@ -34,7 +34,7 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
     }, [])
     const sorted = newSortFields.sort((a: any, b: any): any => (a.isSelected === b.isSelected) ? 0 : a.isSelected ? -1 : 1)
     const [currentSortSelection] = sorted
-    dispatch(ESCore.state.setSortFields({sortFields: sorted}))
+    dispatch(ESCore.state.setSortFields({ sortFields: sorted }))
     setSelectorValue(currentSortSelection.field)
     setSortOrder(currentSortSelection.order)
   }
@@ -46,14 +46,14 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
         order: value
       }
       const [currentSortField] = sortFields
-      const newSortField = {...currentSortField, ...order}
+      const newSortField = { ...currentSortField, ...order }
       const newSortFields = sortFields.map((sf, i): ISortField => {
         if (i === 0) {
           return newSortField
         }
         return sf
       })
-      dispatch(ESCore.state.setSortFields({sortFields: newSortFields}))
+      dispatch(ESCore.state.setSortFields({ sortFields: newSortFields }))
     }
   }
 
@@ -86,7 +86,8 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
     }
   }
 
-  return sortFields ? (
+  return sortFields
+    ? (
     <div className={classes.root}>
       <FormControl
         className={classes.formControl}
@@ -103,5 +104,6 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
       </FormControl>
       {buildSortOrderButton()}
     </div>
-  ) : null
+      )
+    : null
 }

@@ -2,24 +2,24 @@ import {
   Domain,
   EntityDisplay,
   annotationDisplayFields
-} from "@react-discovery/views"
-import React, {ReactElement} from "react"
-import {CardActions} from "@material-ui/core"
-import {IHit} from "@react-discovery/core"
+} from '@react-discovery/views'
+import React, { ReactElement } from 'react'
+import { CardActions } from '@material-ui/core'
+import { IHit } from '@react-discovery/core'
 
 interface IAnnotations {
   hit: IHit;
 }
 
 export const Annotations: React.FC<IAnnotations> = (props): ReactElement => {
-  const {hit} = props
+  const { hit } = props
   const cardActions = [
     {
       displayFields: annotationDisplayFields,
       isNested: false,
       nestedDisplayFields: null,
       type: Domain.ANNOTATION
-    },
+    }
   ]
 
   const buildCardActions = (cardActions): ReactElement[] => {

@@ -1,6 +1,15 @@
 {
-  "name": "@react-discovery/components",
-  "license": "Apache 2.0",
+  "author": {
+    "email": "chjohnson39@gmail.com",
+    "name": "Christopher Johnson"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "@material-ui/lab": "^4.0.0-alpha.22",
+    "@material-ui/styles": "^4.1.1",
+    "@react-discovery/core": "*"
+  },
   "keywords": [
     "solr",
     "react",
@@ -9,34 +18,20 @@
     "react-component",
     "typescript"
   ],
-  "version": "0.2.0",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "author": {
-    "name": "Christopher Johnson",
-    "email": "chjohnson39@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ubleipzig/react-discovery.git"
-  },
-  "scripts": {
-    "build": "tsc"
-  },
+  "license": "Apache 2.0",
+  "main": "lib/src/index.js",
+  "name": "@react-discovery/components",
   "peerDependencies": {
     "react": ">= 16",
     "react-dom": ">= 16"
   },
-  "dependencies": {
-    "@material-ui/core": "^4.1.1",
-    "@material-ui/icons": "^4.2.0",
-    "@material-ui/lab": "^4.0.0-alpha.22",
-    "@material-ui/styles": "^4.1.1",
-    "@react-discovery/core": "file:../react-discovery-core"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christopher-h-johnson/react-discovery.git"
   },
-  "devDependencies": {
-    "@types/react": "^16.8.14",
-    "eslint": "^5.16.0",
-    "typescript": "^3.5.1"
-  }
+  "scripts": {
+    "build": "tsc"
+  },
+  "types": "lib/src/index.d.ts",
+  "version": "0.2.0"
 }

@@ -1,8 +1,8 @@
-import React, {ReactElement} from "react"
-import {FieldLabel} from "./FieldLabel"
-import {IHit} from "@react-discovery/core"
-import {ISearchField} from "@react-discovery/configuration"
-import {ValueDisplay} from "./ValueDisplay"
+import React, { ReactElement } from 'react'
+import { FieldLabel } from './FieldLabel'
+import { IHit } from '@react-discovery/core'
+import { ISearchField } from '@react-discovery/configuration'
+import { ValueDisplay } from './ValueDisplay'
 
 interface IFieldValueDisplay {
   field: ISearchField;
@@ -10,7 +10,7 @@ interface IFieldValueDisplay {
 }
 
 export const FieldValueDisplay: React.FC<IFieldValueDisplay> = (props): ReactElement => {
-  const {field, hit} = props
+  const { field, hit } = props
   return (
     <>
       <FieldLabel
@@ -19,7 +19,7 @@ export const FieldValueDisplay: React.FC<IFieldValueDisplay> = (props): ReactEle
       <ValueDisplay
         field={field.field}
         hit={hit}
-        style={{flex: 'auto'}}
+        style={{ flex: 'auto' }}
       />
     </>)
 }

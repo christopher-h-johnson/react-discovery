@@ -1,4 +1,4 @@
-const assign = require("lodash/assign")
+const assign = require('lodash/assign')
 
 export interface ISimpleQueryString {
   analyzer?: string;
@@ -13,6 +13,6 @@ export const SimpleQueryString = (query, options: ISimpleQueryString = {}) => {
     return
   }
   return {
-    "simple_query_string": assign({query}, options)
+    simple_query_string: assign({ query }, options)
   }
 }

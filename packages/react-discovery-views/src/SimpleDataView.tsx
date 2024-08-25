@@ -1,20 +1,20 @@
-import {Card, CardActions, CardContent, Theme, createStyles, makeStyles, } from "@material-ui/core"
+import { Card, CardActions, CardContent, Theme, createStyles, makeStyles } from '@material-ui/core'
 import {
   Domain, EntityDisplay,
   buildDocumentUri,
   domainEntitySpec
-} from "."
+} from '.'
 import {
   FieldValueDisplay,
   TitleIdHeader,
   ValueDisplay,
-  buildHighlightedValueForHit, getFirstManifestFromHit,
-} from "@react-discovery/components"
-import React, {ReactElement, useEffect} from "react"
-import {getCollectionByKey, getCurrentCollection} from "@react-discovery/configuration"
-import {ESCore} from "@react-discovery/core"
-import {Thumbnail} from "@react-discovery/iiif"
-import {useDispatch} from "react-redux"
+  buildHighlightedValueForHit, getFirstManifestFromHit
+} from '@react-discovery/components'
+import React, { ReactElement, useEffect } from 'react'
+import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
+import { ESCore } from '@react-discovery/core'
+import { Thumbnail } from '@react-discovery/iiif'
+import { useDispatch } from 'react-redux'
 
 interface ISimpleDataView {
   id: string;
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme): any =>
     cardContent: {
       display: 'flex',
       flex: '1 0 auto',
-      padding: 0,
+      padding: 0
     },
     details: {
       display: 'flex',
@@ -36,14 +36,14 @@ const useStyles = makeStyles((theme: Theme): any =>
     root: {
       backgroundColor: theme.palette.background.paper,
       display: 'flex-root',
-      marginBottom: '5px',
-    },
-  }),
+      marginBottom: '5px'
+    }
+  })
 )
 
 export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement => {
   const classes: any = useStyles({})
-  const {id} = props
+  const { id } = props
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
   const dispatch = useDispatch()
   const docs = ESCore.state.getDocuments()
@@ -59,7 +59,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
 
   useEffect((): void => {
     if (!doc) {
-      dispatch(ESCore.state.fetchElasticSearchDocument.action({url}))
+      dispatch(ESCore.state.fetchElasticSearchDocument.action({ url }))
     }
   }, [doc])
 
@@ -88,7 +88,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
           id={id}
           title={title}
         />
-        <div style={{display: 'flex'}}>
+        <div style={{ display: 'flex' }}>
           <Thumbnail
             id={id}
             manifest={manifest}
@@ -98,15 +98,16 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
             <ValueDisplay
               field={Domain.DOC_SUBTITLE_FIELD}
               hit={doc}
-              style={{display: 'flex', padding: '10px'}}
+              style={{ display: 'flex', padding: '10px' }}
               variant='h6'
             />
             {searchFields.map((field, key): ReactElement =>
               <CardContent
                 className={classes.cardContent}
                 key={key}
-              >{doc._source && doc._source[field.field] ?
-                  <FieldValueDisplay field={field} hit={doc}/> : null}
+              >{doc._source && doc._source[field.field]
+                ? <FieldValueDisplay field={field} hit={doc}/>
+                : null}
               </CardContent>)}
             {docIndex === defaultCollection ? buildCardActions(domainEntitySpec) : null}
           </div>
@@ -115,7 +116,9 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
     )
   }
 
-  return docs && doc && searchFields ? (
-    buildKulturObjekt()
-  ) : null
+  return docs && doc && searchFields
+    ? (
+        buildKulturObjekt()
+      )
+    : null
 }

@@ -1,12 +1,12 @@
-import {AppBar, Badge, IconButton, Typography, makeStyles} from '@material-ui/core'
-import {Bookmark, Menu} from '@material-ui/icons'
+import { AppBar, Badge, IconButton, Typography, makeStyles } from '@material-ui/core'
+import { Bookmark, Menu } from '@material-ui/icons'
 import {
   LanguageSelectionMenu,
   ProfileMenu,
-  ResetButton, SearchBox,
+  ResetButton, SearchBox
 } from '@react-discovery/components'
-import React, {ReactElement} from 'react'
-import {Domain} from "@react-discovery/views"
+import React, { ReactElement } from 'react'
+import { Domain } from '@react-discovery/views'
 
 export const useSearchAppBarStyles = makeStyles((theme): any => ({
   appBar: {
@@ -14,23 +14,23 @@ export const useSearchAppBarStyles = makeStyles((theme): any => ({
     color: theme.palette.primary.contrastText,
     transition: theme.transitions.create(['width', 'margin'], {
       duration: theme.transitions.duration.leavingScreen,
-      easing: theme.transitions.easing.sharp,
+      easing: theme.transitions.easing.sharp
     }),
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: theme.zIndex.drawer + 1
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
+      width: 200
+    }
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'inherit'
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   root: {
 
@@ -38,21 +38,21 @@ export const useSearchAppBarStyles = makeStyles((theme): any => ({
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
+      display: 'flex'
     },
-    paddingRight: 48,
+    paddingRight: 48
   },
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+      display: 'block'
+    }
   },
   toolbar: {
     alignItems: 'center',
@@ -66,7 +66,7 @@ export const useSearchAppBarStyles = makeStyles((theme): any => ({
 
 export const SearchAppBar: React.FC<any> = (props): ReactElement => {
   const classes: any = useSearchAppBarStyles({})
-  const {handleDrawerChange} = props
+  const { handleDrawerChange } = props
 
   return (
     <AppBar
@@ -114,4 +114,3 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
     </AppBar>
   )
 }
-

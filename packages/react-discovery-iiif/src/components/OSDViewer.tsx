@@ -1,6 +1,6 @@
-import React, {ReactElement, useEffect, useRef, useState} from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import OpenSeadragon from 'openseadragon'
-import {makeStyles} from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 
 export interface IOsdComponentProps {
   classes?: any;
@@ -21,11 +21,11 @@ export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => 
   const [isInitialized, setIsInitialized] = useState(false)
   const [osd, setOsd] = useState(null)
   const osdRef = useRef(null)
-  const {images} = props
+  const { images } = props
 
   const defaultOsdProps = (): {} => {
-    let showNavigator = true
-    let showReferenceStrip = true
+    const showNavigator = true
+    const showReferenceStrip = true
     const ajaxHeaders = {
       // "x-requested-with": "XMLHttpRequest",
     }
@@ -50,7 +50,7 @@ export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => 
       showSequenceControl: false,
       showZoomControl: false,
       tileSources: [images],
-      visibilityRatio: 0.5,
+      visibilityRatio: 0.5
     }
   }
 

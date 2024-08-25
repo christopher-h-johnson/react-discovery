@@ -1,10 +1,10 @@
-import {IconButton, Menu, MenuItem} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {AccountCircle} from "@material-ui/icons"
-import {useTranslation} from "react-i18next"
+import { IconButton, Menu, MenuItem } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { AccountCircle } from '@material-ui/icons'
+import { useTranslation } from 'react-i18next'
 
 export const ProfileMenu: React.FC<any> = (): ReactElement => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
@@ -21,15 +21,15 @@ export const ProfileMenu: React.FC<any> = (): ReactElement => {
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        horizontal: "right",
-        vertical: "bottom",
+        horizontal: 'right',
+        vertical: 'bottom'
       }}
       getContentAnchorEl={null}
       onClose={handleMenuClose}
       open={isMenuOpen}
       transformOrigin={{
         horizontal: 'right',
-        vertical: 'top',
+        vertical: 'top'
       }}
     >
       <MenuItem

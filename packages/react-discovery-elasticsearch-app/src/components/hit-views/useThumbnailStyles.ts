@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 
 export const useThumbnailStyles = makeStyles((): any => ({
   cover: {
@@ -8,7 +8,7 @@ export const useThumbnailStyles = makeStyles((): any => ({
     flexShrink: 0,
     justifyContent: 'center',
     maxHeight: 'fit-content',
-    padding: 36,
+    padding: 36
   },
   gridList: {
     display: 'table-cell',
@@ -17,7 +17,7 @@ export const useThumbnailStyles = makeStyles((): any => ({
   media: {
     borderRadius: 8,
     maxWidth: 180,
-    objectFit: 'cover',
+    objectFit: 'cover'
   },
   root: {
     background: 'whitesmoke',

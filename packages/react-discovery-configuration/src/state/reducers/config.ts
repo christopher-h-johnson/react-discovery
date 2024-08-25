@@ -1,4 +1,4 @@
-import {ReducerBuilder, reducerWithInitialState} from 'typescript-fsa-reducers'
+import { ReducerBuilder, reducerWithInitialState } from 'typescript-fsa-reducers'
 import {
   setCurrentCollection,
   setCurrentGridViewerObject,
@@ -9,54 +9,54 @@ import {
   setItemViewType,
   setRefinementListFilterSize,
   setSelectedIndex,
-  setViewType,
-} from "../actions"
-import {IConfig} from "../.."
+  setViewType
+} from '../actions'
+import { IConfig } from '../..'
 
 export const config = (initialState): ReducerBuilder<IConfig> => reducerWithInitialState(initialState)
-  .case(setSelectedIndex, (state, {selectedIndex}): ReducerBuilder<IConfig> => ({
+  .case(setSelectedIndex, (state, { selectedIndex }): ReducerBuilder<IConfig> => ({
     ...state,
     selectedIndex
   }))
-  .case(setIsPersisted, (state, {isPersisted}): ReducerBuilder<IConfig> => ({
+  .case(setIsPersisted, (state, { isPersisted }): ReducerBuilder<IConfig> => ({
     ...state,
     isPersisted
   }))
-  .case(setHitComponent, (state, {currentHitComponent}): ReducerBuilder<IConfig> => ({
+  .case(setHitComponent, (state, { currentHitComponent }): ReducerBuilder<IConfig> => ({
     ...state,
     currentHitComponent
   }))
-  .case(setViewType, (state, {viewType}): ReducerBuilder<IConfig> => ({
+  .case(setViewType, (state, { viewType }): ReducerBuilder<IConfig> => ({
     ...state,
     viewType
   }))
-  .case(setItemViewType, (state, {id, itemViewType}): ReducerBuilder<IConfig> => ({
+  .case(setItemViewType, (state, { id, itemViewType }): ReducerBuilder<IConfig> => ({
     ...state,
     itemViews: {
       ...state.itemViews,
-      [id]: itemViewType,
+      [id]: itemViewType
     }
   }))
-  .case(setCurrentLanguage, (state, {currentLanguage}): ReducerBuilder<IConfig> => ({
+  .case(setCurrentLanguage, (state, { currentLanguage }): ReducerBuilder<IConfig> => ({
     ...state,
     currentLanguage
   }))
-  .case(setCurrentCollection, (state, {currentCollection}): ReducerBuilder<IConfig> => ({
+  .case(setCurrentCollection, (state, { currentCollection }): ReducerBuilder<IConfig> => ({
     ...state,
     currentCollection
   }))
-  .case(setCurrentGridViewerObject, (state, {gridViewerObject}): ReducerBuilder<IConfig> => ({
+  .case(setCurrentGridViewerObject, (state, { gridViewerObject }): ReducerBuilder<IConfig> => ({
     ...state,
     gridViewerObject
   }))
-  .case(setCurrentSelectedTab, (state, {currentSelectedTab, id}): ReducerBuilder<IConfig> => ({
+  .case(setCurrentSelectedTab, (state, { currentSelectedTab, id }): ReducerBuilder<IConfig> => ({
     ...state,
     selectedTabs: {
       ...state.selectedTabs,
-      [id]: currentSelectedTab,
+      [id]: currentSelectedTab
     }
   }))
-  .case(setRefinementListFilterSize, (state, {currentCollection, filterName, size}): ReducerBuilder<IConfig> => ({
+  .case(setRefinementListFilterSize, (state, { currentCollection, filterName, size }): ReducerBuilder<IConfig> => ({
     ...state,
     collections: {
       ...state.collections,

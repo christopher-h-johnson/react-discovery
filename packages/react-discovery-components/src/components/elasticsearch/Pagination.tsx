@@ -1,11 +1,11 @@
-import {ChevronLeft, ChevronRight, SkipNext, SkipPrevious} from '@material-ui/icons'
-import {ESCore, usePrevious} from "@react-discovery/core"
-import {List, ListItem, ListItemText} from '@material-ui/core'
-import React, {ReactElement, useEffect} from "react"
-import {getSelectedIndex, setSelectedIndex} from '@react-discovery/configuration'
-import {IOverridableStyledComponent} from "../../index"
-import {useDispatch} from 'react-redux'
-import {usePaginationStyles} from "../../styles"
+import { ChevronLeft, ChevronRight, SkipNext, SkipPrevious } from '@material-ui/icons'
+import { ESCore, usePrevious } from '@react-discovery/core'
+import { List, ListItem, ListItemText } from '@material-ui/core'
+import React, { ReactElement, useEffect } from 'react'
+import { getSelectedIndex, setSelectedIndex } from '@react-discovery/configuration'
+import { IOverridableStyledComponent } from '../../index'
+import { useDispatch } from 'react-redux'
+import { usePaginationStyles } from '../../styles'
 
 export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || usePaginationStyles({})
@@ -15,13 +15,13 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
   const selectedIndex = getSelectedIndex()
   const prevSelectedIndex = usePrevious(selectedIndex)
   const numFound = ESCore.state.getNumFound()
-  const currentPage = from / size;
+  const currentPage = from / size
   const pageAmt = Math.ceil(numFound / size)
 
   useEffect((): void => {
     if (from === null && prevSelectedIndex === undefined) {
       if (selectedIndex !== 0) {
-        dispatch(setSelectedIndex({selectedIndex: 0}))
+        dispatch(setSelectedIndex({ selectedIndex: 0 }))
       }
     }
   })
@@ -31,12 +31,12 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
 
   const buildRangeStart = (): void => {
     if (rangeEnd - rangeStart < 5 && rangeStart > 0) {
-      rangeStart = rangeEnd - 5;
+      rangeStart = rangeEnd - 5
     }
   }
 
   const range = (start, stop, step): number[] =>
-    Array.from({length: (stop - start) / step + 1}, (_, i): number => start + (i * step))
+    Array.from({ length: (stop - start) / step + 1 }, (_, i): number => start + (i * step))
 
   const buildPages = (rangeStart, rangeEnd): number[] => {
     return range(rangeStart, rangeEnd, 1)
@@ -47,10 +47,10 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
 
   const onPageChange = (page): void => {
     if (page >= pageAmt || page < 0) {
-      return;
+      return
     }
-    dispatch(ESCore.state.setFrom({from: page * size}))
-    dispatch(setSelectedIndex({selectedIndex: page}))
+    dispatch(ESCore.state.setFrom({ from: page * size }))
+    dispatch(setSelectedIndex({ selectedIndex: page }))
     window.scrollTo(0, 0)
   }
 
@@ -103,12 +103,12 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
 
   return (
     <div className={classes.listWrapper}>
-      <List component="nav" style={{display: 'flex'}}>
-        {PageControlButton(0, "first")}
-        {PageControlButton(currentPage - 1, "previous")}
+      <List component="nav" style={{ display: 'flex' }}>
+        {PageControlButton(0, 'first')}
+        {PageControlButton(currentPage - 1, 'previous')}
         {renderPages(pages)}
-        {PageControlButton(currentPage + 1, "next")}
-        {PageControlButton(pageAmt - 1, "last")}
+        {PageControlButton(currentPage + 1, 'next')}
+        {PageControlButton(pageAmt - 1, 'last')}
       </List>
     </div>
   )

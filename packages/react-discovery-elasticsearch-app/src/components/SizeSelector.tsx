@@ -1,8 +1,8 @@
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {Slider} from "@material-ui/core"
-import {setSelectedIndex} from "@react-discovery/configuration"
-import {useDispatch} from "react-redux"
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { Slider } from '@material-ui/core'
+import { setSelectedIndex } from '@react-discovery/configuration'
+import { useDispatch } from 'react-redux'
 
 export const SizeSelector: React.FC<any> = (): ReactElement => {
   const dispatch = useDispatch()
@@ -11,21 +11,22 @@ export const SizeSelector: React.FC<any> = (): ReactElement => {
   const sizeSpec = [
     {
       label: '10',
-      value: 10,
+      value: 10
     },
     {
       label: '50',
-      value: 50,
+      value: 50
     },
     {
       label: '100',
-      value: 100,
-    },
+      value: 100
+    }
   ]
 
+  // eslint-disable-next-line no-empty-pattern
   const handleSizeChange = ({}, value): void => {
-    dispatch(setSelectedIndex({selectedIndex: 0}))
-    dispatch(ESCore.state.setSize({size: value}))
+    dispatch(setSelectedIndex({ selectedIndex: 0 }))
+    dispatch(ESCore.state.setSize({ size: value }))
   }
 
   const valuetext = (value: number): string => {

@@ -5,9 +5,9 @@ module.exports = (on) => {
     browserifyOptions: {
       extensions: ['.js', '.ts'],
       plugin: [
-        ['tsify'],
-      ],
-    },
+        ['tsify']
+      ]
+    }
   }
   on('task', require('@cypress/code-coverage/task'))
   on('file:preprocessor', browserify(options))

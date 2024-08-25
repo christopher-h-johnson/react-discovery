@@ -1,8 +1,8 @@
-import {CircularProgress, Grid} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {ViewTypeSwitcher} from "."
-import {useMinWidthResultsGridStyles} from "@react-discovery/components"
+import { CircularProgress, Grid } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { ViewTypeSwitcher } from '.'
+import { useMinWidthResultsGridStyles } from '@react-discovery/components'
 
 export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
   const classes: any = useMinWidthResultsGridStyles({})
@@ -32,10 +32,11 @@ export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
       <Grid
         className={classes.gridContent}
       >
-        {hits ?
-          <>
+        {hits
+          ? <>
             <ViewTypeSwitcher/>
-          </> : <CircularProgress className={classes.progress}/>}
+          </>
+          : <CircularProgress className={classes.progress}/>}
       </Grid>
       <Grid
         alignItems="center"

@@ -1,15 +1,15 @@
-import {Card, CardContent, Grid} from "@material-ui/core"
-import {Domain, HitViewOptionsMenu, useHitViewStyles} from "@react-discovery/views"
-import {ESCore, IHit} from "@react-discovery/core"
+import { Card, CardContent, Grid } from '@material-ui/core'
+import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
+import { ESCore, IHit } from '@react-discovery/core'
 import {
   FieldValueDisplay,
   TitleIdHeader,
   buildHighlightedValueForHit,
   getFirstManifestFromHit
 } from '@react-discovery/components'
-import React, {ReactElement} from "react"
-import {getNumberOfWorkspaceNodesForId, setViewIdMap} from '@react-discovery/workspace'
-import {ThumbnailGrid} from "./ThumbnailGrid"
+import React, { ReactElement } from 'react'
+import { getNumberOfWorkspaceNodesForId, setViewIdMap } from '@react-discovery/workspace'
+import { ThumbnailGrid } from './ThumbnailGrid'
 
 interface IDefaultItemComponent {
   hit: IHit;
@@ -22,14 +22,14 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
   }
   const classes: any = useHitViewStyles({})
   const searchFields = ESCore.state.getSearchFields()
-  const {hit, i} = props
+  const { hit, i } = props
   const id = hit && (hit._source.id || hit.id)
   const title = buildHighlightedValueForHit('title', hit)
   const manifest = hit && getFirstManifestFromHit(hit, Domain.MEDIA)
   const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
   const item = {
     [Domain.MEDIA_TITLE_FIELD]: title,
-    [Domain.MANIFEST_ID_FIELD]: manifest,
+    [Domain.MANIFEST_ID_FIELD]: manifest
   }
   return (
     <Card className={classes.root} key={i}>
@@ -39,7 +39,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
       >
         <Grid
           item
-          style={{marginTop: 10}}
+          style={{ marginTop: 10 }}
           xs={8}
         >
           <TitleIdHeader
@@ -47,14 +47,15 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
             optionsMenu={optionsMenu}
             title={title}
           />
-          <div style={{display: 'flex'}}>
+          <div style={{ display: 'flex' }}>
             <div className={classes.details}>
               {searchFields.map((field, key): ReactElement =>
                 <CardContent
                   className={classes.content}
                   key={key}
-                >{hit._source && hit._source[field.field] ?
-                    <FieldValueDisplay field={field} hit={hit}/> : null}
+                >{hit._source && hit._source[field.field]
+                  ? <FieldValueDisplay field={field} hit={hit}/>
+                  : null}
                 </CardContent>)}
             </div>
           </div>

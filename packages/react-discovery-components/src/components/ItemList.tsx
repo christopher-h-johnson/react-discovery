@@ -5,13 +5,13 @@ import {
   List,
   ListItem,
   ListItemText,
-  Typography,
+  Typography
 } from '@material-ui/core'
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {ExpandMore} from '@material-ui/icons'
-import {useDispatch} from "react-redux"
-import {useItemListStyles} from '../styles'
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { ExpandMore } from '@material-ui/icons'
+import { useDispatch } from 'react-redux'
+import { useItemListStyles } from '../styles'
 
 export interface IItemListProps {
   classes?: any;
@@ -23,7 +23,7 @@ export interface IItemListProps {
 export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
   const dispatch = useDispatch()
-  const {field, label} = props
+  const { field, label } = props
   const aggregation = ESCore.state.getAggregation(field)
   const filters = ESCore.state.getFiltersForField(field)
   const stringInput = ESCore.state.getStringInput()
@@ -36,9 +36,9 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const handleChange = (key): void => {
     const newFilters = filters && filters.length ? filters.filter((f): any => f !== key) : []
     newFilters.push(key)
-    dispatch(ESCore.state.setSelectedFilters({field, filters: newFilters}))
-    dispatch(ESCore.state.setQueryInput({stringInput}))
-    dispatch(ESCore.state.setFrom({from: 0}))
+    dispatch(ESCore.state.setSelectedFilters({ field, filters: newFilters }))
+    dispatch(ESCore.state.setQueryInput({ stringInput }))
+    dispatch(ESCore.state.setFrom({ from: 0 }))
   }
 
   const actions = (aggregation): ReactElement => {
@@ -91,8 +91,9 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
         aria-controls="panel1bh-content"
         classes={{
           expanded: classes.expanded,
-          root: classes.expansionSummaryRoot}}
-        data-testid={`item-list-expansion-panel`}
+          root: classes.expansionSummaryRoot
+        }}
+        data-testid={'item-list-expansion-panel'}
         expandIcon={<ExpandMore />}
         id="panel1bh-header"
       >
@@ -101,7 +102,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
       <ExpansionPanelDetails>
         <List
           component="nav"
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
         >
           {aggregation && actions(aggregation)}
         </List>

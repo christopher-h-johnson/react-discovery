@@ -1,12 +1,11 @@
-import {CardActionArea, CardMedia} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject} from "@react-discovery/configuration"
-import {buildThumbnailReference} from "../utils"
+import { CardActionArea, CardMedia } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
+import { buildThumbnailReference } from '../utils'
 import clsx from 'clsx'
-import gql from 'graphql-tag'
-import {useDispatch} from "react-redux"
-import {useQuery} from '@apollo/react-hooks'
-import {useThumbnailStyles} from "@react-discovery/components"
+import { useDispatch } from 'react-redux'
+import { gql, useQuery } from '@apollo/client'
+import { useThumbnailStyles } from '@react-discovery/components'
 
 interface IThumbnail {
   classes?: any;
@@ -17,12 +16,14 @@ interface IThumbnail {
   thumbnail?: string;
 }
 
+// noinspection GraphQLUnresolvedReference
 const GET_THUMBNAIL = gql`
           query Thumbnail($manifestId: String!) {
               manifest(id: $manifestId)
           {thumbnail{id, type, service {id, profile}}}
           }`
 
+// noinspection GraphQLUnresolvedReference
 const GET_THUMBNAIL_DESCRIPTORS = gql`
           query Summary($manifestId: String!) {
               manifest(id: $manifestId)
@@ -32,18 +33,18 @@ const GET_THUMBNAIL_DESCRIPTORS = gql`
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const classes: any = props.classes || useThumbnailStyles({})
   const dispatch = useDispatch()
-  const {id, manifest, menuComponent, thumbnail} = props
+  const { id, manifest, menuComponent, thumbnail } = props
   const currentGridViewerThumbnail = getCurrentGridViewerObjectThumbnail()
   const thumbnailLink = buildThumbnailReference(thumbnail)
-  const {data} = !thumbnail && manifest && useQuery(GET_THUMBNAIL, {
-    variables: { manifestId: manifest },
+  const { data } = !thumbnail && manifest && useQuery(GET_THUMBNAIL, {
+    variables: { manifestId: manifest }
   })
-  const {data: dataS} = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
-    variables: { manifestId: manifest },
+  const { data: dataS } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
+    variables: { manifestId: manifest }
   })
 
   const handleImageSelect = (thumbnail): void => {
-    dispatch(setCurrentGridViewerObject({gridViewerObject: {id, thumbnail}}))
+    dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))
   }
 
   const isSelected = (): boolean => {
@@ -54,10 +55,12 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
     return data && data.manifest && data.manifest.thumbnail.filter((t): boolean => t.id === currentGridViewerThumbnail).length
   }
 
-  return data && dataS ? (
-    <div className={clsx(classes.cover, {[classes.coverBorder]: isSelectedInThumbnails()})}>
-      {data.manifest && dataS.manifest ? data.manifest.thumbnail.map(
-        (t, i) =>
+  return data && dataS
+    ? (
+    <div className={clsx(classes.cover, { [classes.coverBorder]: isSelectedInThumbnails() })}>
+      {data.manifest && dataS.manifest
+        ? data.manifest.thumbnail.map(
+          (t, i) =>
           <CardActionArea
             key={i}
             onClick={(): void => handleImageSelect(t.id)}
@@ -69,12 +72,15 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
               image={t.id}
               title={dataS.manifest && (dataS.manifest.label || dataS.manifest.summary)}
             />
-          </CardActionArea>) : null
+          </CardActionArea>)
+        : null
       }
       {menuComponent}
     </div>
-  ) : thumbnail && dataS ? (
-    <div className={clsx(classes.cover, {[classes.coverBorder]: isSelected()})}>
+      )
+    : thumbnail && dataS
+      ? (
+    <div className={clsx(classes.cover, { [classes.coverBorder]: isSelected() })}>
       <CardActionArea
         onClick={(): void => handleImageSelect(thumbnail)}
       >
@@ -88,5 +94,6 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
       </CardActionArea>
       {menuComponent}
     </div>
-  ) : null
+        )
+      : null
 }

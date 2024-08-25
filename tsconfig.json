@@ -1,44 +1,78 @@
 {
+  "atom": {
+    "rewriteTsconfig": false
+  },
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
-    "paths": { "*": ["@types/*"] },
+    "composite": true,
     "declaration": true,
-    "module": "commonjs",
-    "target": "es5",
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "skipLibCheck": true,
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es2015",
+      "es2017",
+      "dom"
+    ],
+    "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": false,
-    "noUnusedParameters":true,
-    "noImplicitUseStrict":true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports":true,
+    "noUnusedParameters": true,
+    "outDir": "lib",
+    "paths": {
+      "*": [
+        "@types/*"
+      ]
+    },
     "resolveJsonModule": true,
-    "jsx": "react",
-    "lib":[
-      "es5", "es2015", "es2017", "dom"
-    ],
-    "types": [
-      "cypress",
-      "node"
-    ],
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es5",
     "typeRoots": [
       "node_modules/@types",
       "./src/@types"
+    ],
+    "types": [
+      "node"
     ]
   },
-
-  "include":[
-    "./src/**/*.ts",
-    "./src/**/*.tsx"
-  ],
   "exclude": [
     "node_modules"
   ],
-  "atom": {
-    "rewriteTsconfig": false
-  }
+  "files": [
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/_test_/**/*.json"
+  ],
+  "references": [
+    {
+      "path": "packages/react-discovery-components"
+    },
+    {
+      "path": "packages/react-discovery-configuration"
+    },
+    {
+      "path": "packages/react-discovery-core"
+    },
+    {
+      "path": "packages/react-discovery-elasticsearch-app"
+    },
+    {
+      "path": "packages/react-discovery-i18n"
+    },
+    {
+      "path": "packages/react-discovery-iiif"
+    },
+    {
+      "path": "packages/react-discovery-views"
+    },
+    {
+      "path": "packages/react-discovery-workspace"
+    }
+  ]
 }

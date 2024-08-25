@@ -1,8 +1,8 @@
-import {Badge, IconButton, Menu, MenuItem, Theme, Tooltip, Typography, withStyles} from "@material-ui/core"
-import {MoreVert, MoreVertOutlined} from "@material-ui/icons"
-import React, {ReactElement} from "react"
-import {useDispatch} from "react-redux"
-import {useTranslation} from "react-i18next"
+import { Badge, IconButton, Menu, MenuItem, Theme, Tooltip, Typography, withStyles } from '@material-ui/core'
+import { MoreVert, MoreVertOutlined } from '@material-ui/icons'
+import React, { ReactElement } from 'react'
+import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 interface IHitViewOptionsMenu {
   actions: any;
@@ -13,15 +13,15 @@ const StyledBadge = withStyles((theme: Theme) => ({
   badge: {
     border: `2px solid ${
       theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-    }`,
-  },
+    }`
+  }
 }))(Badge)
 
 export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactElement => {
-  const {actions, id} = props
-  const {getNumberOfWorkspaceNodesForId, setViewIdMap} = actions
+  const { actions, id } = props
+  const { getNumberOfWorkspaceNodesForId, setViewIdMap } = actions
   const nodeCount = getNumberOfWorkspaceNodesForId(id)
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const isMenuOpen = Boolean(anchorEl)
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
   const handleAddToWorkspace = (key): void => {
     switch (key) {
       case 'addDataToWorkspace':
-        dispatch(setViewIdMap({id, type: 'data'}))
+        dispatch(setViewIdMap({ id, type: 'data' }))
     }
     setAnchorEl(null)
   }
@@ -46,7 +46,7 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
     {
       key: 'addDataToWorkspace',
       label: 'addDataToWorkspace'
-    },
+    }
   ]
 
   const buildMenuItems = (): ReactElement[] => {
@@ -82,8 +82,9 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
           href=''
           onClick={handleHitViewOptionsMenuOpen}>
           {
-            nodeCount > 0 ? <MoreVert fontSize='default' style={{padding: '5px'}}/>
-              : <MoreVertOutlined fontSize='default' style={{padding: '5px'}}/>
+            nodeCount > 0
+              ? <MoreVert fontSize='default' style={{ padding: '5px' }}/>
+              : <MoreVertOutlined fontSize='default' style={{ padding: '5px' }}/>
           }
         </IconButton>
       </StyledBadge>

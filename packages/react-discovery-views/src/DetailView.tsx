@@ -4,19 +4,19 @@ import {
   Domain, EntityDisplay,
   HitViewOptionsMenu,
   domainEntitySpec
-} from "."
-import {Card, CardActions, CardContent, Grid, Theme, createStyles, makeStyles} from "@material-ui/core"
+} from '.'
+import { Card, CardActions, CardContent, Grid, Theme, createStyles, makeStyles } from '@material-ui/core'
 import {
   FieldValueDisplay,
   TitleIdHeader,
   ValueDisplay,
-  buildHighlightedValueForHit, getFirstManifestFromHit,
-} from "@react-discovery/components"
-import React, {ReactElement} from "react"
-import {ESCore} from "@react-discovery/core"
-import {SimpleImageViewer} from "@react-discovery/iiif"
-import {getCurrentCollection} from "@react-discovery/configuration"
-import uuid from 'uuid'
+  buildHighlightedValueForHit, getFirstManifestFromHit
+} from '@react-discovery/components'
+import React, { ReactElement } from 'react'
+import { ESCore } from '@react-discovery/core'
+import { SimpleImageViewer } from '@react-discovery/iiif'
+import { getCurrentCollection } from '@react-discovery/configuration'
+import {v4 as uuidv4} from 'uuid'
 
 interface IDetailView {
   actions: any;
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme): any =>
     cardContent: {
       display: 'flex',
       flex: '1 0 auto',
-      padding: 0,
+      padding: 0
     },
     details: {
       display: 'flex',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme: Theme): any =>
     },
     osdRoot: {
       background: 'black',
-      height: '100%',
+      height: '100%'
     },
     root: {
       backgroundColor: theme.palette.background.paper,
@@ -53,12 +53,12 @@ const useStyles = makeStyles((theme: Theme): any =>
     },
     title: {
       color: 'green'
-    },
-  }),
+    }
+  })
 )
 
 export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
-  const {getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap, setViewIdMap} = props.actions
+  const { getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap, setViewIdMap } = props.actions
   const addToWorkspaceButtonActions = {
     getWorkspaceViewIdMap, setViewIdMap
   }
@@ -68,18 +68,18 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const classes: any = useStyles({})
   const currentCollection = getCurrentCollection()
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
-  const {collection, id} = props
+  const { collection, id } = props
   const numFound = ESCore.state.getNumFound()
   const isSingleton = numFound === 1
   const hitIndex = ESCore.state.getHitIndexForId(id)
   const currentHit = ESCore.state.getHitForIndex(hitIndex)
   const searchFields = ESCore.state.getSearchFields()
-  const title = currentHit && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, currentHit)
-    || buildHighlightedValueForHit('title', currentHit))
+  const title = currentHit && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, currentHit) ||
+    buildHighlightedValueForHit('title', currentHit))
   const manifest = currentHit && getFirstManifestFromHit(currentHit, Domain.MEDIA)
   const item = {
     [Domain.MEDIA_TITLE_FIELD]: title,
-    [Domain.MANIFEST_ID_FIELD]: manifest,
+    [Domain.MANIFEST_ID_FIELD]: manifest
   }
 
   const buildCardActions = (cardActions): ReactElement[] => {
@@ -111,7 +111,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const addButton = currentHit && <AddToWorkspaceButton actions={addToWorkspaceButtonActions} classes={classes} hit={currentHit} item={item}/>
   const buildDetailView = (): ReactElement => {
     return (
-      <Grid item style={{width: '100%'}} xs={6}>
+      <Grid item style={{ width: '100%' }} xs={6}>
         <Card className={classes.root}>
           <TitleIdHeader
             addButton={addButton}
@@ -119,20 +119,21 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
             optionsMenu={optionsMenu}
             title={title}
           />
-          <div style={{display: 'flex'}}>
+          <div style={{ display: 'flex' }}>
             <div className={classes.details}>
               <ValueDisplay
                 field={Domain.DOC_SUBTITLE_FIELD}
                 hit={currentHit}
-                style={{display: 'flex', padding: '10px'}}
+                style={{ display: 'flex', padding: '10px' }}
                 variant='h6'
               />
               {searchFields.map((field, key): ReactElement =>
                 <CardContent
                   className={classes.cardContent}
                   key={key}
-                >{currentHit._source && currentHit._source[field.field] ?
-                    <FieldValueDisplay field={field} hit={currentHit}/> : null}
+                >{currentHit._source && currentHit._source[field.field]
+                  ? <FieldValueDisplay field={field} hit={currentHit}/>
+                  : null}
                 </CardContent>)}
               {currentCollection === defaultCollection ? buildCardActions(domainEntitySpec) : null}
             </div>
@@ -142,13 +143,14 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
     )
   }
 
-  return currentHit ? (
+  return currentHit
+    ? (
     <Grid
       alignItems="center"
       container
       direction="column"
       justify="center"
-      key={uuid()}
+      key={uuidv4()}
       spacing={3}
     >
       {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}
@@ -156,5 +158,6 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
       {buildDetailView()}
       {!isSingleton ? <ArrowForwardButton collection={collection} hitIndex={hitIndex}/> : null}
     </Grid>
-  ) : null
+      )
+    : null
 }

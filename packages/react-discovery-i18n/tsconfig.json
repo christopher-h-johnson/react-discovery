@@ -1,9 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./lib",
     "resolveJsonModule": true
   },
+  "extends": "../../tsconfig.json",
   "include": [
     "./src"
   ],

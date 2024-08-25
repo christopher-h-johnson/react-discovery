@@ -1,10 +1,10 @@
-import {IconButton, Menu, MenuItem} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {getCurrentLanguage, getLanguages, setCurrentLanguage} from "@react-discovery/configuration"
-import {IOverridableStyledComponent} from "../.."
-import Language from "@material-ui/icons/Language"
-import {useDispatch} from "react-redux"
-import {useMenuButtonStyles} from "../../styles"
+import { IconButton, Menu, MenuItem } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { getCurrentLanguage, getLanguages, setCurrentLanguage } from '@react-discovery/configuration'
+import { IOverridableStyledComponent } from '../..'
+import Language from '@material-ui/icons/Language'
+import { useDispatch } from 'react-redux'
+import { useMenuButtonStyles } from '../../styles'
 
 export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || useMenuButtonStyles({})
@@ -20,7 +20,7 @@ export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (pro
   }
 
   const handleMenuAction = (locale): void => {
-    dispatch(setCurrentLanguage({currentLanguage: locale}))
+    dispatch(setCurrentLanguage({ currentLanguage: locale }))
     setAnchorEl(null)
   }
 
@@ -46,15 +46,15 @@ export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (pro
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        horizontal: "center",
-        vertical: "bottom",
+        horizontal: 'center',
+        vertical: 'bottom'
       }}
       getContentAnchorEl={null}
       onClose={handleMenuClose}
       open={isMenuOpen}
       transformOrigin={{
         horizontal: 'center',
-        vertical: 'top',
+        vertical: 'top'
       }}
     >
       {buildMenuItems()}

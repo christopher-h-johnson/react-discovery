@@ -1,7 +1,8 @@
-import React, {ReactElement, useEffect, useState} from "react"
+import React, { ReactElement, useEffect, useState } from 'react'
+// @ts-ignore
 import data from './__test__/fixtures/oxford.json'
-import {setCurrentManifestCollection} from '.'
-import {useDispatch} from "react-redux"
+import { setCurrentManifestCollection } from '.'
+import { useDispatch } from 'react-redux'
 
 export const IIIFCollectionProvider: React.FC<any> = (props): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
@@ -10,7 +11,7 @@ export const IIIFCollectionProvider: React.FC<any> = (props): ReactElement => {
   useEffect(
     () => {
       if (!isInitialized) {
-        dispatch(setCurrentManifestCollection({collection: data}))
+        dispatch(setCurrentManifestCollection({ collection: data }))
         setIsInitialized(true)
       }
     },

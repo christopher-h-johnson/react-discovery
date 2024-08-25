@@ -1,7 +1,7 @@
-import {Grid, Theme, createStyles, makeStyles} from "@material-ui/core"
-import React, {ReactElement} from "react"
-import {PersistentDrawer} from "./PersistentDrawer"
-import {SearchAppBar} from "./SearchAppBar"
+import { Grid, Theme, createStyles, makeStyles } from '@material-ui/core'
+import React, { ReactElement } from 'react'
+import { PersistentDrawer } from './PersistentDrawer'
+import { SearchAppBar } from './SearchAppBar'
 import classNames from 'classnames'
 
 interface IDiscoveryApp {
@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme: Theme): any =>
       padding: theme.spacing(3),
       transition: theme.transitions.create('margin', {
         duration: theme.transitions.duration.leavingScreen,
-        easing: theme.transitions.easing.sharp,
-      }),
+        easing: theme.transitions.easing.sharp
+      })
     },
     contentShift: {
       height: '100%',
@@ -27,17 +27,17 @@ const useStyles = makeStyles((theme: Theme): any =>
       padding: theme.spacing(3),
       transition: theme.transitions.create('margin', {
         duration: theme.transitions.duration.enteringScreen,
-        easing: theme.transitions.easing.easeOut,
-      }),
+        easing: theme.transitions.easing.easeOut
+      })
     },
     mainGrid: {
-      height: '100%',
+      height: '100%'
     }
   }))
 
 export const DiscoveryApp: React.FC<IDiscoveryApp> = (props): ReactElement => {
   const classes: any = useStyles({})
-  const {component} = props
+  const { component } = props
   const [open, setOpen] = React.useState(false)
 
   const handleDrawerChange = (): void => {
@@ -55,8 +55,8 @@ export const DiscoveryApp: React.FC<IDiscoveryApp> = (props): ReactElement => {
       >
         <PersistentDrawer open={open}/>
         <main
-          className={classNames({[classes.content]: open}, {
-            [classes.contentShift]: !open,
+          className={classNames({ [classes.content]: open }, {
+            [classes.contentShift]: !open
           })}
         >
           {component}
