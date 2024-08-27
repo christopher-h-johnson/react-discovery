@@ -58,7 +58,7 @@ const store: Store = createStore(
 )
 
 const client = new ApolloClient({
-  uri: 'https://localhost:4000',
+  uri: 'http://localhost:4000',
   cache: new InMemoryCache()
 })
 

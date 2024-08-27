@@ -27,7 +27,7 @@ const GET_THUMBNAIL = gql`
 const GET_THUMBNAIL_DESCRIPTORS = gql`
           query Summary($manifestId: String!) {
               manifest(id: $manifestId)
-          {label, summary}
+          {label {en}, summary{en}}
           }`
 
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
