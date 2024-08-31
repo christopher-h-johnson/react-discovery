@@ -24,11 +24,18 @@ const GET_THUMBNAIL = gql`
           }`
 
 // noinspection GraphQLUnresolvedReference
-const GET_THUMBNAIL_DESCRIPTORS = gql`
-          query Summary($manifestId: String!) {
-              manifest(id: $manifestId)
-          {label {en}, summary{en}}
-          }`
+// const GET_THUMBNAIL_DESCRIPTORS = gql`
+//           query Summary($manifestId: String!) {
+//               manifest(id: $manifestId)
+//           {label {en}, summary{en}}
+//           }`
+
+// noinspection GraphQLUnresolvedReference
+const GET_THUMBNAIL_DESCRIPTORS_V2 = gql`
+    query Manifestv2($manifestId: String!) {
+        manifestv2(id: $manifestId)
+        {label}
+    }`
 
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const classes: any = props.classes || useThumbnailStyles({})
@@ -39,9 +46,13 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const { data } = !thumbnail && manifest && useQuery(GET_THUMBNAIL, {
     variables: { manifestId: manifest }
   })
-  const { data: dataS } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
+  const { data: dataS } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
     variables: { manifestId: manifest }
   })
+
+  // const { data: data2 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
+  //   variables: { manifestId: manifest }
+  // })
 
   const handleImageSelect = (thumbnail): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))

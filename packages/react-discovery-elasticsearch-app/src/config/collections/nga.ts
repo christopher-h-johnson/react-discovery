@@ -2,7 +2,7 @@ import { IConfig } from '@react-discovery/configuration'
 
 export const nga: IConfig = {
   collections: {
-    nga2: {
+    nga: {
       hitComponents: [
         {
           defaultOption: true,

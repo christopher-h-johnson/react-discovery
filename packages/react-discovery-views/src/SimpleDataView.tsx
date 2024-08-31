@@ -58,7 +58,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
   const thumbnail = doc && doc._source && doc._source.thumbnail
 
   useEffect((): void => {
-    if (!doc) {
+    if (id && !doc) {
       dispatch(ESCore.state.fetchElasticSearchDocument.action({ url }))
     }
   }, [doc])
