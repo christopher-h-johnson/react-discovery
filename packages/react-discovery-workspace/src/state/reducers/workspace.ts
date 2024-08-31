@@ -2,7 +2,7 @@ import { ReducerBuilder, reducerWithInitialState } from 'typescript-fsa-reducers
 import { removeViewId, setViewIdMap, setWorkspaceLayout } from '../actions'
 import { MosaicParent } from 'react-mosaic-component'
 import { omit } from 'lodash'
-import uuid from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 interface IWorkspace {
   layout: MosaicParent<string>;
   viewIdMap: Record<string, string>;
@@ -17,7 +17,7 @@ export const workspace = (initialState): ReducerBuilder<IWorkspace> => reducerWi
     ...state,
     viewIdMap: {
       ...state.viewIdMap,
-      [uuid()]: {
+      [uuidv4()]: {
         id,
         manifest,
         type

@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme: Theme): any =>
     imageGrid: {
       height: '50vh',
       minHeight: '50vh',
-      width: '100%'
+      width: '100%',
+      flexBasis: 0
     },
     osdRoot: {
       background: 'black',
