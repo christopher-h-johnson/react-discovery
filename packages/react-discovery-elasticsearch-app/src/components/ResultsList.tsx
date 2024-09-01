@@ -46,7 +46,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
         alignItems="center"
         container
         direction="column"
-        justify="center"
+        justifyContent="center"
         spacing={3}
       >
         {hits
@@ -69,7 +69,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
               className={mainClasses.gridActions}
               container
               direction="row"
-              justify="center"
+              justifyContent="center"
             >
               <ES.Pagination/>
             </Grid>

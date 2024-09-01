@@ -24,18 +24,18 @@ const GET_THUMBNAIL = gql`
           }`
 
 // noinspection GraphQLUnresolvedReference
-// const GET_THUMBNAIL_DESCRIPTORS = gql`
-//           query Summary($manifestId: String!) {
-//               manifest(id: $manifestId)
-//           {label {en}, summary{en}}
-//           }`
-
-// noinspection GraphQLUnresolvedReference
 const GET_THUMBNAIL_DESCRIPTORS_V2 = gql`
     query Manifestv2($manifestId: String!) {
         manifestv2(id: $manifestId)
         {label}
     }`
+
+// noinspection GraphQLUnresolvedReference
+const GET_THUMBNAIL_DESCRIPTORS = gql`
+          query Summary($manifestId: String!) {
+              manifest(id: $manifestId)
+          {label {en}, summary{en}}
+          }`
 
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const classes: any = props.classes || useThumbnailStyles({})
@@ -46,13 +46,13 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const { data } = !thumbnail && manifest && useQuery(GET_THUMBNAIL, {
     variables: { manifestId: manifest }
   })
-  const { data: dataS } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
+  const { data: data2 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
     variables: { manifestId: manifest }
   })
 
-  // const { data: data2 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
-  //   variables: { manifestId: manifest }
-  // })
+  const { data: data3 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
+    variables: { manifestId: manifest }
+  })
 
   const handleImageSelect = (thumbnail): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))
@@ -66,10 +66,10 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
     return data && data.manifest && data.manifest.thumbnail.filter((t): boolean => t.id === currentGridViewerThumbnail).length
   }
 
-  return data && dataS
+  return data && data3
     ? (
     <div className={clsx(classes.cover, { [classes.coverBorder]: isSelectedInThumbnails() })}>
-      {data.manifest && dataS.manifest
+      {data.manifest && data3.manifest
         ? data.manifest.thumbnail.map(
           (t, i) =>
           <CardActionArea
@@ -81,7 +81,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
               className={classes.media}
               component="img"
               image={t.id}
-              title={dataS.manifest && (dataS.manifest.label || dataS.manifest.summary)}
+              title={data3.manifest && (data3.manifest.label || data3.manifest.summary)}
             />
           </CardActionArea>)
         : null
@@ -89,7 +89,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
       {menuComponent}
     </div>
       )
-    : thumbnail && dataS
+    : thumbnail && data2
       ? (
     <div className={clsx(classes.cover, { [classes.coverBorder]: isSelected() })}>
       <CardActionArea
@@ -100,7 +100,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
           className={classes.media}
           component="img"
           image={thumbnailLink}
-          title={dataS.manifest && (dataS.manifest.label || dataS.manifest.summary)}
+          title={data2.manifest && data2.manifest.label}
         />
       </CardActionArea>
       {menuComponent}

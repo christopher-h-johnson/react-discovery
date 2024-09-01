@@ -1,4 +1,4 @@
-import { Container, Grid, GridListTile } from '@material-ui/core'
+import { Container, Grid, ImageListItem } from '@material-ui/core'
 import React, { ReactElement } from 'react'
 import { IHit } from '@react-discovery/core'
 import { MediaGridTitleBar } from '../MediaGridTitleBar'
@@ -20,8 +20,8 @@ export const ThumbnailGrid: React.FC<IThumbnailGrid> = (props): ReactElement => 
     ? (
     <Grid className={thumbnailClasses.root}>
       <Container maxWidth="xs">
-        <GridListTile
-          className={thumbnailClasses.gridList}
+        <ImageListItem
+            className={thumbnailClasses.gridList}
         >
           <Thumbnail
             classes={thumbnailClasses}
@@ -30,7 +30,7 @@ export const ThumbnailGrid: React.FC<IThumbnailGrid> = (props): ReactElement => 
             thumbnail={thumbnail}
           />
           <MediaGridTitleBar hit={hit} item={item}/>
-        </GridListTile>
+        </ImageListItem>
       </Container>
     </Grid>
       )

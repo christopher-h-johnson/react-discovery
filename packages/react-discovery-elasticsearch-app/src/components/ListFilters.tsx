@@ -1,4 +1,4 @@
-import { Button, makeStyles, withStyles } from '@material-ui/core'
+import { Accordion, AccordionDetails, AccordionSummary, Button, makeStyles, withStyles } from '@material-ui/core'
 import { ESCore, usePrevious } from '@react-discovery/core'
 import {
   GroupSelectedFilters,
@@ -8,9 +8,6 @@ import {
 } from '@react-discovery/components'
 import React, { ReactElement, useEffect } from 'react'
 import { getCollectionByKey, getCurrentCollection, getRefinementListFilters } from '@react-discovery/configuration'
-import MuiExpansionPanel from '@material-ui/core/ExpansionPanel'
-import MuiExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
-import MuiExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import { Tune } from '@material-ui/icons'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -32,7 +29,7 @@ const ExpansionPanel = withStyles({
     border: 'none',
     boxShadow: 'none'
   }
-})(MuiExpansionPanel)
+})(Accordion)
 
 const ExpansionPanelSummary = withStyles({
   content: {
@@ -50,13 +47,13 @@ const ExpansionPanelSummary = withStyles({
     marginBottom: -1,
     minHeight: 56
   }
-})(MuiExpansionPanelSummary)
+})(AccordionSummary)
 
 const ExpansionPanelDetails = withStyles((theme): any => ({
   root: {
     padding: theme.spacing(2)
   }
-}))(MuiExpansionPanelDetails)
+}))(AccordionDetails)
 
 const useStyles = makeStyles((theme): any => ({
   button: {
