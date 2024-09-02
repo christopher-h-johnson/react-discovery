@@ -1,0 +1,13 @@
+services:
+  discovery-app:
+    image: christopher-h-johnson/react-discovery:0.1.0
+    ports:
+      - "3000:80"
+    networks:
+      - discovery-app-net
+  graphql-iiif:
+    image: christopher-h-johnson/graphql-iiif-server:latest
+    ports:
+      - "4000:4000"
+    networks:
+      - discovery-app-net
