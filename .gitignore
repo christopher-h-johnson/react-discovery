@@ -6,5 +6,5 @@ videos/
 screenshots/
 .nyc
 .idea
-.pem
+*.pem
 
