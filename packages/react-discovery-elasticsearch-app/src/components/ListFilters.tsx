@@ -1,5 +1,7 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, makeStyles, withStyles } from '@material-ui/core'
-import { ESCore, usePrevious } from '@react-discovery/core'
+import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import withStyles from '@mui/styles/withStyles'
+import { ESCore } from '@react-discovery/core'
 import {
   GroupSelectedFilters,
   IOverridableStyledComponent,
@@ -8,12 +10,14 @@ import {
 } from '@react-discovery/components'
 import React, { ReactElement, useEffect } from 'react'
 import { getCollectionByKey, getCurrentCollection, getRefinementListFilters } from '@react-discovery/configuration'
-import { Tune } from '@material-ui/icons'
-import { useDispatch } from 'react-redux'
+import { Tune } from '@mui/icons-material'
+import { useAppDispatch } from '../state'
+import { usePrevious } from '../hooks'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'
+import { Theme } from '@mui/material/styles'
 
-const ExpansionPanel = withStyles({
+const AccordionComponent = withStyles({
   expanded: {},
   root: {
     '&$expanded': {
@@ -31,7 +35,7 @@ const ExpansionPanel = withStyles({
   }
 })(Accordion)
 
-const ExpansionPanelSummary = withStyles({
+const AccordionSummaryComponent = withStyles({
   content: {
     '&$expanded': {
       margin: '12px 0'
@@ -49,11 +53,16 @@ const ExpansionPanelSummary = withStyles({
   }
 })(AccordionSummary)
 
-const ExpansionPanelDetails = withStyles((theme): any => ({
+const AccordionDetailsComponent = withStyles((theme): any => ({
   root: {
     padding: theme.spacing(2)
   }
 }))(AccordionDetails)
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 const useStyles = makeStyles((theme): any => ({
   button: {
@@ -95,7 +104,7 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
   const refinementListFilters = getRefinementListFilters()
   const prevRefinementListFilters = usePrevious(refinementListFilters)
   const { t } = useTranslation(['common', 'vocab'])
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [expanded, setExpanded] = React.useState(false)
 
   const handleChange = (): void => {
@@ -123,12 +132,12 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
   }
 
   return (
-    <ExpansionPanel
+    <AccordionComponent
       expanded={expanded}
       onChange={handleChange}
       square
     >
-      <ExpansionPanelSummary
+      <AccordionSummaryComponent
         aria-controls="panel1d-content"
         id="panel1d-header"
       >
@@ -142,10 +151,10 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
           <Tune className={classes.leftIcon} />
         </Button>
         <GroupSelectedFilters/>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummaryComponent>
+      <AccordionDetailsComponent>
         {buildRefinementListFilters()}
         <SortingListFlat/>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>)
+      </AccordionDetailsComponent>
+    </AccordionComponent>)
 }

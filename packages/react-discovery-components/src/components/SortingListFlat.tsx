@@ -1,18 +1,18 @@
-import { ArrowDownward, ArrowUpward } from '@material-ui/icons'
-import { Divider, IconButton, List, ListItem, ListItemText, Typography } from '@material-ui/core'
+import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
+import { Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { FlexBox } from '.'
 import { IOverridableStyledComponent } from '..'
 import { ISortField } from '@react-discovery/configuration'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useSortingSelectorStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
 
 export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const { t } = useTranslation('vocab')
   const classes: any = props.classes || useSortingSelectorStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const sortFields = ESCore.state.getSortFields()
   const [sortOrder, setSortOrder] = React.useState('asc')
 
@@ -88,7 +88,6 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
     return sortFields.map((sf, i): any => {
       return (
         <ListItem
-          button={true}
           component='div'
           data-testid={`item-${i}`}
           dense

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { OSDViewer } from '.'
 import { buildTileSources } from '../utils'
-import { makeStyles } from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles'
 import { gql, useQuery } from '@apollo/client'
 
 interface IImageServices {

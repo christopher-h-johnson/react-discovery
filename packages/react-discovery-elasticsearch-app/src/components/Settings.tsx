@@ -1,8 +1,15 @@
 import { CollectionSelector, SizeSelector } from '.'
-import { FormatLineSpacing, Search } from '@material-ui/icons'
-import { List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core'
+import { FormatLineSpacing, Search } from '@mui/icons-material'
+import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MosaicNode } from 'react-mosaic-component'
+
+export interface IWorkspaceMosaic {
+  currentNode?: MosaicNode<number> | null;
+  windowAppBar?: any;
+}
 
 const useStyles = makeStyles((theme): any => ({
   root: {
@@ -22,14 +29,14 @@ export const Settings: React.FC<any> = (): ReactElement => {
   return (
     <div className={classes.root}>
       <List component="nav">
-        <ListItem button>
+        <ListItemButton>
           <ListItemIcon>
             <Search />
           </ListItemIcon>
           <ListItemText primary={t('setCollection')} />
           <CollectionSelector/>
-        </ListItem>
-        <ListItem button>
+        </ListItemButton>
+        <ListItemButton>
           <ListItemIcon>
             <FormatLineSpacing />
           </ListItemIcon>
@@ -37,7 +44,7 @@ export const Settings: React.FC<any> = (): ReactElement => {
           <div className={classes.sliderRoot}>
             <SizeSelector/>
           </div>
-        </ListItem>
+        </ListItemButton>
       </List>
     </div>
   )

@@ -1,14 +1,14 @@
-import { Button, Divider, List, ListItem, ListItemText, Typography } from '@material-ui/core'
+import { Button, Divider, List, ListItem, ListItemText, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getCurrentCollection, setRefinementListFilterSize } from '@react-discovery/configuration'
 import { ESCore } from '@react-discovery/core'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useItemListStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
 
 export const ItemListFlat: React.FC<any> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { field, id, label, size } = props
   const aggregation = ESCore.state.getAggregation(field)
   const filters = ESCore.state.getFiltersForField(field)
@@ -34,7 +34,6 @@ export const ItemListFlat: React.FC<any> = (props): ReactElement => {
     return aggregation.buckets.map((bucket, i): any => {
       return (
         <ListItem
-          button={true}
           component='div'
           data-testid={`item-${i}`}
           dense

@@ -1,9 +1,9 @@
-import { CardActionArea, CardMedia } from '@material-ui/core'
+import { CardActionArea, CardMedia } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
 import { buildThumbnailReference } from '../utils'
 import clsx from 'clsx'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { gql, useQuery } from '@apollo/client'
 import { useThumbnailStyles } from '@react-discovery/components'
 
@@ -39,7 +39,7 @@ const GET_THUMBNAIL_DESCRIPTORS = gql`
 
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   const classes: any = props.classes || useThumbnailStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { id, manifest, menuComponent, thumbnail } = props
   const currentGridViewerThumbnail = getCurrentGridViewerObjectThumbnail()
   const thumbnailLink = buildThumbnailReference(thumbnail)

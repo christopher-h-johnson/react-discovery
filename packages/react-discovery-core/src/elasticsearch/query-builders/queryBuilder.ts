@@ -3,9 +3,9 @@ import { ElasticSearchConstants } from '../enum'
 import { ISortField } from '@react-discovery/configuration'
 import { NestedQuery } from './full-text'
 
-const assign = require('lodash/assign')
-const reduce = require('lodash/reduce')
-const compact = require('lodash/compact')
+import assign from 'lodash/assign'
+import reduce from 'lodash/reduce'
+import compact from 'lodash/compact'
 
 export const buildSize = (size: number = 10): {} => {
   return { [ElasticSearchConstants.SIZE]: size }

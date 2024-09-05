@@ -4,11 +4,8 @@
     "name": "Christopher Johnson"
   },
   "dependencies": {
-    "@material-ui/core": "^4.1.1",
-    "@material-ui/icons": "^4.2.0",
-    "@material-ui/lab": "^4.0.0-alpha.22",
-    "@material-ui/styles": "^4.1.1",
-    "@react-discovery/core": "*"
+    "@react-discovery/core": "*",
+    "@react-discovery/elasticsearch-app": "*"
   },
   "keywords": [
     "solr",
@@ -22,8 +19,8 @@
   "main": "lib/src/index.js",
   "name": "@react-discovery/components",
   "peerDependencies": {
-    "react": ">= 16",
-    "react-dom": ">= 16"
+    "react": ">= 17",
+    "react-dom": ">= 17"
   },
   "repository": {
     "type": "git",

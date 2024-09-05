@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, Grid } from '@material-ui/core'
+import { Card, CardActions, CardContent, Grid } from '@mui/material'
 import {
   Domain,
   EntityDisplay,
@@ -72,7 +72,7 @@ const KulturobjektExpanded: React.FC<IDefaultItemComponent> = (props): ReactElem
     <Card className={classes.root} key={i}>
       <Grid
         container
-        justify="space-between"
+        justifyContent="space-between"
       >
         <Grid
           item

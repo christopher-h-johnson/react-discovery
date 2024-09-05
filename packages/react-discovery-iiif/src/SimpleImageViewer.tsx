@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { ImageServices } from '.'
-import { usePrevious } from '@react-discovery/core'
+import { usePrevious } from '@react-discovery/elasticsearch-app'
 
 interface ISimpleImageViewer {
   classes?: any;
@@ -14,13 +14,15 @@ export const SimpleImageViewer: React.FC<ISimpleImageViewer> = (props): ReactEle
   const prevManifest = usePrevious(manifest)
 
   useEffect((): void => {
-    if (!isInitialized && manifest !== prevManifest) {
-      setIsInitialized(true)
-      setCurrentManifest(manifest)
-    }
+    setIsInitialized(true)
+    setCurrentManifest(manifest)
   }, [manifest])
 
-  return (
-    <ImageServices classes={classes} manifest={currentManifest}/>
-  )
+  return (!isInitialized && manifest !== prevManifest)
+    ? (
+        <ImageServices classes={classes} manifest={currentManifest}/>
+      )
+    : (
+        <ImageServices classes={classes} manifest={prevManifest}/>
+      )
 }

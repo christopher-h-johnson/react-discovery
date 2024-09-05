@@ -1,16 +1,16 @@
 import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   List,
   ListItem,
   ListItemText,
   Typography
-} from '@material-ui/core'
+} from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
-import { ExpandMore } from '@material-ui/icons'
-import { useDispatch } from 'react-redux'
+import { ExpandMore } from '@mui/icons-material'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useItemListStyles } from '../styles'
 
 export interface IItemListProps {
@@ -22,7 +22,7 @@ export interface IItemListProps {
 
 export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { field, label } = props
   const aggregation = ESCore.state.getAggregation(field)
   const filters = ESCore.state.getFiltersForField(field)
@@ -45,7 +45,6 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
     return aggregation.buckets.map((bucket, i): any => {
       return (
         <ListItem
-          button={true}
           component='div'
           data-testid={`item-${i}`}
           dense
@@ -83,11 +82,11 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const PANEL_ID = 'panel1'
 
   return (
-    <ExpansionPanel
+    <Accordion
       expanded={Boolean(isExpanded)}
       onChange={handleExpand(PANEL_ID)}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         aria-controls="panel1bh-content"
         classes={{
           expanded: classes.expanded,
@@ -98,15 +97,15 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
         id="panel1bh-header"
       >
         <Typography className={classes.heading}>{label}</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummary>
+      <AccordionDetails>
         <List
           component="nav"
           style={{ width: '100%' }}
         >
           {aggregation && actions(aggregation)}
         </List>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   )
 }

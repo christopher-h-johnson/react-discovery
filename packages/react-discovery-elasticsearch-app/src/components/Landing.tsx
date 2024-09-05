@@ -1,5 +1,6 @@
-import { Button, Card, CardContent, CardMedia, Grid, makeStyles } from '@material-ui/core'
-import { NavLink } from 'react-navi'
+import { Button, Card, CardContent, CardMedia, Grid } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { NavLink } from 'react-router-dom'
 import React, { ReactElement } from 'react'
 import { getCurrentSearchContext } from '@react-discovery/configuration'
 
@@ -41,7 +42,7 @@ export const Landing: React.FC<any> = (): ReactElement => {
         className={classes.card}
         key={card.index}
       >
-        <NavLink href={card.linkPath} title={card.title} >
+        <NavLink to={card.linkPath} title={card.title} >
           <CardMedia
             className={classes.media}
             image={card.imageSrc}
@@ -54,19 +55,17 @@ export const Landing: React.FC<any> = (): ReactElement => {
       </Card>)
   }
 
-  return (
-    <>
-      <Grid
-        alignItems="center"
-        container
-        direction="column"
-        justify="center"
-        spacing={3}
-      >
-        <Grid item style={{ display: 'flex' }} xs={8}>
-          {buildCards(cards)}
-        </Grid>
+  return (<>
+    <Grid
+      alignItems="center"
+      container
+      direction="column"
+      justifyContent="center"
+      spacing={3}
+    >
+      <Grid item style={{ display: 'flex' }} xs={8}>
+        {buildCards(cards)}
       </Grid>
-    </>
-  )
+    </Grid>
+  </>)
 }

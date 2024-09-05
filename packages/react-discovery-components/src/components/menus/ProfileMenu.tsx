@@ -1,6 +1,6 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core'
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import React, { ReactElement } from 'react'
-import { AccountCircle } from '@material-ui/icons'
+import { AccountCircle } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 
 export const ProfileMenu: React.FC<any> = (): ReactElement => {
@@ -24,7 +24,6 @@ export const ProfileMenu: React.FC<any> = (): ReactElement => {
         horizontal: 'right',
         vertical: 'bottom'
       }}
-      getContentAnchorEl={null}
       onClose={handleMenuClose}
       open={isMenuOpen}
       transformOrigin={{
@@ -33,13 +32,11 @@ export const ProfileMenu: React.FC<any> = (): ReactElement => {
       }}
     >
       <MenuItem
-        button={true}
         component='div'
         onClick={handleMenuClose}
       >{t('profile')}
       </MenuItem>
       <MenuItem
-        button={true}
         component='div'
         onClick={handleMenuClose}
       >
@@ -48,19 +45,17 @@ export const ProfileMenu: React.FC<any> = (): ReactElement => {
     </Menu>
   )
 
-  return (
-    <>
-      <IconButton
-        aria-haspopup="true"
-        aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-        color="inherit"
-        edge="end"
-        href=''
-        onClick={handleProfileMenuOpen}
-      >
-        <AccountCircle />
-      </IconButton>
-      {renderMenu}
-    </>
-  )
+  return (<>
+    <IconButton
+      aria-haspopup="true"
+      aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+      color="inherit"
+      edge="end"
+      href=''
+      onClick={handleProfileMenuOpen}
+      size="large">
+      <AccountCircle />
+    </IconButton>
+    {renderMenu}
+  </>);
 }

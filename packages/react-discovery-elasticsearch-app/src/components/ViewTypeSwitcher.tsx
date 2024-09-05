@@ -1,7 +1,7 @@
 import { ESCore, Hits } from '@react-discovery/core'
 import React, { ReactElement, Suspense } from 'react'
 import { getHitComponents, getViewType } from '@react-discovery/configuration'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import CircularProgress from '@mui/material/CircularProgress'
 import { useFacetViewSwitcherStyles } from '@react-discovery/components'
 
 const CUSTOM_COMPONENT_PATH = './hit-views/'

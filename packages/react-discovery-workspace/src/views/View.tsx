@@ -9,7 +9,7 @@ interface IView {
   viewType: ViewType;
 }
 
-export const View: React.FC<IView> = (props): ReactElement => {
+const View: React.FC<IView> = (props): ReactElement => {
   const { id, manifest, viewType } = props
 
   const buildViewForType = (): ReactElement => {
@@ -25,3 +25,4 @@ export const View: React.FC<IView> = (props): ReactElement => {
   return buildViewForType()
 }
 
+export default View

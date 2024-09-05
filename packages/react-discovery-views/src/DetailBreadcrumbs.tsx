@@ -1,13 +1,13 @@
-import { Breadcrumbs, Typography } from '@material-ui/core'
+import { Breadcrumbs, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
-import { Link } from 'react-navi'
-import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useTranslation } from 'react-i18next'
 
 export const DetailBreadcrumbs: React.FC<any> = (): ReactElement => {
   const { t } = useTranslation('vocab')
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleClick = () => {
     const filters = []
@@ -23,14 +23,14 @@ export const DetailBreadcrumbs: React.FC<any> = (): ReactElement => {
     >
       <Link
         data-testid='detail-search-link'
-        href='/'
+        to ='/'
         onClick={handleClick}
       >
         {t('search')}
       </Link>
       <Link
         data-testid='detail-result-link'
-        href='/'
+        to ='/'
       >
         {t('result')}
       </Link>

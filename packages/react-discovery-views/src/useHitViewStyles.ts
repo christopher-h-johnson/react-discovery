@@ -1,4 +1,10 @@
-import { makeStyles } from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles'
+import { Theme } from '@mui/material/styles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 export const useHitViewStyles = makeStyles((theme): any => ({
   chip: {

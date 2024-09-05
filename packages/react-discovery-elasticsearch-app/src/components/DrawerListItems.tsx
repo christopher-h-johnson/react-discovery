@@ -1,16 +1,16 @@
-import { Badge, ListItem, ListItemIcon, ListItemText, Tooltip } from '@material-ui/core'
-import { Description, Home, PictureInPicture, Search, Settings } from '@material-ui/icons'
-import { NavLink, useCurrentRoute } from 'react-navi'
+import { Badge, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
+import { Description, Home, PictureInPicture, Search, Settings } from '@mui/icons-material'
+import { NavLink, useLocation } from 'react-router-dom'
 import React, { ReactElement, forwardRef, useEffect, useState } from 'react'
 import { getCurrentSearchContext } from '@react-discovery/configuration'
 import { getNumberOfWorkspaceNodes } from '@react-discovery/workspace'
-import { usePrevious } from '@react-discovery/core'
+import { usePrevious } from '../hooks'
 import { useTranslation } from 'react-i18next'
 
 export const DrawerListItems: React.FC<any> = (): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
   const currentSearchContext = getCurrentSearchContext()
-  const route = useCurrentRoute()
+  const route = useLocation()
   const prevRoute = usePrevious(route)
   const numberOfNodes = getNumberOfWorkspaceNodes()
   const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -50,7 +50,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
   ]
 
   useEffect((): any => {
-    const pathname = route.url.pathname
+    const pathname = location.pathname
     const context = pathname.split('/')[1]
     const [startItem] = listItems.filter((item): boolean => item.path.includes(context))
 
@@ -90,13 +90,13 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
     setSelectedIndex(index)
   }
 
-  // eslint-disable-next-line react/display-name
-  const navRef = (item) => item.path !== '/detail' ? forwardRef((props: any, ref: any) => <NavLink href={item.path} {...props} ref={ref} />) : 'li'
+  const navRef = (item) => item.path !== '/detail'
+    ? forwardRef((props: any, ref: any) => <NavLink to={item.path} {...props} ref={ref} />)
+    : 'li'
 
   const buildListItems = (items: any): ReactElement[] => {
     return items.map((item: any, i): ReactElement =>
-      <ListItem
-        button
+      <ListItemButton
         component={navRef(item)}
         key={item.index}
         onClick={(event): void => handleListItemClick(event, i)}
@@ -111,7 +111,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
           </ListItemIcon>
         </Tooltip>
         <ListItemText primary={t(item.text)} />
-      </ListItem>
+      </ListItemButton>
     )
   }
 

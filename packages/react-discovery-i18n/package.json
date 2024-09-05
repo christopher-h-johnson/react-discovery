@@ -1,8 +1,8 @@
 {
   "author": "Christopher Johnson",
   "dependencies": {
-    "i18next": "^15.0.7",
-    "react-i18next": "^10.10.0"
+    "i18next": "^23.14.0",
+    "react-i18next": "^15.0.1"
   },
   "description": "react discovery internationalization",
   "license": "Apache-2.0",

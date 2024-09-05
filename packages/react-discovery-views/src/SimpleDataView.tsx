@@ -1,4 +1,6 @@
-import { Card, CardActions, CardContent, Theme, createStyles, makeStyles } from '@material-ui/core'
+import { Card, CardActions, CardContent, Theme } from '@mui/material'
+import createStyles from '@mui/styles/createStyles'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   Domain, EntityDisplay,
   buildDocumentUri,
@@ -14,7 +16,7 @@ import React, { ReactElement, useEffect } from 'react'
 import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
 import { ESCore } from '@react-discovery/core'
 import { Thumbnail } from '@react-discovery/iiif'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 
 interface ISimpleDataView {
   id: string;
@@ -45,7 +47,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
   const classes: any = useStyles({})
   const { id } = props
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const docs = ESCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
   const docIndex = doc && doc._index

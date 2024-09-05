@@ -1,8 +1,8 @@
 {
   "author": "Christopher Johnson",
   "dependencies": {
-    "typescript-fsa": "^3.0.0-beta-2",
-    "typescript-fsa-reducers": "^1.2.0"
+    "typescript-fsa": "^3.0.0",
+    "typescript-fsa-reducers": "^1.2.2"
   },
   "description": "react discovery configuration",
   "license": "Apache-2.0",

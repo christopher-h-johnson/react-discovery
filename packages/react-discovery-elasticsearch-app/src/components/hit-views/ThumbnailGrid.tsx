@@ -1,4 +1,4 @@
-import { Container, Grid, ImageListItem } from '@material-ui/core'
+import { Container, Grid, ImageListItem } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { IHit } from '@react-discovery/core'
 import { MediaGridTitleBar } from '../MediaGridTitleBar'

@@ -1,15 +1,16 @@
-import { ESCore, IElasticSearchQuery, usePrevious } from '@react-discovery/core'
-import { FormControl, ListItemText, MenuItem, Select, makeStyles } from '@material-ui/core'
+import { ESCore, IElasticSearchQuery } from '@react-discovery/core'
+import { FormControl, ListItemText, MenuItem, Select } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   ICollection,
   getCollectionByKey,
   getCollections,
   getCurrentCollection,
-  getCurrentSearchContext,
   setCurrentCollection
 } from '@react-discovery/configuration'
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../state'
+import { usePrevious } from '../hooks'
 
 const useStyles = makeStyles((): any => ({
   primary: {
@@ -23,12 +24,12 @@ const useStyles = makeStyles((): any => ({
 
 export const CollectionSelector: React.FC<any> = (): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const classes: any = useStyles({})
   const collections = getCollections()
   const currentCollection = getCurrentCollection()
   const collectionObj = getCollectionByKey(currentCollection)
-  const currentSearchContext = getCurrentSearchContext()
+
   const jsonCollection = JSON.stringify(collectionObj)
   const prevJsonCollection = usePrevious(jsonCollection)
   const size = ESCore.state.getSize()
@@ -69,7 +70,6 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
   const buildSelectOptions = (): any => {
     return Array.from(indexMap, ([key, value]) =>
       <MenuItem
-        button={false}
         component='li'
         key={key}
         value={key}
@@ -90,8 +90,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
           anchorOrigin: {
             horizontal: 'left',
             vertical: 'bottom'
-          },
-          getContentAnchorEl: null
+          }
         }}
         inputProps={{
           id: 'index-native',

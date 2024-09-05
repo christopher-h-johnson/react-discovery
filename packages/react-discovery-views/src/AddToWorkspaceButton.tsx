@@ -1,16 +1,25 @@
-import { CheckCircle, CheckCircleOutline } from '@material-ui/icons'
-import { IHit, usePrevious } from '@react-discovery/core'
-import { IconButton, Tooltip, makeStyles, withStyles } from '@material-ui/core'
+import { CheckCircle, CheckCircleOutline } from '@mui/icons-material'
+import { IHit } from '@react-discovery/core'
+import { usePrevious } from '@react-discovery/elasticsearch-app'
+import { IconButton, Tooltip } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import withStyles from '@mui/styles/withStyles'
 import React, { ReactElement, useEffect } from 'react'
 import { Domain } from './enum'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { Theme } from '@mui/material/styles'
 
 interface IAddToWorkspaceButton {
   actions: any;
   classes?: any;
   hit: IHit;
   item: any;
+}
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
 }
 
 const useStyles = makeStyles((theme): any => ({
@@ -53,15 +62,15 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
   }
 
   return (
-    <Tooltip
+    (<Tooltip
       title={t('addMediaToWorkspace')}>
       {nodeCount && nodeCount.length
         ? <IconButton
-          aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
-          color='primary'
-          href=''
-          onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
-        >
+        aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
+        color='primary'
+        href=''
+        onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+        size="large">
           <CheckCircle className={classes.title}/>
         </IconButton>
         : <HoverButton
@@ -71,6 +80,6 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
           <CheckCircleOutline className={classes.title}/>
         </HoverButton>
       }
-    </Tooltip>
+    </Tooltip>)
   )
 }

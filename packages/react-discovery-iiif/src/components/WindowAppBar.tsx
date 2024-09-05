@@ -1,5 +1,6 @@
-import { AppBar, IconButton, Toolbar, Typography, makeStyles } from '@material-ui/core'
-import { Close, ZoomOutMap } from '@material-ui/icons'
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Close, ZoomOutMap } from '@mui/icons-material'
 import {
   MosaicContext,
   MosaicWindowContext
@@ -7,7 +8,13 @@ import {
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { buildHighlightedValueForHit } from '@react-discovery/components'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { Theme } from '@mui/material/styles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 const useStyles = makeStyles((theme): any => ({
   appBar: {
@@ -37,14 +44,14 @@ export const WindowAppBar = (props): ReactElement => {
   const docs = ESCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[dataId] : null
   const title = doc && (buildHighlightedValueForHit('titel_t', doc) || buildHighlightedValueForHit('title', doc))
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleRemove = (): void => {
     dispatch(removeViewId({ id }))
   }
 
   return (
-    <AppBar
+    (<AppBar
       classes={{ colorPrimary: classes.appBar }}
       position="static"
     >
@@ -68,7 +75,8 @@ export const WindowAppBar = (props): ReactElement => {
                   color="primary"
                   edge="start"
                   href=''
-                  onClick={(): void => mosaicActions.expand(mosaicWindowActions.getPath())}>
+                  onClick={(): void => mosaicActions.expand(mosaicWindowActions.getPath())}
+                  size="large">
                   <ZoomOutMap/>
                 </IconButton>
                 <IconButton
@@ -77,13 +85,14 @@ export const WindowAppBar = (props): ReactElement => {
                   color="primary"
                   edge="start"
                   href=''
-                  onClick={handleRemove}>
+                  onClick={handleRemove}
+                  size="large">
                   <Close/>
                 </IconButton>
               </Toolbar>
             )}
           </MosaicWindowContext.Consumer>)}
       </MosaicContext.Consumer>
-    </AppBar>
+    </AppBar>)
   )
 }

@@ -12,12 +12,10 @@
     "experimentalDecorators": true,
     "jsx": "react",
     "lib": [
-      "es5",
-      "es2015",
-      "es2017",
+      "es2020",
       "dom"
     ],
-    "module": "commonjs",
+    "module": "es2020",
     "moduleResolution": "node",
     "noEmitOnError": false,
     "noUnusedParameters": true,
@@ -30,7 +28,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "target": "es5",
+    "target": "es2020",
     "typeRoots": [
       "node_modules/@types",
       "./src/@types"

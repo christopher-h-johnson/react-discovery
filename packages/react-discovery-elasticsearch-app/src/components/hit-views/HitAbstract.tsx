@@ -1,4 +1,4 @@
-import { Divider, List, ListItem, ListSubheader, Typography } from '@material-ui/core'
+import { Divider, List, ListItem, ListSubheader, Typography } from '@mui/material'
 import { FieldLabel, InnerHtmlValue } from '@react-discovery/components'
 import React, { ReactElement } from 'react'
 import { IHit } from '@react-discovery/core'

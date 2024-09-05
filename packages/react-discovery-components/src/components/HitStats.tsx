@@ -1,4 +1,4 @@
-import { Box, Typography } from '@material-ui/core'
+import { Box, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
 import { ESCore } from '@react-discovery/core'

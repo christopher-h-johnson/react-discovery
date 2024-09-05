@@ -1,7 +1,6 @@
 import { IConfig } from '@react-discovery/configuration'
 
 export * from './elasticsearch'
-export * from './hooks'
 
 export interface IBucket {
   key: string;

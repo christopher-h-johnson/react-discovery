@@ -1,4 +1,12 @@
-import { Theme, createStyles, makeStyles } from '@material-ui/core'
+import { Theme } from '@mui/material/styles'
+
+import createStyles from '@mui/styles/createStyles'
+import makeStyles from '@mui/styles/makeStyles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 export const useFacetViewSwitcherStyles = makeStyles((theme: Theme): any =>
   createStyles({
@@ -117,7 +125,7 @@ export const useMinWidthResultsGridStyles = makeStyles((theme: Theme): any =>
 export const usePaginationStyles = makeStyles((theme): any => ({
   button: {
     border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
     }`,
     padding: '5px 16px'
   }

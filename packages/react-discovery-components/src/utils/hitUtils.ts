@@ -1,6 +1,4 @@
-import { ESCore } from '@react-discovery/core'
-
-const typeField = ESCore.enums.FieldConstants.TYPE_FIELD
+const typeField = 'type_s'
 
 export const buildHighlightedValueForHit = (field, hit): string => {
   const { _source } = hit

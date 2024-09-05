@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
-import { Slider } from '@material-ui/core'
+import { Slider } from '@mui/material'
 import { setSelectedIndex } from '@react-discovery/configuration'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../state'
 
 export const SizeSelector: React.FC<any> = (): ReactElement => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const size = ESCore.state.getSize()
 
   const sizeSpec = [

@@ -1,4 +1,3 @@
-import { Domain } from '@react-discovery/views'
 import { IConfig } from '@react-discovery/configuration'
 
 export const hsp2: IConfig = {
@@ -75,7 +74,7 @@ export const hsp2: IConfig = {
         }
       ],
       name: 'Handschriftenportal',
-      primaryTypeField: Domain.KULTUROBJEKT,
+      primaryTypeField: 'Kulturobjekt',
       refinementListFilters: {
         1: {
           field: 'entstehungsort_s.keyword',

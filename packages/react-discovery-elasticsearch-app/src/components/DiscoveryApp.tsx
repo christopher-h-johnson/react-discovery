@@ -1,4 +1,6 @@
-import { Grid, Theme, createStyles, makeStyles } from '@material-ui/core'
+import { Grid, Theme } from '@mui/material'
+import createStyles from '@mui/styles/createStyles'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { ReactElement } from 'react'
 import { PersistentDrawer } from './PersistentDrawer'
 import { SearchAppBar } from './SearchAppBar'
@@ -6,6 +8,7 @@ import classNames from 'classnames'
 
 interface IDiscoveryApp {
   component: ReactElement;
+  title?: string;
 }
 
 const drawerWidth = 240

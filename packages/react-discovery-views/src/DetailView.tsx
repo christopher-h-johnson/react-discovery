@@ -5,7 +5,9 @@ import {
   HitViewOptionsMenu,
   domainEntitySpec
 } from '.'
-import { Card, CardActions, CardContent, Grid, Theme, createStyles, makeStyles } from '@material-ui/core'
+import { Card, CardActions, CardContent, Grid, Theme } from '@mui/material'
+import createStyles from '@mui/styles/createStyles'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   FieldValueDisplay,
   TitleIdHeader,
@@ -13,15 +15,14 @@ import {
   buildHighlightedValueForHit, getFirstManifestFromHit
 } from '@react-discovery/components'
 import React, { ReactElement } from 'react'
+import { useParams } from 'react-router-dom'
 import { ESCore } from '@react-discovery/core'
 import { SimpleImageViewer } from '@react-discovery/iiif'
 import { getCurrentCollection } from '@react-discovery/configuration'
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 interface IDetailView {
   actions: any;
-  collection: string;
-  id: string;
 }
 
 const useStyles = makeStyles((theme: Theme): any =>
@@ -69,7 +70,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const classes: any = useStyles({})
   const currentCollection = getCurrentCollection()
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
-  const { collection, id } = props
+  const { collection, id } = useParams()
   const numFound = ESCore.state.getNumFound()
   const isSingleton = numFound === 1
   const hitIndex = ESCore.state.getHitIndexForId(id)
@@ -150,7 +151,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
       alignItems="center"
       container
       direction="column"
-      justify="center"
+      justifyContent="center"
       key={uuidv4()}
       spacing={3}
     >
