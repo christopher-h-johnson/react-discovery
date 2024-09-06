@@ -1,5 +1,6 @@
 import { ICollection, IDocType, IHitComponent, ILanguage, IRefinementListFilters } from '../..'
 import { useSelector } from 'react-redux'
+import { createAppSelector } from '@react-discovery/elasticsearch-app'
 
 export const getCollections = (): string[] => {
   return useSelector((state: any): string[] => state.config.collections)
@@ -51,8 +52,10 @@ export const getIsPersisted = (): boolean => {
   return useSelector((state: any): boolean => state.config.isPersisted)
 }
 
-export const getViewType = (): string => {
-  return useSelector((state: any): string => state.config.viewType)
+export const getViewType = () => {
+  createAppSelector([state => state.config.viewType], (viewType: string) => {
+    return viewType
+  })
 }
 
 export const getLanguages = (): ILanguage[] => {

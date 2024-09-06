@@ -5,7 +5,8 @@ import {
   HitViewOptionsMenu,
   domainEntitySpec
 } from '.'
-import { Card, CardActions, CardContent, Grid, Theme } from '@mui/material'
+import { Card, CardActions, CardContent, Theme } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
 import {
@@ -103,7 +104,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
 
   const buildImageViewer = (): ReactElement => {
     return (
-      <Grid className={classes.imageGrid} item xs={6}>
+      <Grid className={classes.imageGrid} size={6}>
         {manifest ? (<SimpleImageViewer classes={classes} manifest={manifest}/>) : null}
       </Grid>
     )
@@ -113,7 +114,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const addButton = currentHit && <AddToWorkspaceButton actions={addToWorkspaceButtonActions} classes={classes} hit={currentHit} item={item}/>
   const buildDetailView = (): ReactElement => {
     return (
-      <Grid item style={{ width: '100%' }} xs={6}>
+      <Grid>
         <Card className={classes.root}>
           <TitleIdHeader
             addButton={addButton}
@@ -148,17 +149,20 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   return currentHit
     ? (
     <Grid
-      alignItems="center"
       container
-      direction="column"
-      justifyContent="center"
       key={uuidv4()}
       spacing={3}
     >
-      {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}
-      {buildImageViewer()}
-      {buildDetailView()}
+      <Grid size='grow'>
+       {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}
+      </Grid>
+      <Grid size={6}>
+        {buildImageViewer()}
+        {buildDetailView()}
+      </Grid>
+      <Grid size='grow'>
       {!isSingleton ? <ArrowForwardButton collection={collection} hitIndex={hitIndex}/> : null}
+      </Grid>
     </Grid>
       )
     : null

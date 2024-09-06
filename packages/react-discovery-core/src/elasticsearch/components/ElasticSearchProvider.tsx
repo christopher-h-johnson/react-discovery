@@ -1,10 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { buildAggs, queryBuilder } from '../query-builders'
-import { fetchElasticSearchResponse, getDefaultQuery, getFrom, getSize, getStringInput, setQueryFields } from '../state'
+import { buildAggs, functionQueryBuilder, queryBuilder } from '../query-builders'
+import {
+  fetchElasticSearchResponse,
+  getDefaultQuery,
+  getFrom,
+  getFunctionRandomQuery,
+  getSize,
+  getStringInput,
+  setQueryFields
+} from '../state'
 import { getCollections, getCurrentCollection, getCurrentSearchContext, setCurrentCollection, setSelectedIndex } from '@react-discovery/configuration'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { ElasticSearchConstants } from '../enum'
-import { IElasticSearchQuery } from '../index'
+import { IElasticSearchQuery, ISearchFunctionRandomQuery } from '../index'
 import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
 import { stringify } from 'query-string'
 
@@ -23,9 +31,12 @@ export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): 
   const [params] = useSearchParams()
   const pathname = route.pathname
   const stringInput = getStringInput()
-  const query: IElasticSearchQuery = getDefaultQuery()
-  const queryObj = queryBuilder(query)
-  const json = JSON.stringify(queryObj)
+  // const query: IElasticSearchQuery = getDefaultQuery()
+  // const queryObj = queryBuilder(query)
+  const randomQuery = getFunctionRandomQuery()
+  const randomQueryObj = functionQueryBuilder(randomQuery)
+  const json = JSON.stringify(randomQueryObj)
+  // const json = JSON.stringify(queryObj)
   const prevJson = usePrevious(json)
   const collections = getCollections()
   const currentCollection = getCurrentCollection()

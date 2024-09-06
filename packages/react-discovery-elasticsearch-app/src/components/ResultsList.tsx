@@ -33,14 +33,13 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
   const previousLanguage = usePrevious(currentLanguage)
   const matches = useMediaQuery('(min-width:600px)')
   const viewType = getViewType()
+  const hits = ESCore.state.getHits()
 
   useEffect((): any => {
     if (previousLanguage !== currentLanguage) {
       i18n.changeLanguage(currentLanguage)
     }
   }, [currentLanguage, i18n, previousLanguage])
-
-  const hits = ESCore.state.getHits()
 
   return (
     matches

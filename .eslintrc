@@ -14,7 +14,7 @@
     "react": {
       "createClass": "createReactClass",
       "pragma": "React",
-      "version": "latest"
+      "version": "detect"
     }
   },
   "rules": {

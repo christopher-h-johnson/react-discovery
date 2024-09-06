@@ -43,3 +43,13 @@ export interface IElasticSearchQuery {
   from: number;
   stringInput: string;
 }
+
+export interface ISearchFunctionRandomQuery {
+  filters: IFilters;
+  query?: any;
+  searchFields: ISearchField[];
+  size: number;
+  sortFields: ISortField[];
+  from: number;
+  stringInput: string;
+}

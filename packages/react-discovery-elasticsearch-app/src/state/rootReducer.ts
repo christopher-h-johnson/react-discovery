@@ -47,7 +47,8 @@ export const store: any = configureStore({
     query: queryReducer,
     response: ESCore.state.response,
     workspace: workspaceReducer
-  }
+  },
+  devTools: process.env.NODE_ENV !== 'production'
 })
 
 export type RootState = ReturnType<typeof store.getState>
