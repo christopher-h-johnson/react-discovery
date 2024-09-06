@@ -1,6 +1,7 @@
 {
   "extends": [
-    "standard"
+    "standard",
+    "plugin:react/recommended"
   ],
   "env": {
     "browser": true,
@@ -8,6 +9,7 @@
     "node": true
   },
   "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "react-hooks"],
   "settings": {
     "react": {
       "createClass": "createReactClass",

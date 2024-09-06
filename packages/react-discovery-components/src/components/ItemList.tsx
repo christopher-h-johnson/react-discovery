@@ -2,8 +2,9 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Grid,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   Typography
 } from '@mui/material'
@@ -12,6 +13,7 @@ import { ESCore } from '@react-discovery/core'
 import { ExpandMore } from '@mui/icons-material'
 import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useItemListStyles } from '../styles'
+import { styled } from '@mui/material/styles'
 
 export interface IItemListProps {
   classes?: any;
@@ -29,6 +31,12 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const stringInput = ESCore.state.getStringInput()
   const [isExpanded, setExpanded] = React.useState(false)
 
+  const CustomizedAccordionDetails = styled(AccordionDetails)`
+    
+    display: flex;
+    padding: 16
+  `
+
   const handleExpand = (panel): any => ({}, isExpanded): void => { // eslint-disable-line no-empty-pattern
     setExpanded(isExpanded ? panel : false)
   }
@@ -44,7 +52,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const actions = (aggregation): ReactElement => {
     return aggregation.buckets.map((bucket, i): any => {
       return (
-        <ListItem
+        <ListItemButton
           component='div'
           data-testid={`item-${i}`}
           dense
@@ -74,7 +82,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
                 {bucket.doc_count}
               </Typography>
             }/>
-        </ListItem>
+        </ListItemButton>
       )
     })
   }
@@ -98,14 +106,18 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
       >
         <Typography className={classes.heading}>{label}</Typography>
       </AccordionSummary>
-      <AccordionDetails>
-        <List
-          component="nav"
-          style={{ width: '100%' }}
-        >
-          {aggregation && actions(aggregation)}
-        </List>
-      </AccordionDetails>
+      <CustomizedAccordionDetails>
+        <Grid container spacing={2}>
+          <Grid item>
+            <List
+              component="nav"
+              style={{ width: '100%' }}
+            >
+              {aggregation && actions(aggregation)}
+            </List>
+          </Grid>
+        </Grid>
+      </CustomizedAccordionDetails>
     </Accordion>
   )
 }

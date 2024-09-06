@@ -1,5 +1,6 @@
 import { MosaicParent } from 'react-mosaic-component'
 import { useSelector } from 'react-redux'
+import { createSelector } from '@reduxjs/toolkit'
 
 export const getWorkspaceLayout = (): MosaicParent<string> => {
   return useSelector((state: any): MosaicParent<string> => state.workspace.layout)
@@ -19,8 +20,10 @@ export const getIsInWorkspace = (uuid): boolean => {
 }
 
 export const getNumberOfWorkspaceNodesForId = (id) => {
-  return useSelector((state: any) => state.workspace.viewIdMap &&
-    Object.values(state.workspace.viewIdMap).filter((instance: any) => instance.id === id)).length
+  const viewIdMap = state => state.workspace.viewIdMap
+  createSelector([viewIdMap], () => {
+    return viewIdMap && Object.values(viewIdMap).filter((instance: any) => instance.id === id).length
+  })
 }
 
 export const getNumberOfWorkspaceNodesForManifest = (manifest) => {

@@ -47,6 +47,9 @@ export const useItemListStyles = makeStyles((theme): any => ({
     flex: '1 0 auto',
     padding: 0
   },
+  root: {
+    display: 'flex'
+  },
   expanded: {
     maxHeight: 32,
     minHeight: 0

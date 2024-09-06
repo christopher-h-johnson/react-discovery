@@ -55,6 +55,7 @@ const AccordionSummaryComponent = withStyles({
 
 const AccordionDetailsComponent = withStyles((theme): any => ({
   root: {
+    display: 'flex',
     padding: theme.spacing(2)
   }
 }))(AccordionDetails)

@@ -5,7 +5,6 @@ import makeStyles from '@mui/styles/makeStyles'
 import { gql, useQuery } from '@apollo/client'
 
 interface IImageServices {
-  classes?: any;
   manifest: string;
 }
 
@@ -32,7 +31,7 @@ const GET_IMAGE_SERVICES_V2 = gql`
           }`
 
 export const ImageServices: React.FC<IImageServices> = (props): ReactElement => {
-  const { classes, manifest } = props
+  const { manifest } = props
   const response = manifest && useQuery(GET_IMAGE_SERVICES, {
     variables: { manifestId: manifest, type: 'ImageService2' }
   })
@@ -47,14 +46,12 @@ export const ImageServices: React.FC<IImageServices> = (props): ReactElement => 
   return imageServices
     ? (
     <OSDViewer
-      classes={classes}
       images={buildTileSources(imageServices)}
     />
       )
     : imageServicesv2
       ? (
     <OSDViewer
-      classes={classes}
       images={buildTileSources(imageServicesv2)}
     />
         )

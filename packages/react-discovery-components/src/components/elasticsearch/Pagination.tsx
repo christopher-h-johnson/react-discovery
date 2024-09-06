@@ -69,8 +69,6 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
 
   const PageControlIndexButton = (page, label, key): ReactElement =>
     <ListItemButton
-      classes={classes.button}
-      component={'div'}
       data-testid={`page-index-${key}`}
       dense
       key={key}
@@ -82,8 +80,6 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
 
   const PageControlButton = (page, key): ReactElement =>
     <ListItemButton
-      classes={classes.button}
-      component={'div'}
       data-testid={`page-control-${key}`}
       dense
       key={key}

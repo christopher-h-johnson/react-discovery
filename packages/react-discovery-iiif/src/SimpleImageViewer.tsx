@@ -10,19 +10,17 @@ interface ISimpleImageViewer {
 export const SimpleImageViewer: React.FC<ISimpleImageViewer> = (props): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
   const [currentManifest, setCurrentManifest] = useState(undefined)
-  const { classes, manifest } = props
+  const { manifest } = props
   const prevManifest = usePrevious(manifest)
 
   useEffect((): void => {
-    setIsInitialized(true)
-    setCurrentManifest(manifest)
+    if (!isInitialized && manifest !== prevManifest) {
+      setIsInitialized(true)
+      setCurrentManifest(manifest)
+    }
   }, [manifest])
 
-  return (!isInitialized && manifest !== prevManifest)
-    ? (
-        <ImageServices classes={classes} manifest={currentManifest}/>
-      )
-    : (
-        <ImageServices classes={classes} manifest={prevManifest}/>
-      )
+  return (
+        <ImageServices manifest={currentManifest}/>
+  )
 }
