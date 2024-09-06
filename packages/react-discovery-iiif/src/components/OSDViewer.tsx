@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import OpenSeadragon from 'openseadragon'
-import { makeStyles } from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles'
 
 export interface IOsdComponentProps {
   classes?: any;
@@ -17,7 +17,7 @@ const useStyles = makeStyles((): any => ({
 }))
 
 export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => {
-  const classes: any = props.classes || useStyles({})
+  const classes: any = useStyles({})
   const [isInitialized, setIsInitialized] = useState(false)
   const [osd, setOsd] = useState(null)
   const osdRef = useRef(null)
@@ -64,10 +64,8 @@ export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => 
 
   useEffect(
     (): void => {
-      if (!isInitialized) {
-        updateViewer(defaultOsdProps())
-        setIsInitialized(true)
-      }
+      updateViewer(defaultOsdProps())
+      setIsInitialized(true)
     })
 
   return (

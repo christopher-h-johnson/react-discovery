@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from '@material-ui/core'
+import { Card, CardContent, Grid } from '@mui/material'
 import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
 import { ESCore, IHit } from '@react-discovery/core'
 import {
@@ -32,10 +32,10 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
     [Domain.MANIFEST_ID_FIELD]: manifest
   }
   return (
-    <Card className={classes.root} key={i}>
+    (<Card className={classes.root} key={i}>
       <Grid
         container
-        justify="space-between"
+        justifyContent="space-between"
       >
         <Grid
           item
@@ -62,7 +62,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
         </Grid>
         <ThumbnailGrid hit={hit} id={id} item={item} manifest={manifest}/>
       </Grid>
-    </Card>
+    </Card>)
   )
 }
 

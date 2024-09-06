@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { Typography } from '@material-ui/core'
+import { Typography } from '@mui/material'
 import { useFieldLabelStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
 

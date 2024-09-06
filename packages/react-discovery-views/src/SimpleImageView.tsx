@@ -3,7 +3,7 @@ import { ESCore } from '@react-discovery/core'
 import { SimpleImageViewer } from '@react-discovery/iiif'
 import { buildDocumentUri } from './utils'
 import { getCurrentCollection } from '@react-discovery/configuration'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 
 interface ISimpleImageView {
   id: string;
@@ -12,7 +12,7 @@ interface ISimpleImageView {
 
 export const SimpleImageView: React.FC<ISimpleImageView> = (props): ReactElement => {
   const { id, manifest } = props
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const docs = ESCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
   const currentCollection = getCurrentCollection()

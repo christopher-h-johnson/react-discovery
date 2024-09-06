@@ -15,49 +15,31 @@
 ### Quick Start
 
 #### Create Environment
-- configure `search api host` and `collection` in `.env` file in elasticsearch-app root
+- Configure `search api host`, `apollo server` and `collection` in `.env` file in elasticsearch-app root
+- Use the `graphql-iiif` [apollo server](https://github.com/christopher-h-johnson/graphql-iiif)
 ```yaml
 REACT_APP_SEARCH_API_HOST=http://localhost:8000/
-REACT_APP_SEARCH_API_COLLECTION=hsp2
+REACT_APP_SEARCH_API_COLLECTION=nga
+REACT_APP_SEARCH_APOLLO_SERVER=http://localhost:4000
 ```
-##### Setup Test Elasticsearch Instance
+##### Setup Test Opensearch Instance
 - start docker composition 
     ```bash
-    $ cd deployment/elasticsearch
-    $ docker-compose up
-    ```
-- create index mapping
-    ```bash
-    $ curl -X PUT "localhost:8000/hsp2" -H 'Content-Type: application/json' -d @test-data/hsp_mapping.json
+    $ cd deployment/opensearch
+    $ OPENSEARCH_INITIAL_ADMIN_PASSWORD={$password} docker-compose up
     ```
 
 - create test data set
     ```bash
-    $ curl -X PUT "localhost:8000/_bulk" -H 'Content-Type: application/x-ndjson' --data-binary @test-data/test-data-09.txt
-    ```
-    
-- OR execute 
-    ```bash
-    $ ./build.sh
+    $ curl -X PUT "localhost:8000/_bulk" -H 'Content-Type: application/x-ndjson' --data-binary @test-data/nga-metadata-bulk-1.txt
     ```
     
 ### Build and Start React App
  ```bash
  $ npm install
  $ npm build
+ $ npm start
 ```
 
-### Continuous Deployment Elasticsearch App
-https://react-discovery.netlify.com/
 
-### Testing
-```bash
- $ lerna run test --stream
-```
-### Solr Support
-    Checkout solr branch
-```bash
- $ git checkout solr
-```
-### Continuous Deployment Solr App
-https://solr--react-discovery.netlify.com/
+

@@ -1,10 +1,10 @@
 import { FlexBox, InnerHtmlValue } from '.'
-import { Link, useCurrentRoute } from 'react-navi'
+import { Link, useLocation } from 'react-router-dom'
 import React, { ReactElement } from 'react'
 import { getCurrentCollection, getCurrentSearchContext, getRootContext } from '@react-discovery/configuration'
-import { CardHeader } from '@material-ui/core'
+import { CardHeader } from '@mui/material'
 import { ESCore } from '@react-discovery/core'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 
 interface ITitleIdHeader {
   docIndex?: string;
@@ -20,9 +20,9 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
   const rootContext = getRootContext()
   const docIndexContext = rootContext + '/' + docIndex
   const currentSearchContext = (docIndex && docIndexContext) || getCurrentSearchContext()
-  const dispatch = useDispatch()
-  const route = useCurrentRoute()
-  const pathname = route.url.pathname
+  const dispatch = useAppDispatch()
+  const route = useLocation()
+  const pathname = route.pathname
 
   const handleIdQuery = () => {
     dispatch(ESCore.state.setQueryInput({ stringInput: id }))
@@ -34,7 +34,7 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
         <FlexBox>
           <Link
             data-testid='detail-link'
-            href={`/detail/${currentCollection}/${id}`}
+            to={`/detail/${currentCollection}/${id}`}
           >
             <CardHeader style={{ width: '100%' }} title={<InnerHtmlValue value={title}/>}/>
           </Link>
@@ -46,7 +46,7 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
       return (
         <FlexBox>
           <Link
-            href={`${currentSearchContext}?q=${id}`}
+            to={`${currentSearchContext}?q=${id}`}
             onClick={handleIdQuery}
           >
             <CardHeader style={{ width: '100%' }} title={<InnerHtmlValue value={title}/>}/>

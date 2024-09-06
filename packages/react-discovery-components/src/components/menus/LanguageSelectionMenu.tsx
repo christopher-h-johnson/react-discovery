@@ -1,15 +1,15 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core'
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getCurrentLanguage, getLanguages, setCurrentLanguage } from '@react-discovery/configuration'
 import { IOverridableStyledComponent } from '../..'
-import Language from '@material-ui/icons/Language'
-import { useDispatch } from 'react-redux'
+import Language from '@mui/icons-material/Language'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useMenuButtonStyles } from '../../styles'
 
 export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || useMenuButtonStyles({})
   const currentLanguage = getCurrentLanguage()
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const languages = getLanguages()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -31,7 +31,6 @@ export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (pro
   const buildMenuItems = (): ReactElement[] => {
     return languages && languages.map((language, i): ReactElement =>
       <MenuItem
-        button={true}
         component='div'
         data-testid={`language-settings-menu-item-${i}`}
         divider
@@ -49,7 +48,6 @@ export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (pro
         horizontal: 'center',
         vertical: 'bottom'
       }}
-      getContentAnchorEl={null}
       onClose={handleMenuClose}
       open={isMenuOpen}
       transformOrigin={{
@@ -61,21 +59,19 @@ export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (pro
     </Menu>
   )
 
-  return (
-    <>
-      <IconButton
-        aria-haspopup="true"
-        aria-owns={isMenuOpen ? 'material-appbar' : undefined}
-        className={classes.menuButton}
-        color="inherit"
-        data-testid='language-settings-menu'
-        edge="end"
-        href=''
-        onClick={handleMenuOpen}
-      >
-        <Language/>
-      </IconButton>
-      {renderMenu}
-    </>
-  )
+  return (<>
+    <IconButton
+      aria-haspopup="true"
+      aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+      className={classes.menuButton}
+      color="inherit"
+      data-testid='language-settings-menu'
+      edge="end"
+      href=''
+      onClick={handleMenuOpen}
+      size="large">
+      <Language/>
+    </IconButton>
+    {renderMenu}
+  </>)
 }

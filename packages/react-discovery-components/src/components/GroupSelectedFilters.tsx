@@ -1,13 +1,13 @@
-import { Chip, List } from '@material-ui/core'
+import { Chip, List } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { IOverridableStyledComponent } from '..'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useGroupSelectedFiltersStyles } from '../styles'
 
 export const GroupSelectedFilters: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || useGroupSelectedFiltersStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const filters = ESCore.state.getFilters()
 
   const onClose = (field: string, filter: any): void => {

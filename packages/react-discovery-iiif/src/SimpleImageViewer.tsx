@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { ImageServices } from '.'
-import { usePrevious } from '@react-discovery/core'
+import { usePrevious } from '@react-discovery/elasticsearch-app'
 
 interface ISimpleImageViewer {
   classes?: any;
@@ -10,7 +10,7 @@ interface ISimpleImageViewer {
 export const SimpleImageViewer: React.FC<ISimpleImageViewer> = (props): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
   const [currentManifest, setCurrentManifest] = useState(undefined)
-  const { classes, manifest } = props
+  const { manifest } = props
   const prevManifest = usePrevious(manifest)
 
   useEffect((): void => {
@@ -21,6 +21,6 @@ export const SimpleImageViewer: React.FC<ISimpleImageViewer> = (props): ReactEle
   }, [manifest])
 
   return (
-    <ImageServices classes={classes} manifest={currentManifest}/>
+        <ImageServices manifest={currentManifest}/>
   )
 }

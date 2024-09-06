@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import OpenSeadragon from 'openseadragon'
-import { makeStyles } from '@material-ui/core'
-import { usePrevious } from '@react-discovery/core'
+import makeStyles from '@mui/styles/makeStyles'
+import { usePrevious } from '@react-discovery/elasticsearch-app'
 
 export interface ISingleImageOsdComponentProps {
   classes?: any;

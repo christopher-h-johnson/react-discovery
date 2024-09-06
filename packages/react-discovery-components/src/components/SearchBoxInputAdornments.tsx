@@ -1,5 +1,5 @@
-import { Clear, Search } from '@material-ui/icons'
-import { IconButton, InputAdornment } from '@material-ui/core'
+import { Clear, Search } from '@mui/icons-material'
+import { IconButton, InputAdornment } from '@mui/material'
 import React, { ReactElement } from 'react'
 
 export const StartAdornment = (): ReactElement => {
@@ -12,26 +12,22 @@ export const StartAdornment = (): ReactElement => {
 
 export const EndAdornment = (props): ReactElement => {
   return (
-    <InputAdornment position="end">
+    (<InputAdornment position="end">
       <IconButton
         data-testid='clear-searchbox'
         href=''
         onClick={props.onClick}
-      >
+        size="large">
         <Clear />
       </IconButton>
-    </InputAdornment>
-  )
+    </InputAdornment>)
+  );
 }
 
 export const SearchIconButton = (props): ReactElement => {
   return (
-    <IconButton
-      edge="end"
-      href=''
-      onClick={props.onClick}
-    >
+    (<IconButton edge="end" href='' onClick={props.onClick} size="large">
       <Search/>
-    </IconButton>
-  )
+    </IconButton>)
+  );
 }

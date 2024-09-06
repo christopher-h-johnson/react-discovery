@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { OSDViewer } from '.'
 import { buildTileSources } from '../utils'
-import { makeStyles } from '@material-ui/core'
+import makeStyles from '@mui/styles/makeStyles'
 import { gql, useQuery } from '@apollo/client'
 
 interface IImageServices {
@@ -43,7 +43,7 @@ export const ImageServices: React.FC<IImageServices> = (props): ReactElement => 
   const imageServices = response && response.data && response.data.imageServices
 
   const imageServicesv2 = responsev2 && responsev2.data && responsev2.data.imageServicesv2NoProfile
-
+  if ((response && response.loading) || (responsev2 && responsev2.loading)) return <p>Loading ...</p>
   return imageServices
     ? (
     <OSDViewer

@@ -1,7 +1,7 @@
 import { Domain, useHitViewStyles } from '@react-discovery/views'
 import { ESCore, IHit } from '@react-discovery/core'
 import React, { ReactElement } from 'react'
-import { CardContent } from '@material-ui/core'
+import { CardContent } from '@mui/material'
 import { FieldValueDisplay } from '@react-discovery/components'
 import { getHitComponentConfig } from '@react-discovery/configuration'
 

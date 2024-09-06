@@ -1,12 +1,12 @@
 import {
   CardContent,
   Divider,
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   List, ListSubheader,
   Typography
-} from '@material-ui/core'
+} from '@mui/material'
 import {
   InnerHtmlValue,
   buildEntityCountForType,
@@ -14,7 +14,7 @@ import {
 } from '@react-discovery/components'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
-import { ExpandMore } from '@material-ui/icons'
+import { ExpandMore } from '@mui/icons-material'
 import { IDisplayField } from '.'
 import { useHitViewStyles } from './useHitViewStyles'
 import { useTranslation } from 'react-i18next'
@@ -76,22 +76,22 @@ export const NestedEntityDisplay: React.FC<INestedEntityDisplay> = (props): Reac
   }
 
   const buildDetails = (): ReactElement =>
-    <ExpansionPanelDetails>
+    <AccordionDetails>
       <List component="nav">
         {buildEntityFields(displayFields)}
       </List>
-    </ExpansionPanelDetails>
+    </AccordionDetails>
 
   return entityCount && useExpansion
     ? (
-    <ExpansionPanel
+    <Accordion
       TransitionProps={{ unmountOnExit: true }}
       defaultExpanded={Boolean(true)}
       expanded={Boolean(isExpanded)}
       onChange={handleExpandClick}
 
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         aria-controls="panel1bh-content"
         classes={{
           expanded: classes.expanded,
@@ -104,9 +104,9 @@ export const NestedEntityDisplay: React.FC<INestedEntityDisplay> = (props): Reac
           className={classes.heading}>
           {entity && t(type)} <i>({entityCount})</i>
         </Typography>
-      </ExpansionPanelSummary>
+      </AccordionSummary>
       {buildDetails()}
-    </ExpansionPanel>
+    </Accordion>
       )
     : entityCount && !useExpansion
       ? <List

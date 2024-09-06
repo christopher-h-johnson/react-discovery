@@ -1,14 +1,14 @@
-import { Button, Divider, List, ListItem, ListItemText, Typography } from '@material-ui/core'
+import { Button, Divider, List, ListItemButton, ListItemText, Typography } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getCurrentCollection, setRefinementListFilterSize } from '@react-discovery/configuration'
 import { ESCore } from '@react-discovery/core'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useItemListStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
 
 export const ItemListFlat: React.FC<any> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { field, id, label, size } = props
   const aggregation = ESCore.state.getAggregation(field)
   const filters = ESCore.state.getFiltersForField(field)
@@ -33,15 +33,12 @@ export const ItemListFlat: React.FC<any> = (props): ReactElement => {
   const actions = (aggregation): ReactElement => {
     return aggregation.buckets.map((bucket, i): any => {
       return (
-        <ListItem
-          button={true}
-          component='div'
+        <ListItemButton
           data-testid={`item-${i}`}
           dense
           disableGutters={true}
           key={bucket.key}
           onClick={(): void => handleChange(bucket.key)}
-          role={undefined}
         >
           <ListItemText
             className={classes.content}
@@ -66,7 +63,7 @@ export const ItemListFlat: React.FC<any> = (props): ReactElement => {
                 {bucket.doc_count}
               </Typography>
             }/>
-        </ListItem>
+        </ListItemButton>
       )
     })
   }
@@ -84,7 +81,7 @@ export const ItemListFlat: React.FC<any> = (props): ReactElement => {
       >
         {label}
       </Typography>
-      <Divider style={{ margin: 12, marginLeft: 0 }} variant="fullWidth"/>
+      <Divider style={{ margin: 12, marginLeft: 0 }}/>
       {aggregation && actions(aggregation)}
       <Button
         color='primary'

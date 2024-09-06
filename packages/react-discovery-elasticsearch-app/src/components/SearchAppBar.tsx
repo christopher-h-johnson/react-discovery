@@ -1,5 +1,6 @@
-import { AppBar, Badge, IconButton, Typography, makeStyles } from '@material-ui/core'
-import { Bookmark, Menu } from '@material-ui/icons'
+import { AppBar, Badge, IconButton, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import { Bookmark, Menu } from '@mui/icons-material'
 import {
   LanguageSelectionMenu,
   ProfileMenu,
@@ -7,6 +8,12 @@ import {
 } from '@react-discovery/components'
 import React, { ReactElement } from 'react'
 import { Domain } from '@react-discovery/views'
+import { Theme } from '@mui/material/styles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 export const useSearchAppBarStyles = makeStyles((theme): any => ({
   appBar: {
@@ -69,7 +76,7 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
   const { handleDrawerChange } = props
 
   return (
-    <AppBar
+    (<AppBar
       className={classes.appBar}
       position="fixed"
     >
@@ -82,7 +89,7 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
           edge="start"
           href=''
           onClick={handleDrawerChange}
-        >
+          size="large">
           <Menu />
         </IconButton>
         <Typography
@@ -96,11 +103,7 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
         <div className={classes.sectionDesktop}>
           <ResetButton/>
           <LanguageSelectionMenu/>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            href=''
-          >
+          <IconButton className={classes.menuButton} color="inherit" href='' size="large">
             <Badge
               badgeContent={4}
               color="secondary"
@@ -111,6 +114,6 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
           <ProfileMenu/>
         </div>
       </div>
-    </AppBar>
+    </AppBar>)
   )
 }

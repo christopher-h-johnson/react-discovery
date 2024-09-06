@@ -17,9 +17,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.4",
-    "@material-ui/core": "^4.2.1",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/lab": "^4.0.0-alpha.22",
     "@react-discovery/components": "*",
     "@react-discovery/core": "*",
     "@react-discovery/i18n": "*",
@@ -30,9 +27,11 @@
     "clsx": "^1.0.4",
     "deepmerge": "^3.2.0",
     "downshift": "^3.2.10",
-    "i18next": "^15.0.7",
-    "redux-observable": "^1.1.0"
+    "i18next": "^23.14.0",
+    "redux-observable": "^3.0.0-rc.2",
+    "serve": "^14.2.3"
   },
+  "main": "lib/src/main.js",
   "name": "@react-discovery/elasticsearch-app",
   "private": true,
   "repository": {
@@ -41,10 +40,13 @@
   },
   "scripts": {
     "build": "node scripts/build.js",
+    "compile": "tsc --build --verbose",
     "cypress:open": "CYPRESS_baseUrl=http://localhost:3001 cypress open",
     "report": "nyc report --reporter=text-lcov | codecov --pipe -t $CODECOV_TOKEN",
-    "start": "node scripts/start.js",
+    "start:dev": "node scripts/start.js",
+    "start": "serve -s build",
     "test": "CYPRESS_baseUrl=http://localhost:3001 cypress run"
   },
+  "types": "lib/src/main.d.ts",
   "version": "0.2.0"
 }

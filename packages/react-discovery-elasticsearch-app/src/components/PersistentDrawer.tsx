@@ -1,68 +1,75 @@
-import { Drawer, List, makeStyles } from '@material-ui/core'
+import MuiDrawer from '@mui/material/Drawer'
+import MuiList from '@mui/material/List'
 import React, { ReactElement } from 'react'
 import { DrawerListItems } from './DrawerListItems'
-import clsx from 'clsx'
+import { styled, Theme, CSSObject } from '@mui/material/styles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme): any => ({
-  drawer: {
+const openedMixin = (theme: Theme): CSSObject => ({
+  marginTop: 56,
+  width: drawerWidth,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen
+  }),
+  overflowX: 'hidden'
+})
+
+const closedMixin = (theme: Theme): CSSObject => ({
+  marginTop: 56,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`
+  }
+})
+
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme }) => ({
+    width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
-    width: drawerWidth
-  },
-  drawerClose: {
-    marginTop: 56,
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      duration: theme.transitions.duration.leavingScreen,
-      easing: theme.transitions.easing.sharp
-    }),
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1
-    }
-  },
-  drawerOpen: {
-    marginTop: 56,
-    transition: theme.transitions.create('width', {
-      duration: theme.transitions.duration.enteringScreen,
-      easing: theme.transitions.easing.sharp
-    }),
-    width: drawerWidth
-  },
-  toolbar: {
-    alignItems: 'center',
-    display: 'flex',
-    justifyContent: 'flex-end',
-    padding: '0 12px',
-    ...theme.mixins.toolbar
-  }
-}))
+    boxSizing: 'border-box',
+    variants: [
+      {
+        props: ({ open }) => open,
+        style: {
+          ...openedMixin(theme),
+          '& .MuiDrawer-paper': openedMixin(theme)
+        }
+      },
+      {
+        props: ({ open }) => !open,
+        style: {
+          ...closedMixin(theme),
+          '& .MuiDrawer-paper': closedMixin(theme)
+        }
+      }
+    ]
+  })
+)
 
 export const PersistentDrawer: React.FC<any> = (props): ReactElement => {
-  const classes: any = useStyles({})
   const { open } = props
 
   return (
     <Drawer
-      anchor="left"
-      className={clsx(classes.drawer, {
-        [classes.drawerOpen]: open,
-        [classes.drawerClose]: !open
-      })}
-      classes={{
-        paper: clsx({
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open
-        })
-      }}
       open={open}
       variant="permanent"
     >
-      <List style={{ padding: 8 }}>
+      <MuiList style={{ padding: 8 }}>
         <DrawerListItems/>
-      </List>
+      </MuiList>
     </Drawer>
   )
 }

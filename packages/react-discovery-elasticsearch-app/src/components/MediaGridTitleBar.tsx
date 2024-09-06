@@ -1,14 +1,21 @@
 import { AddToWorkspaceButton, Domain } from '@react-discovery/views'
-import { GridListTileBar, makeStyles } from '@material-ui/core'
+import { ImageListItemBar } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { ReactElement } from 'react'
 import { getWorkspaceViewIdMap, setViewIdMap } from '@react-discovery/workspace'
 import { IHit } from '@react-discovery/core'
 import { InnerHtmlValue } from '@react-discovery/components'
+import { Theme } from '@mui/material/styles'
 
 interface IImageGridListTitleBar {
   classes?: any;
   hit: IHit;
   item: any;
+}
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
 }
 
 const useStyles = makeStyles((theme): any => ({
@@ -29,8 +36,8 @@ export const MediaGridTitleBar: React.FC<IImageGridListTitleBar> = (props): Reac
 
   const buildGridListTitleBar = (item): ReactElement => {
     return (
-      <GridListTileBar
-        actionIcon={<AddToWorkspaceButton actions={addToWorkspaceButtonActions} hit={hit} item={item}/>
+      <ImageListItemBar
+          actionIcon={<AddToWorkspaceButton actions={addToWorkspaceButtonActions} hit={hit} item={item}/>
         }
         actionPosition="right"
         classes={{
@@ -38,7 +45,7 @@ export const MediaGridTitleBar: React.FC<IImageGridListTitleBar> = (props): Reac
           title: classes.title
         }}
         title={<InnerHtmlValue value={item[Domain.MEDIA_TITLE_FIELD]}/>}
-        titlePosition='top'
+        position='top'
       />
     )
   }

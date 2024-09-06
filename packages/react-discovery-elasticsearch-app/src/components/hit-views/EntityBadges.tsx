@@ -1,11 +1,12 @@
-import { Badge, Chip, Tab, Tabs, Theme, Tooltip, withStyles } from '@material-ui/core'
-import { Book, ChatBubble, Image, Info } from '@material-ui/icons'
+import { Badge, Chip, Tab, Tabs, Theme, Tooltip } from '@mui/material'
+import withStyles from '@mui/styles/withStyles'
+import { Book, ChatBubble, Image, Info } from '@mui/icons-material'
 import { Domain, useHitViewStyles } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
 import { getSelectedIndex, getSelectedTabForId, setCurrentSelectedTab, setItemViewType, setViewType } from '@react-discovery/configuration'
 import { ESCore } from '@react-discovery/core'
 import { buildEntityCountForType } from '@react-discovery/components'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../state'
 import { useTranslation } from 'react-i18next'
 
 interface IEntityBadges {
@@ -17,7 +18,7 @@ interface IEntityBadges {
 const StyledBadge = withStyles((theme: Theme) => ({
   badge: {
     border: `2px solid ${
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
     }`,
     right: -3,
     top: '50%'
@@ -34,7 +35,7 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
   const indexMultiplier = getSelectedIndex()
   const size = ESCore.state.getSize()
   const chipLabel = (i + 1) + (size * indexMultiplier)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { t } = useTranslation('vocab')
   const value = getSelectedTabForId(id) || 0
 
@@ -79,9 +80,9 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
   }
 
   const buildIconForEntityType = (type): ReactElement => {
-    const DIGITALISAT = <Image fontSize='default' style={{ padding: '5px' }}/>
-    const BESCHREIBUNG = <Book fontSize='default' style={{ padding: '5px' }}/>
-    const ANNOTATION = <ChatBubble fontSize='default' style={{ padding: '5px' }}/>
+    const DIGITALISAT = <Image style={{ padding: '5px' }}/>
+    const BESCHREIBUNG = <Book style={{ padding: '5px' }}/>
+    const ANNOTATION = <ChatBubble style={{ padding: '5px' }}/>
     switch (type) {
       case 'index':
         return (
@@ -94,7 +95,7 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
           />
         )
       case 'info':
-        return <Info fontSize='default' style={{ padding: '5px' }}/>
+        return <Info style={{ padding: '5px' }}/>
       case Domain.MEDIA:
         return buildStyledBadge(DIGITALISAT, type)
       case Domain.DESCRIPTION:

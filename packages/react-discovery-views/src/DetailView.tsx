@@ -5,7 +5,10 @@ import {
   HitViewOptionsMenu,
   domainEntitySpec
 } from '.'
-import { Card, CardActions, CardContent, Grid, Theme, createStyles, makeStyles } from '@material-ui/core'
+import { Card, CardActions, CardContent, Theme } from '@mui/material'
+import Grid from '@mui/material/Grid2'
+import createStyles from '@mui/styles/createStyles'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   FieldValueDisplay,
   TitleIdHeader,
@@ -13,15 +16,14 @@ import {
   buildHighlightedValueForHit, getFirstManifestFromHit
 } from '@react-discovery/components'
 import React, { ReactElement } from 'react'
+import { useParams } from 'react-router-dom'
 import { ESCore } from '@react-discovery/core'
 import { SimpleImageViewer } from '@react-discovery/iiif'
 import { getCurrentCollection } from '@react-discovery/configuration'
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 interface IDetailView {
   actions: any;
-  collection: string;
-  id: string;
 }
 
 const useStyles = makeStyles((theme: Theme): any =>
@@ -69,7 +71,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const classes: any = useStyles({})
   const currentCollection = getCurrentCollection()
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
-  const { collection, id } = props
+  const { collection, id } = useParams()
   const numFound = ESCore.state.getNumFound()
   const isSingleton = numFound === 1
   const hitIndex = ESCore.state.getHitIndexForId(id)
@@ -102,7 +104,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
 
   const buildImageViewer = (): ReactElement => {
     return (
-      <Grid className={classes.imageGrid} item xs={6}>
+      <Grid className={classes.imageGrid} size={6}>
         {manifest ? (<SimpleImageViewer classes={classes} manifest={manifest}/>) : null}
       </Grid>
     )
@@ -112,7 +114,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const addButton = currentHit && <AddToWorkspaceButton actions={addToWorkspaceButtonActions} classes={classes} hit={currentHit} item={item}/>
   const buildDetailView = (): ReactElement => {
     return (
-      <Grid item style={{ width: '100%' }} xs={6}>
+      <Grid>
         <Card className={classes.root}>
           <TitleIdHeader
             addButton={addButton}
@@ -147,17 +149,20 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   return currentHit
     ? (
     <Grid
-      alignItems="center"
       container
-      direction="column"
-      justify="center"
       key={uuidv4()}
       spacing={3}
     >
-      {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}
-      {buildImageViewer()}
-      {buildDetailView()}
+      <Grid size='grow'>
+       {!isSingleton ? <ArrowBackButton collection={collection} hitIndex={hitIndex}/> : null}
+      </Grid>
+      <Grid size={6}>
+        {buildImageViewer()}
+        {buildDetailView()}
+      </Grid>
+      <Grid size='grow'>
       {!isSingleton ? <ArrowForwardButton collection={collection} hitIndex={hitIndex}/> : null}
+      </Grid>
     </Grid>
       )
     : null

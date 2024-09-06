@@ -1,17 +1,19 @@
 import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Grid,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   Typography
-} from '@material-ui/core'
+} from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
-import { ExpandMore } from '@material-ui/icons'
-import { useDispatch } from 'react-redux'
+import { ExpandMore } from '@mui/icons-material'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useItemListStyles } from '../styles'
+import { styled } from '@mui/material/styles'
 
 export interface IItemListProps {
   classes?: any;
@@ -22,12 +24,18 @@ export interface IItemListProps {
 
 export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { field, label } = props
   const aggregation = ESCore.state.getAggregation(field)
   const filters = ESCore.state.getFiltersForField(field)
   const stringInput = ESCore.state.getStringInput()
   const [isExpanded, setExpanded] = React.useState(false)
+
+  const CustomizedAccordionDetails = styled(AccordionDetails)`
+    
+    display: flex;
+    padding: 16
+  `
 
   const handleExpand = (panel): any => ({}, isExpanded): void => { // eslint-disable-line no-empty-pattern
     setExpanded(isExpanded ? panel : false)
@@ -44,8 +52,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const actions = (aggregation): ReactElement => {
     return aggregation.buckets.map((bucket, i): any => {
       return (
-        <ListItem
-          button={true}
+        <ListItemButton
           component='div'
           data-testid={`item-${i}`}
           dense
@@ -75,7 +82,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
                 {bucket.doc_count}
               </Typography>
             }/>
-        </ListItem>
+        </ListItemButton>
       )
     })
   }
@@ -83,11 +90,11 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const PANEL_ID = 'panel1'
 
   return (
-    <ExpansionPanel
+    <Accordion
       expanded={Boolean(isExpanded)}
       onChange={handleExpand(PANEL_ID)}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         aria-controls="panel1bh-content"
         classes={{
           expanded: classes.expanded,
@@ -98,15 +105,19 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
         id="panel1bh-header"
       >
         <Typography className={classes.heading}>{label}</Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
-        <List
-          component="nav"
-          style={{ width: '100%' }}
-        >
-          {aggregation && actions(aggregation)}
-        </List>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionSummary>
+      <CustomizedAccordionDetails>
+        <Grid container spacing={2}>
+          <Grid item>
+            <List
+              component="nav"
+              style={{ width: '100%' }}
+            >
+              {aggregation && actions(aggregation)}
+            </List>
+          </Grid>
+        </Grid>
+      </CustomizedAccordionDetails>
+    </Accordion>
   )
 }

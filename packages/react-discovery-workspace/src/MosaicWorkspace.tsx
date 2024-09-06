@@ -1,4 +1,4 @@
-import { ESCore, usePrevious } from '@react-discovery/core'
+import { ESCore } from '@react-discovery/core'
 import {
   Mosaic,
   MosaicNode,
@@ -7,12 +7,12 @@ import {
   createBalancedTreeFromLeaves,
   getLeaves
 } from 'react-mosaic-component'
-import React, { ReactElement, Suspense, useEffect } from 'react'
+import React, { lazy, ReactElement, Suspense, useEffect } from 'react'
 import { getWorkspaceLayout, getWorkspaceViewIdMap, removeViewId, setWorkspaceLayout } from './state'
 import { ZeroState } from '.'
 import { createRandomNode } from './utils'
-import { makeStyles } from '@material-ui/core'
-import { useDispatch } from 'react-redux'
+import makeStyles from '@mui/styles/makeStyles'
+import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
 import { useMosaicStyles } from './styles'
 
 export interface IWorkspaceMosaic {
@@ -34,18 +34,18 @@ const useStyles = makeStyles(() => ({
 }))
 
 const VIEW_COMPONENT_PATH = './views'
+const Component = lazy((): Promise<any> => import(`${VIEW_COMPONENT_PATH}/View`))
 
 export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement => {
   const { windowAppBar } = props
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   useMosaicStyles({})
   const classes = useStyles({})
   const hits = ESCore.state.getHits()
   const nodes = hits.hits.map((hit) => hit.id)
   const createNode = (): string => nodes && createRandomNode(nodes)
   const workspaceLayout: MosaicParent<string> = getWorkspaceLayout()
-  const Component = React.lazy((): Promise<any> => import(`${VIEW_COMPONENT_PATH}/View`)
-    .then(module => ({ default: module.Component })))
+
   const viewIdMap = getWorkspaceViewIdMap()
   const prevViewIdMap = usePrevious(viewIdMap)
   const prevLayout = usePrevious(workspaceLayout)

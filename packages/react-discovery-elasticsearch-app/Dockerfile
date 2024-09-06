@@ -1,27 +1,30 @@
 FROM node:latest
 
-MAINTAINER Christopher Johnson <chjohnson39@gmail.com>
-LABEL description = "React Discovery Elasticsearch App"
+LABEL maintainer="Christopher Johnson <chjohnson39@gmail.com>"
+LABEL description="React Discovery OpenSearch App"
 ARG CIRCLE_BRANCH
 ARG REACT_APP_SEARCH_API_HOST
 ARG REACT_APP_SEARCH_API_COLLECTION
+ARG REACT_APP_SEARCH_API_USERNAME
+ARG REACT_APP_SEARCH_API_PASSWORD
+ARG REACT_APP_SEARCH_APOLLO_SERVER
 ENV CIRCLE_BRANCH=${CIRCLE_BRANCH} \
     REACT_APP_SEARCH_API_HOST=${REACT_APP_SEARCH_API_HOST} \
-    REACT_APP_SEARCH_API_COLLECTION=${REACT_APP_SEARCH_API_COLLECTION}
+    REACT_APP_SEARCH_API_COLLECTION=${REACT_APP_SEARCH_API_COLLECTION} \
+    REACT_APP_SEARCH_API_USERNAME=${REACT_APP_SEARCH_API_USERNAME} \
+    REACT_APP_SEARCH_API_PASSWORD=${REACT_APP_SEARCH_API_PASSWORD} \
+    REACT_APP_SEARCH_APOLLO_SERVER=${REACT_APP_SEARCH_APOLLO_SERVER}
 RUN printenv
 WORKDIR /srv/react-discovery
 RUN git clone https://github.com/christopher-h-johnson/react-discovery.git ./
 RUN git checkout ${CIRCLE_BRANCH}
 RUN npm i npm@latest -g
-RUN npm install --global lerna
-RUN lerna bootstrap --hoist
-RUN lerna run build
-RUN yarn global add serve
+RUN npm install
+RUN npm run compile --workspace=packages/react-discovery-elasticsearch-app
+RUN npm run build
+RUN npm run build --workspace=packages/react-discovery-elasticsearch-app
+RUN npm i -g serve
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod 700 /entrypoint.sh
+EXPOSE 3000
 
-EXPOSE 5000
-
-ENTRYPOINT [ "/entrypoint.sh" ]
-CMD [ "-s", "build" ]
+CMD [ "npm", "start", "--workspace=packages/react-discovery-elasticsearch-app" ]

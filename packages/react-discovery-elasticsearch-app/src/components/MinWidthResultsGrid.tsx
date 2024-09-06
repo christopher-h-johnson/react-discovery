@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from '@material-ui/core'
+import { CircularProgress, Grid } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { ViewTypeSwitcher } from '.'
@@ -8,7 +8,7 @@ export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
   const classes: any = useMinWidthResultsGridStyles({})
   const hits = ESCore.state.getHits()
   return (
-    <Grid
+    (<Grid
       item xs={12}
     >
       <Grid
@@ -26,7 +26,7 @@ export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
         alignItems="center"
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
       >
       </Grid>
       <Grid
@@ -42,9 +42,9 @@ export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
         alignItems="center"
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
       >
       </Grid>
-    </Grid>
+    </Grid>)
   )
 }

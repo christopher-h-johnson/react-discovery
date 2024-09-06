@@ -1,7 +1,8 @@
-import { Badge, IconButton, Menu, MenuItem, Theme, Tooltip, Typography, withStyles } from '@material-ui/core'
-import { MoreVert, MoreVertOutlined } from '@material-ui/icons'
+import { Badge, IconButton, Menu, MenuItem, Theme, Tooltip, Typography } from '@mui/material'
+import withStyles from '@mui/styles/withStyles'
+import { MoreVert, MoreVertOutlined } from '@mui/icons-material'
 import React, { ReactElement } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useTranslation } from 'react-i18next'
 
 interface IHitViewOptionsMenu {
@@ -12,7 +13,7 @@ interface IHitViewOptionsMenu {
 const StyledBadge = withStyles((theme: Theme) => ({
   badge: {
     border: `2px solid ${
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
+      theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
     }`
   }
 }))(Badge)
@@ -24,7 +25,7 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
   const { t } = useTranslation()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const isMenuOpen = Boolean(anchorEl)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleHitViewOptionsMenuOpen = (event): void => {
     setAnchorEl(event.currentTarget)
@@ -52,7 +53,6 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
   const buildMenuItems = (): ReactElement[] => {
     return options && options.map((option, i): ReactElement =>
       <MenuItem
-        button={true}
         component='div'
         data-testid={`hitViewOptions-menu-item-${i}`}
         key={i}
@@ -65,7 +65,6 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
   const renderMenu: ReactElement = (
     <Menu
       anchorEl={anchorEl}
-      getContentAnchorEl={null}
       onClose={handleMenuClose}
       open={isMenuOpen}
     >
@@ -75,19 +74,17 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
 
   const buildStyledBadge = () => {
     return (
-      <StyledBadge
+      (<StyledBadge
         badgeContent={nodeCount}
         color="secondary"
-      > <IconButton
-          href=''
-          onClick={handleHitViewOptionsMenuOpen}>
-          {
-            nodeCount > 0
-              ? <MoreVert fontSize='default' style={{ padding: '5px' }}/>
-              : <MoreVertOutlined fontSize='default' style={{ padding: '5px' }}/>
-          }
-        </IconButton>
-      </StyledBadge>
+      > <IconButton href='' onClick={handleHitViewOptionsMenuOpen} size="large">
+            {
+              nodeCount > 0
+                ? <MoreVert style={{ padding: '5px' }}/>
+                : <MoreVertOutlined style={{ padding: '5px' }}/>
+            }
+          </IconButton>
+      </StyledBadge>)
     )
   }
 

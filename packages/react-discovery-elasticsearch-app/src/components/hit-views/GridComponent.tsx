@@ -1,16 +1,25 @@
-import { CheckCircle, CheckCircleOutline } from '@material-ui/icons'
-import { GridListTile, IconButton, Tooltip, Typography, makeStyles, withStyles } from '@material-ui/core'
-import { IHit, usePrevious } from '@react-discovery/core'
+import { CheckCircle, CheckCircleOutline } from '@mui/icons-material'
+import { ImageListItem, IconButton, Tooltip, Typography } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import withStyles from '@mui/styles/withStyles'
+import { IHit } from '@react-discovery/core'
 import { InnerHtmlValue, buildHighlightedValueForHit, getFirstManifestFromHit } from '@react-discovery/components'
 import React, { ReactElement, useEffect } from 'react'
 import { getWorkspaceViewIdMap, setViewIdMap } from '@react-discovery/workspace'
 import { Domain } from '@react-discovery/views'
 import { Thumbnail } from '@react-discovery/iiif'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../state'
+import { usePrevious } from '../../hooks'
 import { useTranslation } from 'react-i18next'
+import { Theme } from '@mui/material/styles'
 
 interface IGridComponent {
   hit: IHit;
+}
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
 }
 
 const useStyles = makeStyles((theme): any => ({
@@ -75,7 +84,7 @@ const HoverButton = withStyles(() => ({
 
 const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactElement => {
   const classes: any = useStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { hit } = props
   const id = hit && (hit._source.id || hit.id)
   const title = buildHighlightedValueForHit('title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit)
@@ -103,7 +112,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
   }
 
   return (
-    <GridListTile
+    (<ImageListItem
       className={classes.gridListTile}
     >
       <div style={{ display: 'flex', left: 0, position: 'absolute', right: 0, zIndex: 500 }}>
@@ -112,11 +121,11 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
           title={t('addMediaToWorkspace')}>
           {nodeCount && nodeCount.length
             ? <IconButton
-              aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
-              color='primary'
-              href=''
-              onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
-            >
+            aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
+            color='primary'
+            href=''
+            onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+            size="large">
               <CheckCircle className={classes.title}/>
             </IconButton>
             : <HoverButton
@@ -139,7 +148,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
         variant='subtitle2'>
         <InnerHtmlValue classes={classes} value={item[Domain.MEDIA_TITLE_FIELD]}/>
       </Typography>
-    </GridListTile>
+    </ImageListItem>)
   )
 }
 

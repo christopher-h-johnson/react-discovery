@@ -1,11 +1,13 @@
-import { Grid, IconButton, makeStyles, withStyles } from '@material-ui/core'
+import { Grid, IconButton } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
+import withStyles from '@mui/styles/withStyles'
 import React, { ReactElement } from 'react'
 import { SingleImageOSDViewer, buildTileSourceForGridViewerImage } from '@react-discovery/iiif'
 import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
-import { Close } from '@material-ui/icons'
+import { Close } from '@mui/icons-material'
 import { ESCore } from '@react-discovery/core'
 import { ViewTypeSwitcher } from './ViewTypeSwitcher'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../state'
 import { v4 as uuidv4 } from 'uuid'
 import { buildHighlightedValueForHit, TitleIdHeader } from '@react-discovery/components'
 import { Domain } from '@react-discovery/views'
@@ -52,7 +54,7 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
   const id = getCurrentGridViewerObjectId()
   const hit = ESCore.state.getHitForId(id)
   const title = hit && (buildHighlightedValueForHit('title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit))
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleRemove = (): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: null }))

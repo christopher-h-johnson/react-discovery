@@ -1,14 +1,14 @@
-import { Book, ChatBubble, ExpandMore, Image, Person } from '@material-ui/icons'
+import { Book, ChatBubble, ExpandMore, Image, Person } from '@mui/icons-material'
 import {
   Card,
   CardContent,
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   List,
   ListSubheader,
   Typography
-} from '@material-ui/core'
+} from '@mui/material'
 import { ESCore, IHit } from '@react-discovery/core'
 import {
   FieldLabel,
@@ -132,13 +132,13 @@ export const EntityDisplay: React.FC<IEntityDisplay> = (props): ReactElement => 
 
   return entityCount && useExpansion
     ? (
-    <ExpansionPanel
+    <Accordion
       TransitionProps={{ unmountOnExit: true }}
       defaultExpanded={Boolean(true)}
       expanded={Boolean(isExpanded)}
       onChange={handleExpandClick}
     >
-      <ExpansionPanelSummary
+      <AccordionSummary
         aria-controls="panel1bh-content"
         classes={{
           expanded: classes.expanded,
@@ -151,13 +151,13 @@ export const EntityDisplay: React.FC<IEntityDisplay> = (props): ReactElement => 
           className={classes.heading}>
           {t(type)} <i>({entityCount})</i>
         </Typography>
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails>
+      </AccordionSummary>
+      <AccordionDetails>
         <List component="nav">
           {buildEntityFields(displayFields)}
         </List>
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
       )
     : entityCount && !useExpansion
       ? <List

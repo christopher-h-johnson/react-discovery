@@ -1,7 +1,7 @@
-import { FormControl, FormControlLabel, Switch } from '@material-ui/core'
+import { FormControl, FormControlLabel, Switch } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { getItemViewType, setItemViewType } from '@react-discovery/configuration'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useTranslation } from 'react-i18next'
 import { useViewSwitcherStyles } from '../styles'
 
@@ -9,7 +9,7 @@ export const ExpandItemToggle: React.FC<any> = (props): ReactElement => {
   const { id } = props
   const { t } = useTranslation()
   const classes: any = useViewSwitcherStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const itemViewType = getItemViewType(id) || 'info'
 
   const handleChange = (): void => {

@@ -1,9 +1,16 @@
-import { GridListTile, makeStyles } from '@material-ui/core'
+import { ImageListItem } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import React, { ReactElement } from 'react'
 import { Domain } from '@react-discovery/views'
 import { ESCore } from '@react-discovery/core'
 import { MediaGridTitleBar } from './MediaGridTitleBar'
 import { Thumbnail } from '@react-discovery/iiif'
+import { Theme } from '@mui/material/styles'
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line
+  interface DefaultTheme extends Theme {}
+}
 
 const useStyles = makeStyles((theme): any => ({
   cover: {
@@ -56,7 +63,7 @@ export const MediaGrid: React.FC<any> = (props): ReactElement => {
 
   const buildMediaGrid = (): ReactElement[] => {
     return media.map((item, i): ReactElement => (
-      <GridListTile
+      <ImageListItem
         className={classes.gridListTile}
         key={i}
       >
@@ -70,7 +77,7 @@ export const MediaGrid: React.FC<any> = (props): ReactElement => {
           hit={hit}
           item={item}
         />
-      </GridListTile>
+      </ImageListItem>
     ))
   }
 

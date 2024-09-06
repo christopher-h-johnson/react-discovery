@@ -1,0 +1,41 @@
+{
+  "size": 20,
+  "from": 0,
+  "track_total_hits": true,
+  "aggs": {
+    "Artist.keyword": {
+      "terms": {
+        "field": "Artist.keyword",
+        "size": 10
+      }
+    },
+    "Creation Year.keyword": {
+      "terms": {
+        "field": "Creation Year.keyword",
+        "size": 10
+      }
+    },
+    "description.keyword": {
+      "terms": {
+        "field": "description.keyword",
+        "size": 10
+      }
+    }
+  },
+  "query": {
+    "function_score": {
+      "query": {
+        "bool": {
+          "filter": []
+        },
+        "sort": [
+          {
+            "title.keyword": "asc"
+          }
+        ]
+      },
+      "random_score": {
+      }
+    }
+  }
+}

@@ -1,17 +1,17 @@
-import { ArrowDownward, ArrowUpward } from '@material-ui/icons'
+import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
 import { IOverridableStyledComponent } from '..'
-import { FormControl, IconButton, Input, InputLabel, NativeSelect } from '@material-ui/core'
+import { FormControl, IconButton, Input, InputLabel, NativeSelect } from '@mui/material'
 import React, { ReactElement } from 'react'
 import { ESCore } from '@react-discovery/core'
 import { ISortField } from '@react-discovery/configuration'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useSortingSelectorStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
 
 export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const { t } = useTranslation('vocab')
   const classes: any = props.classes || useSortingSelectorStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const sortFields = ESCore.state.getSortFields()
   const [selectorValue, setSelectorValue] = React.useState('')
   const [sortOrder, setSortOrder] = React.useState('asc')
@@ -64,25 +64,28 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
   const buildSortOrderButton = (): ReactElement => {
     if (sortOrder === 'asc') {
       return (
-        <IconButton
+        (<IconButton
           aria-label="Sort Descending"
           className={classes.button}
           data-testid='sorting-order-desc'
           href=''
-          onClick={(): void => handleSortOrder('desc')}>
+          onClick={(): void => handleSortOrder('desc')}
+          size="large">
           <ArrowUpward/>
         </IconButton>)
+      );
     } else {
       return (
-        <IconButton
+        (<IconButton
           aria-label="Sort Ascending"
           className={classes.button}
           data-testid='sorting-order-asc'
           href=''
           onClick={(): void => handleSortOrder('asc')}
-        >
+          size="large">
           <ArrowDownward/>
         </IconButton>)
+      );
     }
   }
 

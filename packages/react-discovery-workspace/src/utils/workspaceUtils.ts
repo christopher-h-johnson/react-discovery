@@ -8,7 +8,7 @@ import {
   getNodeAtPath,
   getOtherDirection,
   getPathToCorner,
-  updateTree,
+  updateTree
 } from 'react-mosaic-component'
 import dropRight from 'lodash/dropRight'
 
@@ -22,19 +22,19 @@ export const autoArrange = (currentNode, setCurrentNode): void => {
 
 export const addToTopRight = (currentNode, setCurrentNode, windowCount): void => {
   if (currentNode) {
-    const path = getPathToCorner(currentNode, Corner.TOP_RIGHT);
-    const parent = getNodeAtPath(currentNode, dropRight(path)) as MosaicParent<number>;
-    const destination = getNodeAtPath(currentNode, path) as MosaicNode<number>;
-    const direction: MosaicDirection = parent ? getOtherDirection(parent.direction) : 'row';
+    const path = getPathToCorner(currentNode, Corner.TOP_RIGHT)
+    const parent = getNodeAtPath(currentNode, dropRight(path)) as MosaicParent<number>
+    const destination = getNodeAtPath(currentNode, path) as MosaicNode<number>
+    const direction: MosaicDirection = parent ? getOtherDirection(parent.direction) : 'row'
 
-    let first: MosaicNode<number>;
-    let second: MosaicNode<number>;
+    let first: MosaicNode<number>
+    let second: MosaicNode<number>
     if (direction === 'row') {
-      first = destination;
-      second = ++windowCount;
+      first = destination
+      second = ++windowCount
     } else {
-      first = ++windowCount;
-      second = destination;
+      first = ++windowCount
+      second = destination
     }
 
     updateTree(currentNode, [
@@ -44,14 +44,13 @@ export const addToTopRight = (currentNode, setCurrentNode, windowCount): void =>
           $set: {
             direction,
             first,
-            second,
-          },
-        },
-      },
-    ]);
+            second
+          }
+        }
+      }
+    ])
   } else {
-    createNode(windowCount);
+    createNode(windowCount)
   }
-  setCurrentNode(currentNode);
+  setCurrentNode(currentNode)
 }
-

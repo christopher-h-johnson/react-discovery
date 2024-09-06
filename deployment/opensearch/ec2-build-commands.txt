@@ -1,0 +1,11 @@
+sudo yum install docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+docker compose version
+sudo yum install tmux
+aws ecr get-login-password --region us--east-1 | docker login --username AWS --password-stdin 177981160483.dkr.ecr.us-east-1.amazonaws.com
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout selfsigned.key -out selfsigned.crt

@@ -1,11 +1,13 @@
-import { CircularProgress, Grid, makeStyles, useMediaQuery } from '@material-ui/core'
+import { CircularProgress, Grid, useMediaQuery } from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import {
   ES,
   HitStats,
   ViewSwitcherToggle,
   useMinimalResultViewerStyles
 } from '@react-discovery/components'
-import { ESCore, usePrevious } from '@react-discovery/core'
+import { ESCore } from '@react-discovery/core'
+import { usePrevious } from '../hooks'
 import { ImageGridViewer, ListFilters, MinWidthResultsGrid, ViewTypeSwitcher } from '.'
 import React, { ReactElement, useEffect } from 'react'
 import { getCurrentLanguage, getViewType } from '@react-discovery/configuration'
@@ -31,6 +33,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
   const previousLanguage = usePrevious(currentLanguage)
   const matches = useMediaQuery('(min-width:600px)')
   const viewType = getViewType()
+  const hits = ESCore.state.getHits()
 
   useEffect((): any => {
     if (previousLanguage !== currentLanguage) {
@@ -38,15 +41,13 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
     }
   }, [currentLanguage, i18n, previousLanguage])
 
-  const hits = ESCore.state.getHits()
-
   return (
     matches
       ? <Grid
         alignItems="center"
         container
         direction="column"
-        justify="center"
+        justifyContent="center"
         spacing={3}
       >
         {hits
@@ -69,7 +70,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
               className={mainClasses.gridActions}
               container
               direction="row"
-              justify="center"
+              justifyContent="center"
             >
               <ES.Pagination/>
             </Grid>

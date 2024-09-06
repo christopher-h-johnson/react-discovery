@@ -1,5 +1,5 @@
 import { Annotations, Descriptions, Digitalisate, HitAbstract, Info, ItemActionBar, ThumbnailGrid } from '.'
-import { Card, CardContent, Divider, Grid } from '@material-ui/core'
+import { Card, CardContent, Divider, Grid } from '@mui/material'
 import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
 import { ESCore, IHit } from '@react-discovery/core'
 import React, { ReactElement } from 'react'
@@ -83,7 +83,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
     <Card className={classes.root} key={i}>
       <Grid
         container
-        justify="space-between"
+        justifyContent="space-between"
       >
         <Grid
           item

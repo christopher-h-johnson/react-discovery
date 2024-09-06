@@ -1,11 +1,11 @@
-import { IElasticSearchQuery, IFilters } from '../..'
+import {IElasticSearchQuery, IFilters, ISearchFunctionRandomQuery} from '../..'
 import { ElasticSearchConstants } from '../enum'
 import { ISortField } from '@react-discovery/configuration'
-import { NestedQuery } from './full-text'
+import { FunctionQuery, NestedQuery } from './full-text'
 
-const assign = require('lodash/assign')
-const reduce = require('lodash/reduce')
-const compact = require('lodash/compact')
+import assign from 'lodash/assign'
+import reduce from 'lodash/reduce'
+import compact from 'lodash/compact'
 
 export const buildSize = (size: number = 10): {} => {
   return { [ElasticSearchConstants.SIZE]: size }
@@ -108,5 +108,18 @@ export const queryBuilder = (props: IElasticSearchQuery): any => {
     ...buildFrom(from),
     ...buildTrackTotal(),
     ...NestedQuery(aggs, level2QfList, nestedQfList, postFilter, qfList, sort, stringInput)
+  }
+}
+
+export const functionQueryBuilder = (props: ISearchFunctionRandomQuery): any => {
+  const { filters, from, size, searchFields, sortFields, stringInput } = props
+  const qfList = buildSearchFieldList(searchFields)
+  const postFilter = buildPostFilter(filters)
+  const sort = buildSortFields(sortFields)
+  return {
+    ...buildSize(size),
+    ...buildFrom(from),
+    ...buildTrackTotal(),
+    ...FunctionQuery(postFilter, qfList, sort, stringInput)
   }
 }

@@ -4,7 +4,7 @@ import {
   annotationDisplayFields
 } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
-import { CardActions } from '@material-ui/core'
+import { CardActions } from '@mui/material'
 import { IHit } from '@react-discovery/core'
 
 interface IAnnotations {

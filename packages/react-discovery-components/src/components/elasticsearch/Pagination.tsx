@@ -1,15 +1,15 @@
-import { ChevronLeft, ChevronRight, SkipNext, SkipPrevious } from '@material-ui/icons'
-import { ESCore, usePrevious } from '@react-discovery/core'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { ChevronLeft, ChevronRight, SkipNext, SkipPrevious } from '@mui/icons-material'
+import { ESCore } from '@react-discovery/core'
+import { List, ListItemButton, ListItemText } from '@mui/material'
 import React, { ReactElement, useEffect } from 'react'
 import { getSelectedIndex, setSelectedIndex } from '@react-discovery/configuration'
 import { IOverridableStyledComponent } from '../../index'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
 import { usePaginationStyles } from '../../styles'
 
 export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const classes: any = props.classes || usePaginationStyles({})
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const from = ESCore.state.getFrom()
   const size = ESCore.state.getSize()
   const selectedIndex = getSelectedIndex()
@@ -68,10 +68,7 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
   }
 
   const PageControlIndexButton = (page, label, key): ReactElement =>
-    <ListItem
-      button
-      className={classes.button}
-      component='div'
+    <ListItemButton
       data-testid={`page-index-${key}`}
       dense
       key={key}
@@ -79,13 +76,10 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
       selected={selectedIndex === page}
     >
       <ListItemText primary={label}/>
-    </ListItem>
+    </ListItemButton>
 
   const PageControlButton = (page, key): ReactElement =>
-    <ListItem
-      button
-      className={classes.button}
-      component='div'
+    <ListItemButton
       data-testid={`page-control-${key}`}
       dense
       key={key}
@@ -93,7 +87,7 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
       selected={selectedIndex === page}
     >
       {buildIcon(key)}
-    </ListItem>
+    </ListItemButton>
 
   const renderPages = (pages): ReactElement => {
     return pages && pages.map((page, i): ReactElement =>
