@@ -24,6 +24,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 interface IDetailView {
   actions: any;
+  classes?: any;
 }
 
 const useStyles = makeStyles((theme: Theme): any =>
@@ -68,7 +69,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const optionsMenuActions = {
     getNumberOfWorkspaceNodesForId, setViewIdMap
   }
-  const classes: any = useStyles({})
+  const classes: any = useStyles({}) || props.classes
   const currentCollection = getCurrentCollection()
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
   const { collection, id } = useParams()
@@ -112,6 +113,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
 
   const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
   const addButton = currentHit && <AddToWorkspaceButton actions={addToWorkspaceButtonActions} classes={classes} hit={currentHit} item={item}/>
+
   const buildDetailView = (): ReactElement => {
     return (
       <Grid>

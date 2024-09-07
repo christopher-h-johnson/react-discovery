@@ -49,7 +49,6 @@ export const fetchElasticSearchDocument = createAsync<IFetchElasticSearchDocumen
       const username = process.env.REACT_APP_SEARCH_API_USERNAME
       const password = process.env.REACT_APP_SEARCH_API_PASSWORD
       const encoded = encode(username + ':' + password)
-      console.log(encoded)
       headers.append('Content-Type', 'application/json')
       headers.append('Authorization', 'Basic ' + encoded)
       // eslint-disable-next-line no-undef

@@ -7,6 +7,7 @@ export const renderComponent = (component: RenderComponentType<any>, props, chil
   const isLazyReactComponent = component && (
     (component as LazyExoticComponent<any>).$$typeof !== undefined
   )
+
   if (isLazyReactComponent) {
     return React.createElement(
       component,

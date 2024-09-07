@@ -91,6 +91,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
   }
 
   const navRef = (item) => item.path !== '/detail'
+  // eslint-disable-next-line react/display-name
     ? forwardRef((props: any, ref: any) => <NavLink to={item.path} {...props} ref={ref} />)
     : 'li'
 

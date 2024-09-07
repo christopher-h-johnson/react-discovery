@@ -1,4 +1,5 @@
-import { CircularProgress, Grid, useMediaQuery } from '@mui/material'
+import { CircularProgress, useMediaQuery } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
 import {
   ES,
@@ -51,7 +52,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
         spacing={3}
       >
         {hits
-          ? <Grid item style={{ width: '100%' }} xs={10}>
+          ? <Grid style={{ width: '100%' }} size={10}>
             <Grid
               className={mainClasses.gridActions}
               container

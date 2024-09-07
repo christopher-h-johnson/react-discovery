@@ -17,7 +17,7 @@ const useStyles = makeStyles((): any => ({
 }))
 
 export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => {
-  const classes: any = useStyles({})
+  const classes: any = props.classes || useStyles({})
   const [isInitialized, setIsInitialized] = useState(false)
   const [osd, setOsd] = useState(null)
   const osdRef = useRef(null)
@@ -64,8 +64,10 @@ export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => 
 
   useEffect(
     (): void => {
-      updateViewer(defaultOsdProps())
-      setIsInitialized(true)
+      if (!isInitialized) {
+        updateViewer(defaultOsdProps())
+        setIsInitialized(true)
+      }
     })
 
   return (

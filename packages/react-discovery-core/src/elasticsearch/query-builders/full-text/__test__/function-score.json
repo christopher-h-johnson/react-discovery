@@ -1,40 +1,80 @@
 {
-  "size": 20,
-  "from": 0,
-  "track_total_hits": true,
-  "aggs": {
-    "Artist.keyword": {
-      "terms": {
-        "field": "Artist.keyword",
-        "size": 10
-      }
-    },
-    "Creation Year.keyword": {
-      "terms": {
-        "field": "Creation Year.keyword",
-        "size": 10
-      }
-    },
-    "description.keyword": {
-      "terms": {
-        "field": "description.keyword",
-        "size": 10
-      }
-    }
-  },
+  "fields": [
+    "id",
+    "score"
+  ],
+  "size": 0,
   "query": {
     "function_score": {
       "query": {
         "bool": {
-          "filter": []
-        },
-        "sort": [
-          {
-            "title.keyword": "asc"
-          }
-        ]
+          "should": [
+            {
+              "match": {
+                "main_headline.en": {
+                  "query": "headline_for_search"
+                }
+              }
+            },
+            {
+              "match": {
+                "body.en": "body for search"
+              }
+            }
+          ],
+          "must_not": {
+            "term": {
+              "id": 75333
+            }
+          },
+          "filter": [
+            {
+              "term": {
+                "status": 3
+              }
+            },
+            [
+              {
+                "term": {
+                  "sites": 6
+                }
+              }
+            ]
+          ]
+        }
       },
-      "random_score": {
+      "functions": [
+        {
+          "gauss": {
+            "published_at": {
+              "scale": "140w",
+              "decay": 0.3
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "postslug": {
+      "terms": {
+        "field": "slug",
+        "order": {
+          "top_score": "desc"
+        }
+      },
+      "aggs": {
+        "grouppost": {
+          "top_hits": {
+            "_source": {
+              "includes": [
+                "id",
+                "slug"
+              ]
+            },
+            "size": 10
+          }
+        }
       }
     }
   }

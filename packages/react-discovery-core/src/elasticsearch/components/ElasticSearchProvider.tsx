@@ -12,7 +12,7 @@ import {
 import { getCollections, getCurrentCollection, getCurrentSearchContext, setCurrentCollection, setSelectedIndex } from '@react-discovery/configuration'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { ElasticSearchConstants } from '../enum'
-import { IElasticSearchQuery, ISearchFunctionRandomQuery } from '../index'
+import { IElasticSearchQuery } from '../index'
 import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
 import { stringify } from 'query-string'
 

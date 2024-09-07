@@ -112,7 +112,7 @@ export const queryBuilder = (props: IElasticSearchQuery): any => {
 }
 
 export const functionQueryBuilder = (props: ISearchFunctionRandomQuery): any => {
-  const { filters, from, size, searchFields, sortFields, stringInput } = props
+  const { aggs, filters, from, size, searchFields, sortFields, stringInput } = props
   const qfList = buildSearchFieldList(searchFields)
   const postFilter = buildPostFilter(filters)
   const sort = buildSortFields(sortFields)
@@ -120,6 +120,6 @@ export const functionQueryBuilder = (props: ISearchFunctionRandomQuery): any => 
     ...buildSize(size),
     ...buildFrom(from),
     ...buildTrackTotal(),
-    ...FunctionQuery(postFilter, qfList, sort, stringInput)
+    ...FunctionQuery(aggs, postFilter, qfList, sort, stringInput)
   }
 }

@@ -1,20 +1,13 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, Suspense } from 'react'
 import { OSDViewer } from '.'
 import { buildTileSources } from '../utils'
-import makeStyles from '@mui/styles/makeStyles'
-import { gql, useQuery } from '@apollo/client'
+import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
+import { CircularProgress } from '@mui/material'
 
 interface IImageServices {
   classes?: any;
   manifest: string;
 }
-
-export const useThumbnailStyles = makeStyles((): any => ({
-  cover: {
-    flexShrink: 0,
-    padding: 20
-  }
-}))
 
 // noinspection GraphQLUnresolvedReference
 const GET_IMAGE_SERVICES = gql`
@@ -33,30 +26,37 @@ const GET_IMAGE_SERVICES_V2 = gql`
 
 export const ImageServices: React.FC<IImageServices> = (props): ReactElement => {
   const { classes, manifest } = props
-  const response = manifest && useQuery(GET_IMAGE_SERVICES, {
-    variables: { manifestId: manifest, type: 'ImageService2' }
-  })
-  const responsev2 = manifest && useQuery(GET_IMAGE_SERVICES_V2, {
-    variables: { manifestId: manifest }
-  })
+  const response = useSuspenseQuery(GET_IMAGE_SERVICES, manifest
+    ? { variables: { manifestId: manifest, type: 'ImageService2' } }
+    : skipToken)
 
+  const responsev2 = useSuspenseQuery(GET_IMAGE_SERVICES_V2, manifest
+    ? { variables: { manifestId: manifest } }
+    : skipToken)
+
+  // @ts-ignore
   const imageServices = response && response.data && response.data.imageServices
 
+  // @ts-ignore
   const imageServicesv2 = responsev2 && responsev2.data && responsev2.data.imageServicesv2NoProfile
-  if ((response && response.loading) || (responsev2 && responsev2.loading)) return <p>Loading ...</p>
+
   return imageServices
     ? (
-    <OSDViewer
-      classes={classes}
-      images={buildTileSources(imageServices)}
-    />
+        <Suspense fallback={<CircularProgress/>}>
+          <OSDViewer
+            classes={classes}
+            images={buildTileSources(imageServices)}
+          />
+        </Suspense>
       )
     : imageServicesv2
       ? (
-    <OSDViewer
-      classes={classes}
-      images={buildTileSources(imageServicesv2)}
-    />
+       <Suspense fallback={<CircularProgress/>}>
+          <OSDViewer
+            classes={classes}
+            images={buildTileSources(imageServicesv2)}
+          />
+       </Suspense>
         )
       : null
 }

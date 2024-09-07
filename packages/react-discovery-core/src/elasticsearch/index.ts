@@ -45,6 +45,7 @@ export interface IElasticSearchQuery {
 }
 
 export interface ISearchFunctionRandomQuery {
+  aggs: IAggRecord;
   filters: IFilters;
   query?: any;
   searchFields: ISearchField[];

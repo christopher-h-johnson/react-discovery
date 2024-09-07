@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme): any => ({
 }))
 
 export const MediaGridTitleBar: React.FC<IImageGridListTitleBar> = (props): ReactElement => {
-  const classes: any = props.classes || useStyles({})
+  const classes: any = useStyles({}) || props.classes
   const { hit, item } = props
   const addToWorkspaceButtonActions = { getWorkspaceViewIdMap, setViewIdMap }
 

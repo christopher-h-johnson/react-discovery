@@ -18,7 +18,8 @@ export const rootConfig: IConfig = {
       locale: 'en'
     }],
   rootContext: '/search',
-  selectedIndex: 0
+  selectedIndex: 0,
+  viewType: 'grid'
 }
 
 export const localConfig: any = deepmerge(rootConfig, collections)

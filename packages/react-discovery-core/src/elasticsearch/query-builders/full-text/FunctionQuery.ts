@@ -1,6 +1,7 @@
-export const FunctionQuery = (postFilters, qfList, _sort, stringInput) => {
+export const FunctionQuery = (aggregations, postFilters, qfList, _sort, stringInput) => {
   if (!stringInput) {
     return {
+      aggs: aggregations,
       query: {
         function_score: {
           query: {
@@ -15,6 +16,7 @@ export const FunctionQuery = (postFilters, qfList, _sort, stringInput) => {
   }
 
   return {
+    aggs: aggregations,
     query: {
       function_score: {
         query: {

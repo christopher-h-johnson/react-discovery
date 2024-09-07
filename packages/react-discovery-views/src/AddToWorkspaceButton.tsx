@@ -4,11 +4,12 @@ import { usePrevious } from '@react-discovery/elasticsearch-app'
 import { IconButton, Tooltip } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { Domain } from './enum'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Theme } from '@mui/material/styles'
+import { Instance } from '@popperjs/core'
 
 interface IAddToWorkspaceButton {
   actions: any;
@@ -40,6 +41,7 @@ const HoverButton = withStyles(() => ({
 
 export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): ReactElement => {
   const { getWorkspaceViewIdMap, setViewIdMap } = props.actions
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useStyles({})
   const { hit, item } = props
   const id = hit && (hit._source.id || hit.id)
@@ -50,6 +52,9 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
   const [currentManifestNodes, setManifestNodes] = React.useState([])
   const nodeCount = currentManifestNodes.filter((node): boolean => node === item[Domain.MANIFEST_ID_FIELD])
 
+  const popperRef = useRef<Instance>(null)
+  const areaRef = useRef<HTMLDivElement>(null)
+
   useEffect((): void => {
     if (prevViewIdMap !== viewIdMap) {
       const manifestsInMap = Object.values(viewIdMap).map((instance: any) => instance.manifest)
@@ -58,28 +63,47 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
   }, [prevViewIdMap, viewIdMap])
 
   const handleAddToWorkspace = (manifest): void => {
+    if (popperRef.current != null) {
+      popperRef.current.update()
+    }
     dispatch(setViewIdMap({ id, manifest, type: 'image' }))
   }
 
   return (
-    (<Tooltip
-      title={t('addMediaToWorkspace')}>
-      {nodeCount && nodeCount.length
-        ? <IconButton
-        aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
-        color='primary'
-        href=''
-        onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
-        size="large">
-          <CheckCircle className={classes.title}/>
-        </IconButton>
-        : <HoverButton
-          aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
-          onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+    (<div ref={areaRef}>
+        <Tooltip
+          title={t('addMediaToWorkspace')}
+          PopperProps={{
+            popperRef,
+            anchorEl: {
+              getBoundingClientRect: () => {
+                return new DOMRect(
+                    areaRef.current!.getBoundingClientRect().x + 120,
+                    areaRef.current!.getBoundingClientRect().y + 40,
+                    0,
+                    0
+                )
+              }
+            }
+          }}
         >
-          <CheckCircleOutline className={classes.title}/>
-        </HoverButton>
-      }
-    </Tooltip>)
+          {nodeCount && nodeCount.length
+            ? <IconButton
+            aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
+            color='primary'
+            onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+            size="large">
+              <CheckCircle className={classes.title}/>
+            </IconButton>
+            : <HoverButton
+              aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
+              onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+            >
+              <CheckCircleOutline className={classes.title}/>
+            </HoverButton>
+          }
+        </Tooltip>
+      </div>)
+
   )
 }

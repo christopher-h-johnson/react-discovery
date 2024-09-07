@@ -1,4 +1,5 @@
-import { Grid, IconButton } from '@mui/material'
+import { IconButton } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
 import React, { ReactElement } from 'react'
@@ -30,8 +31,7 @@ const useStyles = makeStyles((): any => ({
     background: '#eee',
     display: 'flex',
     flexGrow: 1,
-    flexWrap: 'wrap',
-    width: '100%'
+    flexWrap: 'wrap'
   },
   gridViewer: {
     flexGrow: 1,
@@ -47,8 +47,7 @@ const ColoredButton = withStyles(() => ({
   }
 }))(IconButton)
 
-export const ImageGridViewer: React.FC<any> = (): ReactElement => {
-  const classes: any = useStyles({})
+export const ImageGridViewerItem = (classes) => {
   const currentGridViewerObjectThumbnail = getCurrentGridViewerObjectThumbnail()
   const image = currentGridViewerObjectThumbnail && buildTileSourceForGridViewerImage(currentGridViewerObjectThumbnail)
   const id = getCurrentGridViewerObjectId()
@@ -62,42 +61,45 @@ export const ImageGridViewer: React.FC<any> = (): ReactElement => {
 
   const buildCloseIcon = (): ReactElement => {
     return (
-      <div className={classes.closeIcon}>
-        <ColoredButton
-          aria-label="Remove"
-          className={classes.menuButton}
-          color="primary"
-          edge="start"
-          onClick={handleRemove}>
-          <Close/>
-        </ColoredButton>
-      </div>
+        <div className={classes.closeIcon}>
+          <ColoredButton
+              aria-label="Remove"
+              className={classes.menuButton}
+              color="primary"
+              edge="start"
+              onClick={handleRemove}>
+            <Close/>
+          </ColoredButton>
+        </div>
     )
   }
+
+  return (
+    image
+      ? <Grid className={classes.gridViewer} size={5}>
+          {buildCloseIcon()}
+          <SingleImageOSDViewer image={image} key={uuidv4()}/>
+          <TitleIdHeader
+              id={id}
+              title={title}
+          />
+        </Grid>
+      : null
+  )
+}
+
+export const ImageGridViewer: React.FC<any> = (): ReactElement => {
+  const classes: any = useStyles({})
 
   return (
     <Grid
       className={classes.flexSection}
       container
     >
-      {image
-        ? <>
-          <Grid className={classes.gridRoot} item xs={7}>
-            <ViewTypeSwitcher/>
-          </Grid>
-          <Grid className={classes.gridViewer} item xs={5}>
-            {buildCloseIcon()}
-            <SingleImageOSDViewer image={image} key={uuidv4()}/>
-            <TitleIdHeader
-              id={id}
-              title={title}
-            />
-          </Grid>
-        </>
-        : <Grid className={classes.gridRoot} item xs={12}>
-          <ViewTypeSwitcher/>
-        </Grid>
-      }
+      <Grid className={classes.gridRoot} size={7}>
+        <ViewTypeSwitcher/>
+      </Grid>
+      {ImageGridViewerItem(classes)}
     </Grid>
   )
 }

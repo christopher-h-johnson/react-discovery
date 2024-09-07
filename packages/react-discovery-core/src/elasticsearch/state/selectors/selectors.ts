@@ -1,4 +1,4 @@
-import {IAggRecord, IElasticSearchQuery, ISearchFunctionRandomQuery} from '../../index'
+import { IAggRecord, IElasticSearchQuery, ISearchFunctionRandomQuery } from '../../index'
 import { IAggregation, IFilters, IHit, IHits, IState } from '../../..'
 import { ISearchField, ISortField } from '@react-discovery/configuration'
 import { FieldConstants } from '../../enum'
@@ -37,19 +37,22 @@ export const getHits = (): IHits => {
   return useSelector((state: any): IHits => state.response.hits)
 }
 
+export const selectHitForId = createSelector([(state) => state.response.hits && state.response.hits.hits, (_state, id) => id],
+  (hits, id) => hits.filter((hit) => hit.id === id)[0])
+
 export const getHitForId = (id): IHit => {
   return useSelector((state: any): IHit => selectHitForId(state, id))
 }
 
-export const selectHitForId = createSelector([(state) => state.response.hits && state.response.hits.hits, (_state, id) => id],
-  (hits, id) => hits.filter((hit) => hit.id === id)[0])
+export const selectHitIndexForId = createSelector([(state) => state.response.hits && state.response.hits.hits, (_state, id) => id],
+  (hits, id) => hits.findIndex((hit) => hit.id === id))
 
 export const getHitIndexForId = (id): number => {
-  return useSelector((state: any): number => state.response.hits && state.response.hits.hits &&
-    state.response.hits.hits.findIndex((hit) => hit.id === id))
+  return useSelector((state: any): number => selectHitIndexForId(state, id))
 }
 
 export const selectHitForIndex = createSelector([(state: any) => state.response.hits && state.response.hits.hits, (_state, index) => index],
+  // eslint-disable-next-line no-empty-pattern
   (hits, index) => hits.filter(({}, i): boolean => i === index)[0])
 
 export const getHitForIndex = (index): IHit => {
@@ -100,6 +103,7 @@ export const getDefaultQuery = (): IElasticSearchQuery => {
 }
 
 export const getFunctionRandomQuery = (): ISearchFunctionRandomQuery => {
+  const aggs = getAggs()
   const filters = getFilters()
   const from = getFrom()
   const stringInput = getStringInput()
@@ -107,6 +111,7 @@ export const getFunctionRandomQuery = (): ISearchFunctionRandomQuery => {
   const size = getSize()
   const sortFields = getSortFields()
   return {
+    aggs,
     filters,
     from,
     searchFields,

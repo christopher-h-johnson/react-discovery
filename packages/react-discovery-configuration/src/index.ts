@@ -1,32 +1,5 @@
 export * from './state'
 
-export interface ICollection {
-  docTypes?: IDocType[];
-  hitComponents: IHitComponent[];
-  initialFilter?: IFilters;
-  name: string;
-  primaryTypeField: string;
-  refinementListFilters: IRefinementListFilters;
-  searchFields: ISearchField[];
-  sortFields: ISortField[];
-}
-
-export type ICollectionRecord = Record<string, ICollection>
-
-export interface IConfig {
-  currentCollection?: string;
-  currentLanguage?: string;
-  collections: ICollectionRecord;
-  itemViews?: IItemViews;
-  isHighlighted?: boolean;
-  isPersisted?: boolean;
-  languages?: ILanguage[];
-  rootContext?: string;
-  selectedIndex?: number;
-  url?: string;
-  viewType?: string;
-}
-
 export type IItemViews = Record<string, string>
 
 export interface IDocType {
@@ -75,4 +48,31 @@ export interface ISortField {
   label: string;
   order: string;
   isSelected?: boolean;
+}
+
+export interface ICollection {
+  docTypes?: IDocType[];
+  hitComponents: IHitComponent[];
+  initialFilter?: IFilters;
+  name: string;
+  primaryTypeField: string;
+  refinementListFilters: IRefinementListFilters;
+  searchFields: ISearchField[];
+  sortFields: ISortField[];
+}
+
+export type ICollectionRecord = Record<string, ICollection>
+
+export interface IConfig {
+  currentCollection?: string;
+  currentLanguage?: string;
+  collections: ICollectionRecord;
+  itemViews?: IItemViews;
+  isHighlighted?: boolean;
+  isPersisted?: boolean;
+  languages?: ILanguage[];
+  rootContext?: string;
+  selectedIndex?: number;
+  url?: string;
+  viewType?: string;
 }
