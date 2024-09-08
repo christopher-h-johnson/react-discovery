@@ -1,11 +1,7 @@
-import {
-  Domain,
-  EntityDisplay,
-  annotationDisplayFields
-} from '@react-discovery/views'
-import React, { ReactElement } from 'react'
 import { CardActions } from '@mui/material'
-import { IHit } from '@react-discovery/core'
+import { IHit } from '@react-discovery/internal'
+import { annotationDisplayFields, Domain, EntityDisplay } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 interface IAnnotations {
   hit: IHit;

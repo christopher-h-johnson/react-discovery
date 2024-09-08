@@ -1,16 +1,22 @@
-import { Annotations, Descriptions, Digitalisate, HitAbstract, Info, ItemActionBar, ThumbnailGrid } from '.'
 import { Card, CardContent, Divider, Grid } from '@mui/material'
-import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
-import { ESCore, IHit } from '@react-discovery/core'
-import React, { ReactElement } from 'react'
 import {
-  TitleIdHeader,
-  ValueDisplay,
   buildHighlightedValueForHit,
-  getFirstManifestFromHit
+  getFirstManifestFromHit,
+  TitleIdHeader,
+  ValueDisplay
 } from '@react-discovery/components'
-import { getHitComponentConfig, getItemViewType, getViewType } from '@react-discovery/configuration'
-import { getNumberOfWorkspaceNodesForId, setViewIdMap } from '@react-discovery/workspace'
+import {
+  getHitComponentConfig,
+  getItemViewType,
+  getViewType,
+  IHit,
+  OSCore,
+  setViewIdMap
+} from '@react-discovery/internal'
+import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
+import { getNumberOfWorkspaceNodesForId } from '@react-discovery/workspace'
+import React, { ReactElement } from 'react'
+import { Annotations, Descriptions, Digitalisate, HitAbstract, Info, ItemActionBar, ThumbnailGrid } from '.'
 
 interface IDefaultItemComponent {
   classes: any;
@@ -18,14 +24,14 @@ interface IDefaultItemComponent {
   i: number;
 }
 
-const typeField = ESCore.enums.FieldConstants.TYPE_FIELD
+const typeField = OSCore.enums.FieldConstants.TYPE_FIELD
 
 const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
   const optionsMenuActions = {
     getNumberOfWorkspaceNodesForId, setViewIdMap
   }
   const classes: any = useHitViewStyles({})
-  const searchFields = ESCore.state.getSearchFields()
+  const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && hit._source.id
   const itemViewType = hit && getItemViewType(id)

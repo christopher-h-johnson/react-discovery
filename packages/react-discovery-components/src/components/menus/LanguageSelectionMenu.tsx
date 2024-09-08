@@ -1,12 +1,12 @@
-import { IconButton, Menu, MenuItem } from '@mui/material'
-import React, { ReactElement } from 'react'
-import { getCurrentLanguage, getLanguages, setCurrentLanguage } from '@react-discovery/configuration'
-import { IOverridableStyledComponent } from '../..'
 import Language from '@mui/icons-material/Language'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { IconButton, Menu, MenuItem } from '@mui/material'
+import { getCurrentLanguage, getLanguages, setCurrentLanguage, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { IOverridableStyledComponent } from '../..'
 import { useMenuButtonStyles } from '../../styles'
 
 export const LanguageSelectionMenu: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useMenuButtonStyles({})
   const currentLanguage = getCurrentLanguage()
   const dispatch = useAppDispatch()

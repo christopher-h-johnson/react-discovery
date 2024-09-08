@@ -1,10 +1,10 @@
-import { ESCore } from '@react-discovery/core'
+import { OSCore } from '@react-discovery/internal'
 
 export const buildDocumentUri = (currentCollection, id) => {
   const collection = currentCollection || process.env.REACT_APP_SEARCH_API_COLLECTION
   return process.env.REACT_APP_SEARCH_API_HOST +
     collection +
-    ESCore.enums.ElasticSearchConstants.DOCUMENT + id
+      OSCore.enums.ElasticSearchConstants.DOCUMENT + id
 }
 
 export const getRandomInt = (min, max): string => {

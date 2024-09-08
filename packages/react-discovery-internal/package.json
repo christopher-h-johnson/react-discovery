@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "query-string": "^9.1.0"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "typescript"
+  ],
+  "license": "Apache 2.0",
+  "main": "lib/src/index.js",
+  "name": "@react-discovery/internal",
+  "peerDependencies": {
+    "react": ">= 17",
+    "react-dom": ">= 17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:christopher-h-johnson/react-discovery.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "config": "tsc --showConfig"
+  },
+  "types": "lib/src/index.d.ts",
+  "version": "0.1.0"
+}

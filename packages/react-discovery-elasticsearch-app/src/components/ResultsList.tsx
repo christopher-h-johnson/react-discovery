@@ -1,17 +1,11 @@
-import { CircularProgress, Grid, useMediaQuery } from '@mui/material'
+import { CircularProgress, useMediaQuery } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
-import {
-  ES,
-  HitStats,
-  ViewSwitcherToggle,
-  useMinimalResultViewerStyles
-} from '@react-discovery/components'
-import { ESCore } from '@react-discovery/core'
-import { usePrevious } from '../hooks'
-import { ImageGridViewer, ListFilters, MinWidthResultsGrid, ViewTypeSwitcher } from '.'
+import { ES, HitStats, useMinimalResultViewerStyles, ViewSwitcherToggle } from '@react-discovery/components'
+import { getCurrentLanguage, getViewType, OSCore, usePrevious } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
-import { getCurrentLanguage, getViewType } from '@react-discovery/configuration'
 import { useTranslation } from 'react-i18next'
+import { ImageGridViewer, ListFilters, MinWidthResultsGrid, ViewTypeSwitcher } from '.'
 
 export const useStyles = makeStyles((): any => ({
   gridActions: {
@@ -33,7 +27,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
   const previousLanguage = usePrevious(currentLanguage)
   const matches = useMediaQuery('(min-width:600px)')
   const viewType = getViewType()
-  const hits = ESCore.state.getHits()
+  const hits = OSCore.state.getHits()
 
   useEffect((): any => {
     if (previousLanguage !== currentLanguage) {
@@ -51,7 +45,7 @@ export const ResultsList: React.FC<any> = (): ReactElement => {
         spacing={3}
       >
         {hits
-          ? <Grid item style={{ width: '100%' }} xs={10}>
+          ? <Grid style={{ width: '100%' }} size={10}>
             <Grid
               className={mainClasses.gridActions}
               container

@@ -1,33 +1,32 @@
 import { Button, Divider, List, ListItemButton, ListItemText, Typography } from '@mui/material'
+import { getCurrentCollection, OSCore, setRefinementListFilterSize, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { getCurrentCollection, setRefinementListFilterSize } from '@react-discovery/configuration'
-import { ESCore } from '@react-discovery/core'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
-import { useItemListStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
+import { useItemListStyles } from '../styles'
 
 export const ItemListFlat: React.FC<any> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useItemListStyles({})
   const dispatch = useAppDispatch()
   const { field, id, label, size } = props
-  const aggregation = ESCore.state.getAggregation(field)
-  const filters = ESCore.state.getFiltersForField(field)
-  const stringInput = ESCore.state.getStringInput()
+  const aggregation = OSCore.state.getAggregation(field)
+  const filters = OSCore.state.getFiltersForField(field)
+  const stringInput = OSCore.state.getStringInput()
   const currentCollection = getCurrentCollection()
   const { t } = useTranslation()
 
   const handleShowMore = (filterName): void => {
     const newSize = size + 10
     dispatch(setRefinementListFilterSize({ currentCollection, filterName, size: newSize }))
-    dispatch(ESCore.state.setSelectedFilters({ field, filters: [] }))
+    dispatch(OSCore.state.setSelectedFilters({ field, filters: [] }))
   }
 
   const handleChange = (key): void => {
     const newFilters = filters && filters.length ? filters.filter((f): any => f !== key) : []
     newFilters.push(key)
-    dispatch(ESCore.state.setSelectedFilters({ field, filters: newFilters }))
-    dispatch(ESCore.state.setQueryInput({ stringInput }))
-    dispatch(ESCore.state.setFrom({ from: 0 }))
+    dispatch(OSCore.state.setSelectedFilters({ field, filters: newFilters }))
+    dispatch(OSCore.state.setQueryInput({ stringInput }))
+    dispatch(OSCore.state.setFrom({ from: 0 }))
   }
 
   const actions = (aggregation): ReactElement => {

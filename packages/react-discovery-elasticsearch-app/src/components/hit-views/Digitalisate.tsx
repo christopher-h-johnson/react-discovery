@@ -1,5 +1,5 @@
+import { IHit } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { IHit } from '@react-discovery/core'
 import { MediaGrid } from '../MediaGrid'
 
 interface IDigitalisate {

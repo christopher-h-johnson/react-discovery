@@ -1,7 +1,6 @@
 import { FormControl, FormControlLabel, Switch } from '@mui/material'
+import { getItemViewType, setItemViewType, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { getItemViewType, setItemViewType } from '@react-discovery/configuration'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useTranslation } from 'react-i18next'
 import { useViewSwitcherStyles } from '../styles'
 

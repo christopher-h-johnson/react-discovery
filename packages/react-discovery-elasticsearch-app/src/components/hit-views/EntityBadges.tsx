@@ -1,12 +1,18 @@
+import { Book, ChatBubble, Image, Info } from '@mui/icons-material'
 import { Badge, Chip, Tab, Tabs, Theme, Tooltip } from '@mui/material'
 import withStyles from '@mui/styles/withStyles'
-import { Book, ChatBubble, Image, Info } from '@mui/icons-material'
+import { buildEntityCountForType } from '@react-discovery/components'
+import {
+  getSelectedIndex,
+  getSelectedTabForId,
+  OSCore,
+  setCurrentSelectedTab,
+  setItemViewType,
+  setViewType,
+  useAppDispatch
+} from '@react-discovery/internal'
 import { Domain, useHitViewStyles } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
-import { getSelectedIndex, getSelectedTabForId, setCurrentSelectedTab, setItemViewType, setViewType } from '@react-discovery/configuration'
-import { ESCore } from '@react-discovery/core'
-import { buildEntityCountForType } from '@react-discovery/components'
-import { useAppDispatch } from '../../state'
 import { useTranslation } from 'react-i18next'
 
 interface IEntityBadges {
@@ -33,7 +39,7 @@ export const EntityBadges: React.FC<IEntityBadges> = (props): ReactElement => {
   const { entities, id, i } = props
   const classes: any = useHitViewStyles({})
   const indexMultiplier = getSelectedIndex()
-  const size = ESCore.state.getSize()
+  const size = OSCore.state.getSize()
   const chipLabel = (i + 1) + (size * indexMultiplier)
   const dispatch = useAppDispatch()
   const { t } = useTranslation('vocab')

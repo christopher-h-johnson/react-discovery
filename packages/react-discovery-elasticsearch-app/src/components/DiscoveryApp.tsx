@@ -1,10 +1,10 @@
 import { Grid, Theme } from '@mui/material'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
+import classNames from 'classnames'
 import React, { ReactElement } from 'react'
 import { PersistentDrawer } from './PersistentDrawer'
 import { SearchAppBar } from './SearchAppBar'
-import classNames from 'classnames'
 
 interface IDiscoveryApp {
   component: ReactElement;

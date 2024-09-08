@@ -1,14 +1,10 @@
-import { AppBar, Badge, IconButton, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
 import { Bookmark, Menu } from '@mui/icons-material'
-import {
-  LanguageSelectionMenu,
-  ProfileMenu,
-  ResetButton, SearchBox
-} from '@react-discovery/components'
-import React, { ReactElement } from 'react'
-import { Domain } from '@react-discovery/views'
+import { AppBar, Badge, IconButton, Typography } from '@mui/material'
 import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { LanguageSelectionMenu, ProfileMenu, ResetButton, SearchBox } from '@react-discovery/components'
+import { Domain } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line

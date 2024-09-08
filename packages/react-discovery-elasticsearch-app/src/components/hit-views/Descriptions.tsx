@@ -1,12 +1,7 @@
-import {
-  Domain,
-  EntityDisplay,
-  beschreibungDisplayFields,
-  facetDisplayFields
-} from '@react-discovery/views'
-import React, { ReactElement } from 'react'
 import { CardActions } from '@mui/material'
-import { IHit } from '@react-discovery/core'
+import { IHit } from '@react-discovery/internal'
+import { beschreibungDisplayFields, Domain, EntityDisplay, facetDisplayFields } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 interface IDescriptions {
   hit: IHit;

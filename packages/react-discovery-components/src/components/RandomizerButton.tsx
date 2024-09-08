@@ -1,20 +1,20 @@
-import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { IOverridableStyledComponent } from '..'
-import { IconButton } from '@mui/material'
 import { Loop } from '@mui/icons-material'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { IconButton } from '@mui/material'
+import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { IOverridableStyledComponent } from '..'
 
 import { useResetButtonStyles } from '../styles'
 
 export const RandomizerButton: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useResetButtonStyles({})
   const dispatch = useAppDispatch()
 
   // const currentSearchContext = getCurrentSearchContext()
   const handleChange = (): void => {
-    dispatch(ESCore.state.setQueryInput({ stringInput: '' }))
-    dispatch(ESCore.state.setFrom({ from: 0 }))
+    dispatch(OSCore.state.setQueryInput({ stringInput: '' }))
+    dispatch(OSCore.state.setFrom({ from: 0 }))
     // navigation.navigate(currentSearchContext)
   }
 

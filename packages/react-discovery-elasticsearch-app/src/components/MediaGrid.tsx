@@ -1,11 +1,11 @@
 import { ImageListItem } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
-import React, { ReactElement } from 'react'
-import { Domain } from '@react-discovery/views'
-import { ESCore } from '@react-discovery/core'
-import { MediaGridTitleBar } from './MediaGridTitleBar'
-import { Thumbnail } from '@react-discovery/iiif'
 import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { Thumbnail } from '@react-discovery/iiif'
+import { OSCore } from '@react-discovery/internal'
+import { Domain } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
+import { MediaGridTitleBar } from './MediaGridTitleBar'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme): any => ({
   }
 }))
 
-const typeField = ESCore.enums.FieldConstants.TYPE_FIELD
+const typeField = OSCore.enums.FieldConstants.TYPE_FIELD
 
 export const MediaGrid: React.FC<any> = (props): ReactElement => {
   const classes: any = useStyles({})

@@ -1,19 +1,19 @@
 import { Chip, List } from '@mui/material'
+import { OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
 import { IOverridableStyledComponent } from '..'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useGroupSelectedFiltersStyles } from '../styles'
 
 export const GroupSelectedFilters: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useGroupSelectedFiltersStyles({})
   const dispatch = useAppDispatch()
-  const filters = ESCore.state.getFilters()
+  const filters = OSCore.state.getFilters()
 
   const onClose = (field: string, filter: any): void => {
     const newFilters = filters[field].filter((f): boolean => f !== filter)
-    dispatch(ESCore.state.setSelectedFilters({ field, filters: newFilters }))
-    dispatch(ESCore.state.setFrom({ from: 0 }))
+    dispatch(OSCore.state.setSelectedFilters({ field, filters: newFilters }))
+    dispatch(OSCore.state.setFrom({ from: 0 }))
   }
 
   const buildFilters = (filters): ReactElement[] => {

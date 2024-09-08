@@ -1,5 +1,6 @@
-import {de} from './de'
-import {en} from './en'
+import { de } from './de'
+import { en } from './en'
+
 const resources = {
   de,
   en

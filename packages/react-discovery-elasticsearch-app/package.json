@@ -18,7 +18,7 @@
   "dependencies": {
     "@apollo/client": "^3.11.4",
     "@react-discovery/components": "*",
-    "@react-discovery/core": "*",
+    "@react-discovery/internal": "*",
     "@react-discovery/i18n": "*",
     "@react-discovery/iiif": "*",
     "@react-discovery/views": "*",
@@ -31,7 +31,6 @@
     "redux-observable": "^3.0.0-rc.2",
     "serve": "^14.2.3"
   },
-  "main": "lib/src/main.js",
   "name": "@react-discovery/elasticsearch-app",
   "private": true,
   "repository": {
@@ -47,6 +46,5 @@
     "start": "serve -s build",
     "test": "CYPRESS_baseUrl=http://localhost:3001 cypress run"
   },
-  "types": "lib/src/main.d.ts",
   "version": "0.2.0"
 }

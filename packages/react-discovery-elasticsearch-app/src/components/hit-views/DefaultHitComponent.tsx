@@ -1,14 +1,14 @@
 import { Card, CardContent, Grid } from '@mui/material'
-import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
-import { ESCore, IHit } from '@react-discovery/core'
 import {
-  FieldValueDisplay,
-  TitleIdHeader,
   buildHighlightedValueForHit,
-  getFirstManifestFromHit
+  FieldValueDisplay,
+  getFirstManifestFromHit,
+  TitleIdHeader
 } from '@react-discovery/components'
+import { IHit, OSCore, setViewIdMap } from '@react-discovery/internal'
+import { Domain, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
+import { getNumberOfWorkspaceNodesForId } from '@react-discovery/workspace'
 import React, { ReactElement } from 'react'
-import { getNumberOfWorkspaceNodesForId, setViewIdMap } from '@react-discovery/workspace'
 import { ThumbnailGrid } from './ThumbnailGrid'
 
 interface IDefaultItemComponent {
@@ -21,7 +21,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
     getNumberOfWorkspaceNodesForId, setViewIdMap
   }
   const classes: any = useHitViewStyles({})
-  const searchFields = ESCore.state.getSearchFields()
+  const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && (hit._source.id || hit.id)
   const title = buildHighlightedValueForHit('title', hit)

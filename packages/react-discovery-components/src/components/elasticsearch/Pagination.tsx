@@ -1,20 +1,19 @@
 import { ChevronLeft, ChevronRight, SkipNext, SkipPrevious } from '@mui/icons-material'
-import { ESCore } from '@react-discovery/core'
 import { List, ListItemButton, ListItemText } from '@mui/material'
+import { getSelectedIndex, OSCore, setSelectedIndex, useAppDispatch, usePrevious } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
-import { getSelectedIndex, setSelectedIndex } from '@react-discovery/configuration'
 import { IOverridableStyledComponent } from '../../index'
-import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
 import { usePaginationStyles } from '../../styles'
 
 export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || usePaginationStyles({})
   const dispatch = useAppDispatch()
-  const from = ESCore.state.getFrom()
-  const size = ESCore.state.getSize()
+  const from = OSCore.state.getFrom()
+  const size = OSCore.state.getSize()
   const selectedIndex = getSelectedIndex()
   const prevSelectedIndex = usePrevious(selectedIndex)
-  const numFound = ESCore.state.getNumFound()
+  const numFound = OSCore.state.getNumFound()
   const currentPage = from / size
   const pageAmt = Math.ceil(numFound / size)
 
@@ -49,7 +48,7 @@ export const Pagination: React.FC<IOverridableStyledComponent> = (props): ReactE
     if (page >= pageAmt || page < 0) {
       return
     }
-    dispatch(ESCore.state.setFrom({ from: page * size }))
+    dispatch(OSCore.state.setFrom({ from: page * size }))
     dispatch(setSelectedIndex({ selectedIndex: page }))
     window.scrollTo(0, 0)
   }

@@ -1,15 +1,11 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
 import { Close, ZoomOutMap } from '@mui/icons-material'
-import {
-  MosaicContext,
-  MosaicWindowContext
-} from 'react-mosaic-component'
-import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { buildHighlightedValueForHit } from '@react-discovery/components'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
 import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { buildHighlightedValueForHit } from '@react-discovery/components'
+import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { MosaicContext, MosaicWindowContext } from 'react-mosaic-component'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line
@@ -38,10 +34,10 @@ const useStyles = makeStyles((theme): any => ({
   }
 }))
 
-export const WindowAppBar = (props): ReactElement => {
+export const WindowAppBar = (props: any): ReactElement => {
   const classes: any = useStyles({})
   const { dataId, id, removeViewId } = props
-  const docs = ESCore.state.getDocuments()
+  const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[dataId] : null
   const title = doc && (buildHighlightedValueForHit('titel_t', doc) || buildHighlightedValueForHit('title', doc))
   const dispatch = useAppDispatch()

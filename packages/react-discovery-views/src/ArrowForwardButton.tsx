@@ -1,13 +1,11 @@
+import { ArrowForward } from '@mui/icons-material'
 import { Fab, Theme } from '@mui/material'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
+import { getCurrentCollection, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { ArrowForward } from '@mui/icons-material'
-import { ESCore } from '@react-discovery/core'
-import { buildDocumentUri } from './utils'
-import { getCurrentCollection } from '@react-discovery/configuration'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { buildDocumentUri } from './utils'
 
 interface IArrowBackButton {
   collection: string;
@@ -30,18 +28,18 @@ export const ArrowForwardButton: React.FC<IArrowBackButton> = (props): ReactElem
   const classes: any = useStyles({})
   const currentCollection = getCurrentCollection()
   const navigation = useNavigate()
-  const numFound = ESCore.state.getNumFound()
+  const numFound = OSCore.state.getNumFound()
 
-  const size = ESCore.state.getSize()
+  const size = OSCore.state.getSize()
   const indexConstraint = Math.min(numFound, size) - 1
   const nextIndex = hitIndex + 1 <= indexConstraint ? hitIndex + 1 : indexConstraint
-  const nextHit = ESCore.state.getHitForIndex(nextIndex)
+  const nextHit = OSCore.state.getHitForIndex(nextIndex)
   const nextHitId = nextHit && nextHit.id
   const dispatch = useAppDispatch()
 
   const handleGetNextDoc = (): void => {
     const url = buildDocumentUri(collection, nextHitId)
-    dispatch(ESCore.state.fetchElasticSearchDocument.action({ url }))
+    dispatch(OSCore.state.fetchElasticSearchDocument.action({ url }))
     navigation(`/detail/${currentCollection}/${nextHitId}`)
   }
 

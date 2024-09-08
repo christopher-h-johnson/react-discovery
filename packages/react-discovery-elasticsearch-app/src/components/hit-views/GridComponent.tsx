@@ -1,17 +1,16 @@
 import { CheckCircle, CheckCircleOutline } from '@mui/icons-material'
-import { ImageListItem, IconButton, Tooltip, Typography } from '@mui/material'
+import { IconButton, ImageListItem, Tooltip, Typography } from '@mui/material'
+import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
-import { IHit } from '@react-discovery/core'
-import { InnerHtmlValue, buildHighlightedValueForHit, getFirstManifestFromHit } from '@react-discovery/components'
-import React, { ReactElement, useEffect } from 'react'
-import { getWorkspaceViewIdMap, setViewIdMap } from '@react-discovery/workspace'
-import { Domain } from '@react-discovery/views'
+import { Instance } from '@popperjs/core'
+import { buildHighlightedValueForHit, getFirstManifestFromHit, InnerHtmlValue } from '@react-discovery/components'
 import { Thumbnail } from '@react-discovery/iiif'
-import { useAppDispatch } from '../../state'
-import { usePrevious } from '../../hooks'
+import { IHit, setViewIdMap, useAppDispatch, usePrevious } from '@react-discovery/internal'
+import { Domain } from '@react-discovery/views'
+import { getWorkspaceViewIdMap } from '@react-discovery/workspace'
+import React, { ReactElement, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Theme } from '@mui/material/styles'
 
 interface IGridComponent {
   hit: IHit;
@@ -100,6 +99,9 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
   const [currentManifestNodes, setManifestNodes] = React.useState([])
   const nodeCount = currentManifestNodes.filter((node): boolean => node === item[Domain.MANIFEST_ID_FIELD])
 
+  const popperRef = useRef<Instance>(null)
+  const areaRef = useRef<HTMLDivElement>(null)
+
   useEffect((): void => {
     if (prevViewIdMap !== viewIdMap) {
       const manifestsInMap = Object.values(viewIdMap).map((instance: any) => instance.manifest)
@@ -108,6 +110,9 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
   }, [prevViewIdMap, viewIdMap])
 
   const handleAddToWorkspace = (manifest): void => {
+    if (popperRef.current != null) {
+      popperRef.current.update()
+    }
     dispatch(setViewIdMap({ id, manifest, type: 'image' }))
   }
 
@@ -115,15 +120,31 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
     (<ImageListItem
       className={classes.gridListTile}
     >
-      <div style={{ display: 'flex', left: 0, position: 'absolute', right: 0, zIndex: 500 }}>
-        <div style={{ flexGrow: 1 }}/>
+      <div style={{ display: 'flex', left: 0, position: 'absolute', right: 0, zIndex: 500 }}
+      >
+        <div style={{ flexGrow: 1 }}
+             ref={areaRef}/>
         <Tooltip
-          title={t('addMediaToWorkspace')}>
+          title={t('addMediaToWorkspace')}
+          placement='bottom'
+          PopperProps={{
+            popperRef,
+            anchorEl: {
+              getBoundingClientRect: () => {
+                return new DOMRect(
+                    areaRef.current!.getBoundingClientRect().x + 120,
+                    areaRef.current!.getBoundingClientRect().y + 40,
+                    0,
+                    0
+                )
+              }
+            }
+          }}
+        >
           {nodeCount && nodeCount.length
             ? <IconButton
             aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
             color='primary'
-            href=''
             onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
             size="large">
               <CheckCircle className={classes.title}/>

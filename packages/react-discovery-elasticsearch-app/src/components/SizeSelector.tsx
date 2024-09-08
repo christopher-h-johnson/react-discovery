@@ -1,12 +1,10 @@
-import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
 import { Slider } from '@mui/material'
-import { setSelectedIndex } from '@react-discovery/configuration'
-import { useAppDispatch } from '../state'
+import { OSCore, setSelectedIndex, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
 
 export const SizeSelector: React.FC<any> = (): ReactElement => {
   const dispatch = useAppDispatch()
-  const size = ESCore.state.getSize()
+  const size = OSCore.state.getSize()
 
   const sizeSpec = [
     {
@@ -26,7 +24,7 @@ export const SizeSelector: React.FC<any> = (): ReactElement => {
   // eslint-disable-next-line no-empty-pattern
   const handleSizeChange = ({}, value): void => {
     dispatch(setSelectedIndex({ selectedIndex: 0 }))
-    dispatch(ESCore.state.setSize({ size: value }))
+    dispatch(OSCore.state.setSize({ size: value }))
   }
 
   const valuetext = (value: number): string => {
@@ -38,6 +36,7 @@ export const SizeSelector: React.FC<any> = (): ReactElement => {
       aria-labelledby="discrete-slider-always"
       defaultValue={size}
       getAriaValueText={valuetext}
+      key={`slider-${size}`}
       marks={sizeSpec}
       min={10}
       onChange={handleSizeChange}

@@ -1,8 +1,7 @@
-import { ESCore, Hits } from '@react-discovery/core'
-import React, { ReactElement, Suspense } from 'react'
-import { getHitComponents, getViewType } from '@react-discovery/configuration'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useFacetViewSwitcherStyles } from '@react-discovery/components'
+import { getHitComponents, getViewType, Hits, OSCore } from '@react-discovery/internal'
+import React, { ReactElement, Suspense } from 'react'
 
 const CUSTOM_COMPONENT_PATH = './hit-views/'
 
@@ -26,7 +25,7 @@ const buildHitComponent = (props, filterType, hitComponents, viewType): ReactEle
 
 export const ViewTypeSwitcher: React.FC<any> = (props): ReactElement => {
   const classes: any = useFacetViewSwitcherStyles({})
-  const filterType = ESCore.state.getFilterType() || 'Kulturobjekt'
+  const filterType = OSCore.state.getFilterType() || 'Kulturobjekt'
   const hitComponents = getHitComponents()
   const viewType = getViewType()
 

@@ -1,7 +1,6 @@
+import { IHit, ISearchField } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { FieldLabel } from './FieldLabel'
-import { IHit } from '@react-discovery/core'
-import { ISearchField } from '@react-discovery/configuration'
 import { ValueDisplay } from './ValueDisplay'
 
 interface IFieldValueDisplay {

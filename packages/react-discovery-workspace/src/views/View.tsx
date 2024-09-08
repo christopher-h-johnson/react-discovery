@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react'
 import { SimpleDataView, SimpleImageView } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 type ViewType = 'data' | 'image'
 

@@ -1,11 +1,10 @@
-import { Fab, Toolbar } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
-import React, { ReactElement } from 'react'
 import { Add } from '@mui/icons-material'
-import noop from 'lodash/noop'
-import { setViewIdMap } from './state'
+import { Fab, Toolbar } from '@mui/material'
 import { Theme } from '@mui/material/styles'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import makeStyles from '@mui/styles/makeStyles'
+import { setViewIdMap, useAppDispatch } from '@react-discovery/internal'
+import noop from 'lodash/noop'
+import React, { ReactElement } from 'react'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line

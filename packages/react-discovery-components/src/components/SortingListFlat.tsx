@@ -1,19 +1,18 @@
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
 import { Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material'
+import { ISortField, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
+import { useTranslation } from 'react-i18next'
 import { FlexBox } from '.'
 import { IOverridableStyledComponent } from '..'
-import { ISortField } from '@react-discovery/configuration'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useSortingSelectorStyles } from '../styles'
-import { useTranslation } from 'react-i18next'
 
 export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const { t } = useTranslation('vocab')
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useSortingSelectorStyles({})
   const dispatch = useAppDispatch()
-  const sortFields = ESCore.state.getSortFields()
+  const sortFields = OSCore.state.getSortFields()
   const [sortOrder, setSortOrder] = React.useState('asc')
 
   const handleChange = (field): void => {
@@ -34,7 +33,7 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
     }, [])
     const sorted = newSortFields.sort((a: any, b: any): any => (a.isSelected === b.isSelected) ? 0 : a.isSelected ? -1 : 1)
     const [currentSortSelection] = sorted
-    dispatch(ESCore.state.setSortFields({ sortFields: sorted }))
+    dispatch(OSCore.state.setSortFields({ sortFields: sorted }))
     setSortOrder(currentSortSelection.order)
   }
 
@@ -52,7 +51,7 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
         }
         return sf
       })
-      dispatch(ESCore.state.setSortFields({ sortFields: newSortFields }))
+      dispatch(OSCore.state.setSortFields({ sortFields: newSortFields }))
     }
   }
 

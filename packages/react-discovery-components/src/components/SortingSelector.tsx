@@ -1,18 +1,17 @@
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
-import { IOverridableStyledComponent } from '..'
 import { FormControl, IconButton, Input, InputLabel, NativeSelect } from '@mui/material'
+import { ISortField, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { ISortField } from '@react-discovery/configuration'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
-import { useSortingSelectorStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
+import { IOverridableStyledComponent } from '..'
+import { useSortingSelectorStyles } from '../styles'
 
 export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
   const { t } = useTranslation('vocab')
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useSortingSelectorStyles({})
   const dispatch = useAppDispatch()
-  const sortFields = ESCore.state.getSortFields()
+  const sortFields = OSCore.state.getSortFields()
   const [selectorValue, setSelectorValue] = React.useState('')
   const [sortOrder, setSortOrder] = React.useState('asc')
 
@@ -34,7 +33,7 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
     }, [])
     const sorted = newSortFields.sort((a: any, b: any): any => (a.isSelected === b.isSelected) ? 0 : a.isSelected ? -1 : 1)
     const [currentSortSelection] = sorted
-    dispatch(ESCore.state.setSortFields({ sortFields: sorted }))
+    dispatch(OSCore.state.setSortFields({ sortFields: sorted }))
     setSelectorValue(currentSortSelection.field)
     setSortOrder(currentSortSelection.order)
   }
@@ -53,7 +52,7 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
         }
         return sf
       })
-      dispatch(ESCore.state.setSortFields({ sortFields: newSortFields }))
+      dispatch(OSCore.state.setSortFields({ sortFields: newSortFields }))
     }
   }
 
@@ -85,7 +84,7 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
           size="large">
           <ArrowDownward/>
         </IconButton>)
-      );
+      )
     }
   }
 

@@ -1,16 +1,18 @@
-import { ESCore, IElasticSearchQuery } from '@react-discovery/core'
 import { FormControl, ListItemText, MenuItem, Select } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
 import {
-  ICollection,
   getCollectionByKey,
   getCollections,
   getCurrentCollection,
-  setCurrentCollection
-} from '@react-discovery/configuration'
+  ICollection,
+  IElasticSearchQuery,
+  OSCore,
+  setCurrentCollection,
+  useAppDispatch,
+  usePrevious
+} from '@react-discovery/internal'
+
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useAppDispatch } from '../state'
-import { usePrevious } from '../hooks'
 
 const useStyles = makeStyles((): any => ({
   primary: {
@@ -32,7 +34,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
 
   const jsonCollection = JSON.stringify(collectionObj)
   const prevJsonCollection = usePrevious(jsonCollection)
-  const size = ESCore.state.getSize()
+  const size = OSCore.state.getSize()
 
   useEffect((): void => {
     if (!isInitialized) {
@@ -40,7 +42,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
     }
     if (prevJsonCollection !== jsonCollection) {
       const { initialFilter, refinementListFilters, searchFields, sortFields } = collectionObj
-      const aggs = ESCore.builders.buildAggs(refinementListFilters)
+      const aggs = OSCore.builders.buildAggs(refinementListFilters)
       const qs: IElasticSearchQuery = {
         aggs,
         filters: initialFilter || {},
@@ -50,12 +52,12 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
         sortFields,
         stringInput: null
       }
-      dispatch(ESCore.state.setQueryFields({ ...qs }))
+      dispatch(OSCore.state.setQueryFields({ ...qs }))
       if (isInitialized) {
         // navigation.navigate(currentSearchContext)
       }
     }
-  }, [prevJsonCollection, jsonCollection])
+  }, [prevJsonCollection, jsonCollection, isInitialized, collectionObj, size, dispatch])
 
   const getIndexNames = (): any => {
     const map = new Map()
