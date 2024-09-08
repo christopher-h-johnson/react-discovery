@@ -1,7 +1,7 @@
-import * as builders from './query-builders'
-import * as enums from './enum'
-import * as state from './state'
 import { IConfig, ISearchField, ISortField } from '../configuration'
+import * as enums from './enum'
+import * as builders from './query-builders'
+import * as state from './state'
 
 export * from './state'
 export * from './components'

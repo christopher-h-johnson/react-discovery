@@ -1,4 +1,4 @@
-import { getRefinementListFilters } from '@react-discovery/configuration'
+import { getRefinementListFilters } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IOverridableStyledComponent } from '..'

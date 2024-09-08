@@ -2,8 +2,15 @@ import { Book, ChatBubble, Image, Info } from '@mui/icons-material'
 import { Badge, Chip, Tab, Tabs, Theme, Tooltip } from '@mui/material'
 import withStyles from '@mui/styles/withStyles'
 import { buildEntityCountForType } from '@react-discovery/components'
-import { getSelectedIndex, getSelectedTabForId } from '@react-discovery/configuration'
-import { OSCore, setCurrentSelectedTab, setItemViewType, setViewType, useAppDispatch } from '@react-discovery/internal'
+import {
+  getSelectedIndex,
+  getSelectedTabForId,
+  OSCore,
+  setCurrentSelectedTab,
+  setItemViewType,
+  setViewType,
+  useAppDispatch
+} from '@react-discovery/internal'
 import { Domain, useHitViewStyles } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'

@@ -1,6 +1,11 @@
 import { CardHeader } from '@mui/material'
-import { getCurrentCollection, getCurrentSearchContext, getRootContext } from '@react-discovery/configuration'
-import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import {
+  getCurrentCollection,
+  getCurrentSearchContext,
+  getRootContext,
+  OSCore,
+  useAppDispatch
+} from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { FlexBox, InnerHtmlValue } from '.'

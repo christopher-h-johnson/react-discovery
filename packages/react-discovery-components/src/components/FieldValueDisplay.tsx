@@ -1,5 +1,4 @@
-import { ISearchField } from '@react-discovery/configuration'
-import { IHit } from '@react-discovery/internal'
+import { IHit, ISearchField } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { FieldLabel } from './FieldLabel'
 import { ValueDisplay } from './ValueDisplay'

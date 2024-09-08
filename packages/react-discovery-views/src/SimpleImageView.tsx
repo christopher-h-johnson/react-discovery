@@ -1,6 +1,5 @@
-import { getCurrentCollection } from '@react-discovery/configuration'
 import { SimpleImageViewer } from '@react-discovery/iiif'
-import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import { getCurrentCollection, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
 import { buildDocumentUri } from './utils'
 

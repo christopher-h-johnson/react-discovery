@@ -1,6 +1,5 @@
 import { Divider, InputBase, Paper } from '@mui/material'
-import { getCurrentSearchContext } from '@react-discovery/configuration'
-import { OSCore, setSelectedIndex, useAppDispatch } from '@react-discovery/internal'
+import { getCurrentSearchContext, OSCore, setSelectedIndex, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'

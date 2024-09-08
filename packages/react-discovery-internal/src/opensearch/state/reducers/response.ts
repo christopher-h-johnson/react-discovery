@@ -1,6 +1,6 @@
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { IHit, IResponse } from '../..'
 import { fetchElasticSearchDocument, fetchElasticSearchResponse } from '../actions'
-import { reducerWithInitialState } from 'typescript-fsa-reducers'
 
 const initialState: IResponse = {
   aggregations: null,

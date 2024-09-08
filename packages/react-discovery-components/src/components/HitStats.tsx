@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
-import { OSCore } from '@react-discovery/internal'
+import { getCollectionByKey, getCurrentCollection, OSCore } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 

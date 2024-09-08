@@ -1,7 +1,6 @@
 import { Description, Home, PictureInPicture, Search, Settings } from '@mui/icons-material'
 import { Badge, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
-import { getCurrentSearchContext } from '@react-discovery/configuration'
-import { usePrevious } from '@react-discovery/internal'
+import { getCurrentSearchContext, usePrevious } from '@react-discovery/internal'
 import { getNumberOfWorkspaceNodes } from '@react-discovery/workspace'
 import React, { forwardRef, ReactElement, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'

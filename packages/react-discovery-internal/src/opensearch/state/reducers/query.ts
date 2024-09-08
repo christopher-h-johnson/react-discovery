@@ -1,4 +1,5 @@
 import { ReducerBuilder, reducerWithInitialState } from 'typescript-fsa-reducers'
+import { IElasticSearchQuery } from '../../index'
 import {
   setAggs,
   setFrom,
@@ -11,7 +12,6 @@ import {
   setSortFields,
   setTypeDef
 } from '../actions'
-import { IElasticSearchQuery } from '../../index'
 
 export const query = (initialState): ReducerBuilder<IElasticSearchQuery> => reducerWithInitialState(initialState)
   .case(setAggs, (state, { aggs }): ReducerBuilder<IElasticSearchQuery> => ({

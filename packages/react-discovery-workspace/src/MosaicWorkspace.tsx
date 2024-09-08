@@ -2,12 +2,12 @@ import makeStyles from '@mui/styles/makeStyles'
 import { OSCore, removeViewId, setWorkspaceLayout, useAppDispatch, usePrevious } from '@react-discovery/internal'
 import React, { lazy, ReactElement, Suspense, useEffect } from 'react'
 import {
-    createBalancedTreeFromLeaves,
-    getLeaves,
-    Mosaic,
-    MosaicNode,
-    MosaicParent,
-    MosaicWindow
+  createBalancedTreeFromLeaves,
+  getLeaves,
+  Mosaic,
+  MosaicNode,
+  MosaicParent,
+  MosaicWindow
 } from 'react-mosaic-component'
 import { ZeroState } from '.'
 import { getWorkspaceLayout, getWorkspaceViewIdMap } from './state'

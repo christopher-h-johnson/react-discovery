@@ -1,15 +1,15 @@
 import dropRight from 'lodash/dropRight'
 import {
-    Corner,
-    createBalancedTreeFromLeaves,
-    getLeaves,
-    getNodeAtPath,
-    getOtherDirection,
-    getPathToCorner,
-    MosaicDirection,
-    MosaicNode,
-    MosaicParent,
-    updateTree
+  Corner,
+  createBalancedTreeFromLeaves,
+  getLeaves,
+  getNodeAtPath,
+  getOtherDirection,
+  getPathToCorner,
+  MosaicDirection,
+  MosaicNode,
+  MosaicParent,
+  updateTree
 } from 'react-mosaic-component'
 
 export const createNode = (windowCount): number => ++windowCount

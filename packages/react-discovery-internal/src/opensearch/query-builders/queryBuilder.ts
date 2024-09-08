@@ -1,9 +1,8 @@
-import { ISortField } from '@react-discovery/configuration'
-
 import assign from 'lodash/assign'
 import compact from 'lodash/compact'
 import reduce from 'lodash/reduce'
 import { IElasticSearchQuery, IFilters, ISearchFunctionRandomQuery } from '../'
+import { ISortField } from '../../configuration'
 import { ElasticSearchConstants } from '../enum'
 import { FunctionQuery, NestedQuery } from './full-text'
 

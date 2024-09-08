@@ -1,7 +1,6 @@
 import CircularProgress from '@mui/material/CircularProgress'
 import { useFacetViewSwitcherStyles } from '@react-discovery/components'
-import { getHitComponents, getViewType } from '@react-discovery/configuration'
-import { Hits, OSCore } from '@react-discovery/internal'
+import { getHitComponents, getViewType, Hits, OSCore } from '@react-discovery/internal'
 import React, { ReactElement, Suspense } from 'react'
 
 const CUSTOM_COMPONENT_PATH = './hit-views/'

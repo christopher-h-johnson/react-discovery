@@ -1,5 +1,6 @@
-import { IFilters, ISearchField, ISortField } from '@react-discovery/configuration'
 import actionCreatorFactory from 'typescript-fsa'
+import { IFilters } from '../..'
+import { ISearchField, ISortField } from '../../../configuration'
 import { IAggRecord } from '../../index'
 
 const actionCreator = actionCreatorFactory()

@@ -1,7 +1,6 @@
 import Language from '@mui/icons-material/Language'
 import { IconButton, Menu, MenuItem } from '@mui/material'
-import { getCurrentLanguage, getLanguages } from '@react-discovery/configuration'
-import { setCurrentLanguage, useAppDispatch } from '@react-discovery/internal'
+import { getCurrentLanguage, getLanguages, setCurrentLanguage, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { IOverridableStyledComponent } from '../..'
 import { useMenuButtonStyles } from '../../styles'

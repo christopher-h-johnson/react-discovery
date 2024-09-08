@@ -9,8 +9,14 @@ import {
   ItemListFlat,
   SortingListFlat
 } from '@react-discovery/components'
-import { getCollectionByKey, getCurrentCollection, getRefinementListFilters } from '@react-discovery/configuration'
-import { OSCore, useAppDispatch, usePrevious } from '@react-discovery/internal'
+import {
+  getCollectionByKey,
+  getCurrentCollection,
+  getRefinementListFilters,
+  OSCore,
+  useAppDispatch,
+  usePrevious
+} from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'

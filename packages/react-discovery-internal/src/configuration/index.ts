@@ -2,6 +2,7 @@ import { IFilters } from '../opensearch'
 
 export * from './reducers'
 export * from './actions'
+export * from './selectors'
 
 export type IItemViews = Record<string, string>
 

@@ -1,8 +1,11 @@
 import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
 import { CardActionArea, CardMedia } from '@mui/material'
 import { useThumbnailStyles } from '@react-discovery/components'
-import { getCurrentGridViewerObjectThumbnail } from '@react-discovery/configuration'
-import { setCurrentGridViewerObject, useAppDispatch } from '@react-discovery/internal'
+import {
+  getCurrentGridViewerObjectThumbnail,
+  setCurrentGridViewerObject,
+  useAppDispatch
+} from '@react-discovery/internal'
 import clsx from 'clsx'
 import React, { ReactElement } from 'react'
 import { buildThumbnailReference } from '../utils'

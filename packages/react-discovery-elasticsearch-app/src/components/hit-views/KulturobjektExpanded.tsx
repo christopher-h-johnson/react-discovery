@@ -6,8 +6,14 @@ import {
   TitleIdHeader,
   ValueDisplay
 } from '@react-discovery/components'
-import { getHitComponentConfig, getItemViewType, getViewType } from '@react-discovery/configuration'
-import { IHit, OSCore, setViewIdMap } from '@react-discovery/internal'
+import {
+  getHitComponentConfig,
+  getItemViewType,
+  getViewType,
+  IHit,
+  OSCore,
+  setViewIdMap
+} from '@react-discovery/internal'
 import { Domain, domainEntitySpec, EntityDisplay, HitViewOptionsMenu, useHitViewStyles } from '@react-discovery/views'
 import { getNumberOfWorkspaceNodesForId } from '@react-discovery/workspace'
 import React, { ReactElement } from 'react'

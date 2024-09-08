@@ -1,4 +1,17 @@
+import { stringify } from 'query-string'
 import React, { ReactElement, useEffect, useState } from 'react'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { useAppDispatch, usePrevious } from '../../'
+import {
+  getCollections,
+  getCurrentCollection,
+  getCurrentSearchContext,
+  setCurrentCollection,
+  setSelectedIndex
+} from '../../configuration'
+import { ElasticSearchConstants } from '../enum'
+
+import { IElasticSearchQuery } from '../index'
 import { buildAggs, functionQueryBuilder } from '../query-builders'
 import {
   fetchElasticSearchResponse,
@@ -8,14 +21,6 @@ import {
   getStringInput,
   setQueryFields
 } from '../state'
-import { getCollections, getCurrentCollection, getCurrentSearchContext } from '@react-discovery/configuration'
-import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
-import { setCurrentCollection, setSelectedIndex } from '../../configuration'
-import { ElasticSearchConstants } from '../enum'
-
-import { IElasticSearchQuery } from '../index'
-import { useAppDispatch, usePrevious } from '../../'
-import { stringify } from 'query-string'
 
 interface IElasticSearchProvider {
   useHistory?: boolean;

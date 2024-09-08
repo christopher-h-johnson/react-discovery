@@ -1,5 +1,5 @@
-import { IConfig } from '../configuration'
 import deepmerge from 'deepmerge'
+import { IConfig } from '../configuration'
 import { collections } from './collections'
 
 const currentCollection = process.env.REACT_APP_SEARCH_API_COLLECTION

@@ -1,7 +1,10 @@
 import { FormControl, ListItemText, MenuItem, Select } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
-import { getCollectionByKey, getCollections, getCurrentCollection, ICollection } from '@react-discovery/configuration'
 import {
+  getCollectionByKey,
+  getCollections,
+  getCurrentCollection,
+  ICollection,
   IElasticSearchQuery,
   OSCore,
   setCurrentCollection,

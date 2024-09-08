@@ -1,21 +1,21 @@
 import { Book, ChatBubble, ExpandMore, Image, Person } from '@mui/icons-material'
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    Card,
-    CardContent,
-    List,
-    ListSubheader,
-    Typography
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Card,
+  CardContent,
+  List,
+  ListSubheader,
+  Typography
 } from '@mui/material'
 import {
-    buildEntityCountForType,
-    buildHighlightedValueForHit,
-    buildInnerHitCountForType,
-    FieldLabel,
-    getParentEntityByChildIdentifier,
-    InnerHtmlValue
+  buildEntityCountForType,
+  buildHighlightedValueForHit,
+  buildInnerHitCountForType,
+  FieldLabel,
+  getParentEntityByChildIdentifier,
+  InnerHtmlValue
 } from '@react-discovery/components'
 import { IHit, OSCore } from '@react-discovery/internal'
 import React, { Fragment, ReactElement } from 'react'

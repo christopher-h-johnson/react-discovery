@@ -1,7 +1,6 @@
 import { ChevronLeft, ChevronRight, SkipNext, SkipPrevious } from '@mui/icons-material'
 import { List, ListItemButton, ListItemText } from '@mui/material'
-import { getSelectedIndex } from '@react-discovery/configuration'
-import { OSCore, setSelectedIndex, useAppDispatch, usePrevious } from '@react-discovery/internal'
+import { getSelectedIndex, OSCore, setSelectedIndex, useAppDispatch, usePrevious } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
 import { IOverridableStyledComponent } from '../../index'
 import { usePaginationStyles } from '../../styles'

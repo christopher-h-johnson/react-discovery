@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, CardMedia, Grid } from '@mui/material'
 import makeStyles from '@mui/styles/makeStyles'
-import { getCurrentSearchContext } from '@react-discovery/configuration'
+import { getCurrentSearchContext } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
 

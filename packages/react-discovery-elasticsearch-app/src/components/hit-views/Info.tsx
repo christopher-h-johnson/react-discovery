@@ -1,7 +1,6 @@
 import { CardContent } from '@mui/material'
 import { FieldValueDisplay } from '@react-discovery/components'
-import { getHitComponentConfig } from '@react-discovery/configuration'
-import { IHit, OSCore } from '@react-discovery/internal'
+import { getHitComponentConfig, IHit, OSCore } from '@react-discovery/internal'
 import { Domain, useHitViewStyles } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
 

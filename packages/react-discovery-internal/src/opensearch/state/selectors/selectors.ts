@@ -1,9 +1,17 @@
-import { IAggRecord, IElasticSearchQuery, ISearchFunctionRandomQuery } from '../../'
-import { IAggregation, IFilters, IHit, IHits, IState } from '../../'
-import { ISearchField, ISortField } from '@react-discovery/configuration'
-import { FieldConstants } from '../../enum'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
+import {
+  IAggRecord,
+  IAggregation,
+  IElasticSearchQuery,
+  IFilters,
+  IHit,
+  IHits,
+  ISearchFunctionRandomQuery,
+  IState
+} from '../../'
+import { ISearchField, ISortField } from '../../../configuration'
+import { FieldConstants } from '../../enum'
 
 const typeField = FieldConstants.TYPE_FIELD
 

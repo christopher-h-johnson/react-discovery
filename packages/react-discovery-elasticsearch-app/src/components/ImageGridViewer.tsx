@@ -4,9 +4,14 @@ import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
 import { buildHighlightedValueForHit, TitleIdHeader } from '@react-discovery/components'
-import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail } from '@react-discovery/configuration'
 import { buildTileSourceForGridViewerImage, SingleImageOSDViewer } from '@react-discovery/iiif'
-import { OSCore, setCurrentGridViewerObject, useAppDispatch } from '@react-discovery/internal'
+import {
+  getCurrentGridViewerObjectId,
+  getCurrentGridViewerObjectThumbnail,
+  OSCore,
+  setCurrentGridViewerObject,
+  useAppDispatch
+} from '@react-discovery/internal'
 import { Domain } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
 import { v4 as uuidv4 } from 'uuid'

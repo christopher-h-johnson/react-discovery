@@ -1,7 +1,6 @@
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
 import { Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material'
-import { ISortField } from '@react-discovery/configuration'
-import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import { ISortField, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlexBox } from '.'

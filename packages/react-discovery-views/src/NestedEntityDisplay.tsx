@@ -1,19 +1,19 @@
 import { ExpandMore } from '@mui/icons-material'
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    CardContent,
-    Divider,
-    List,
-    ListSubheader,
-    Typography
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  CardContent,
+  Divider,
+  List,
+  ListSubheader,
+  Typography
 } from '@mui/material'
 import {
-    buildEntityCountForType,
-    buildHighlightedValueForHit,
-    buildInnerHitCountForType,
-    InnerHtmlValue
+  buildEntityCountForType,
+  buildHighlightedValueForHit,
+  buildInnerHitCountForType,
+  InnerHtmlValue
 } from '@react-discovery/components'
 import { OSCore } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'

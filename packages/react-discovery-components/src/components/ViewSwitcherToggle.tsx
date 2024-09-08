@@ -1,7 +1,6 @@
 import { GridOn, UnfoldLess, UnfoldMore } from '@mui/icons-material'
 import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
-import { getViewType } from '@react-discovery/configuration'
-import { setViewType, useAppDispatch } from '@react-discovery/internal'
+import { getViewType, setViewType, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 

@@ -9,9 +9,8 @@ import {
   TitleIdHeader,
   ValueDisplay
 } from '@react-discovery/components'
-import { getCurrentCollection } from '@react-discovery/configuration'
 import { SimpleImageViewer } from '@react-discovery/iiif'
-import { OSCore } from '@react-discovery/internal'
+import { getCurrentCollection, OSCore } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'

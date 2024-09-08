@@ -2,15 +2,14 @@ import { Card, CardActions, CardContent, Theme } from '@mui/material'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
 import {
-    buildHighlightedValueForHit,
-    FieldValueDisplay,
-    getFirstManifestFromHit,
-    TitleIdHeader,
-    ValueDisplay
+  buildHighlightedValueForHit,
+  FieldValueDisplay,
+  getFirstManifestFromHit,
+  TitleIdHeader,
+  ValueDisplay
 } from '@react-discovery/components'
-import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
 import { Thumbnail } from '@react-discovery/iiif'
-import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import { getCollectionByKey, getCurrentCollection, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
 import { buildDocumentUri, Domain, domainEntitySpec, EntityDisplay } from '.'
 

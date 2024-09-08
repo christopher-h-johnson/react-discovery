@@ -1,6 +1,5 @@
 import { Button, Divider, List, ListItemButton, ListItemText, Typography } from '@mui/material'
-import { getCurrentCollection } from '@react-discovery/configuration'
-import { OSCore, setRefinementListFilterSize, useAppDispatch } from '@react-discovery/internal'
+import { getCurrentCollection, OSCore, setRefinementListFilterSize, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useItemListStyles } from '../styles'
