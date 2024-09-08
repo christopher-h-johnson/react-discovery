@@ -17,6 +17,11 @@ export const FunctionQuery = (aggregations, postFilters, qfList, _sort, stringIn
 
   return {
     aggs: aggregations,
+    highlight: {
+      fields: {
+        '*': {}
+      }
+    },
     query: {
       function_score: {
         query: {

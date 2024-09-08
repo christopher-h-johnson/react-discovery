@@ -19,11 +19,11 @@ export const getIsInWorkspace = (uuid): boolean => {
     state.workspace.viewIdMap && Object.values(state.workspace.viewIdMap).filter((instance: any) => instance.id === uuid).length))
 }
 
-export const getNumberOfWorkspaceNodesForId = (id) => {
-  const viewIdMap = state => state.workspace.viewIdMap
-  createSelector([viewIdMap], () => {
-    return viewIdMap && Object.values(viewIdMap).filter((instance: any) => instance.id === id).length
-  })
+export const selectNumberOfWorkspaceNodesForId = createSelector([(state) => state.workspace.viewIdMap, (_state, id) => id],
+  (viewIdMap, id) => Object.values(viewIdMap).filter((instance: any) => instance.id === id).length)
+
+export const getNumberOfWorkspaceNodesForId = (id): number => {
+  return useSelector((state:any): number => selectNumberOfWorkspaceNodesForId(state, id))
 }
 
 export const getNumberOfWorkspaceNodesForManifest = (manifest) => {

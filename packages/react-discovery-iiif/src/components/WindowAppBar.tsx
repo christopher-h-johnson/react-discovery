@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme): any => ({
   }
 }))
 
-export const WindowAppBar = (props): ReactElement => {
+export const WindowAppBar = (props: any): ReactElement => {
   const classes: any = useStyles({})
   const { dataId, id, removeViewId } = props
   const docs = OSCore.state.getDocuments()

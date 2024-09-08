@@ -1,4 +1,4 @@
-import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
+import { gql, skipToken, useQuery, useSuspenseQuery } from '@apollo/client'
 import { CardActionArea, CardMedia } from '@mui/material'
 import { useThumbnailStyles } from '@react-discovery/components'
 import {
@@ -55,9 +55,9 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
     ? { variables: { manifestId: manifest } }
     : skipToken)
 
-  const { data: data3 }: any = useSuspenseQuery(GET_THUMBNAIL_DESCRIPTORS, manifest
-    ? { variables: { manifestId: manifest } }
-    : skipToken)
+  const { data: data3 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
+    variables: { manifestId: manifest }
+  })
 
   const handleImageSelect = (thumbnail): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))

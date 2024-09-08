@@ -58,7 +58,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
     if (id && !doc) {
       dispatch(OSCore.state.fetchElasticSearchDocument.action({ url }))
     }
-  }, [doc])
+  }, [dispatch, doc, id, url])
 
   const buildCardActions = (cardActions): ReactElement[] => {
     return cardActions.map((item, i): ReactElement =>

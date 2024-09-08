@@ -1,4 +1,4 @@
-import { stringify } from 'query-string'
+import queryString from 'query-string'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, usePrevious } from '../../'
@@ -88,7 +88,7 @@ export const OpenSearchProvider: React.FC<IElasticSearchProvider> = (props): Rea
 
     const url = {
       pathname: currentSearchContext,
-      search: `?${stringify(search)}`
+      search: `?${queryString.stringify(search)}`
     }
     navigate(url)
   }
