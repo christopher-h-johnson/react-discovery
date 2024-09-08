@@ -4,7 +4,6 @@
     "name": "Christopher Johnson"
   },
   "dependencies": {
-    "@react-discovery/configuration": "*",
     "@react-discovery/internal": "*",
     "@react-discovery/components": "*",
     "@react-discovery/iiif": "*",

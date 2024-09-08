@@ -1,7 +1,7 @@
 import '@react-discovery/i18n'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { createTheme, StyledEngineProvider, Theme, ThemeProvider } from '@mui/material/styles'
-import { ElasticSearchProvider, setViewIdMap, store } from '@react-discovery/internal'
+import { OpenSearchProvider, setViewIdMap, store } from '@react-discovery/internal'
 import { DetailView } from '@react-discovery/views'
 import { getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap } from '@react-discovery/workspace'
 import React from 'react'
@@ -25,41 +25,41 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-        <ElasticSearchProvider useHistory={true}>
+        <OpenSearchProvider useHistory={true}>
           <DiscoveryApp component={<Landing />} title='Home'/>
-        </ElasticSearchProvider>
+        </OpenSearchProvider>
     )
   },
   {
     path: '/detail/:collection/:id',
     element: (
-        <ElasticSearchProvider useHistory={true}>
+        <OpenSearchProvider useHistory={true}>
             <DiscoveryApp component={<DetailView actions={detailViewActions}/>}/>
-        </ElasticSearchProvider>
+        </OpenSearchProvider>
     )
   },
   {
     path: '/search/:collection',
     element: (
-        <ElasticSearchProvider useHistory={true}>
+        <OpenSearchProvider useHistory={true}>
             <DiscoveryApp component={<ResultsList/>} title='React Discovery'/>
-        </ElasticSearchProvider>
+        </OpenSearchProvider>
     )
   },
   {
     path: '/settings',
     element: (
-        <ElasticSearchProvider useHistory={true}>
+        <OpenSearchProvider useHistory={true}>
             <DiscoveryApp component={<Settings/>}/>
-        </ElasticSearchProvider>
+        </OpenSearchProvider>
     )
   },
   {
     path: '/workspace',
     element: (
-        <ElasticSearchProvider useHistory={true}>
+        <OpenSearchProvider useHistory={true}>
             <DiscoveryApp component={<Workspace />}/>
-        </ElasticSearchProvider>
+        </OpenSearchProvider>
     )
   }
 ])

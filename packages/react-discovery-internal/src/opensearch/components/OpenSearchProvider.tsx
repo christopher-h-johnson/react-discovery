@@ -27,7 +27,7 @@ interface IElasticSearchProvider {
   children?: React.ReactNode;
 }
 
-export const ElasticSearchProvider: React.FC<IElasticSearchProvider> = (props): ReactElement => {
+export const OpenSearchProvider: React.FC<IElasticSearchProvider> = (props): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
   const { useHistory } = props
   const from = getFrom()

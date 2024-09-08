@@ -7,6 +7,7 @@ import { IOverridableStyledComponent } from '..'
 import { useResetButtonStyles } from '../styles'
 
 export const RandomizerButton: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useResetButtonStyles({})
   const dispatch = useAppDispatch()
 

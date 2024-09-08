@@ -6,7 +6,6 @@
   "dependencies": {
     "@apollo/client": "^3.11.4",
     "@react-discovery/components": "*",
-    "@react-discovery/configuration": "*",
     "@react-discovery/internal": "*",
     "@types/react-redux": "^7.1.0",
     "openseadragon": "^2.4.1",
