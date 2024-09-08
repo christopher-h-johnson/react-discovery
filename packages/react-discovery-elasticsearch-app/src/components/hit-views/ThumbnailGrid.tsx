@@ -1,9 +1,9 @@
 import { Container, Grid, ImageListItem } from '@mui/material'
-import React, { ReactElement } from 'react'
-import { IHit } from '@react-discovery/core'
-import { MediaGridTitleBar } from '../MediaGridTitleBar'
 import { Thumbnail } from '@react-discovery/iiif'
+import { IHit } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
 import { useThumbnailStyles } from '.'
+import { MediaGridTitleBar } from '../MediaGridTitleBar'
 
 interface IThumbnailGrid {
   hit: IHit;

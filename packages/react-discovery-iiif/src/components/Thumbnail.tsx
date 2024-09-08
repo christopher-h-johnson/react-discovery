@@ -1,11 +1,11 @@
+import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
 import { CardActionArea, CardMedia } from '@mui/material'
-import React, { ReactElement } from 'react'
-import { getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
-import { buildThumbnailReference } from '../utils'
-import clsx from 'clsx'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
-import { gql, useQuery } from '@apollo/client'
 import { useThumbnailStyles } from '@react-discovery/components'
+import { getCurrentGridViewerObjectThumbnail } from '@react-discovery/configuration'
+import { setCurrentGridViewerObject, useAppDispatch } from '@react-discovery/internal'
+import clsx from 'clsx'
+import React, { ReactElement } from 'react'
+import { buildThumbnailReference } from '../utils'
 
 interface IThumbnail {
   classes?: any;
@@ -38,21 +38,23 @@ const GET_THUMBNAIL_DESCRIPTORS = gql`
           }`
 
 export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useThumbnailStyles({})
   const dispatch = useAppDispatch()
   const { id, manifest, menuComponent, thumbnail } = props
   const currentGridViewerThumbnail = getCurrentGridViewerObjectThumbnail()
   const thumbnailLink = buildThumbnailReference(thumbnail)
-  const { data } = !thumbnail && manifest && useQuery(GET_THUMBNAIL, {
-    variables: { manifestId: manifest }
-  })
-  const { data: data2 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS_V2, {
-    variables: { manifestId: manifest }
-  })
+  const { data }: any = useSuspenseQuery(GET_THUMBNAIL, !thumbnail && manifest
+    ? { variables: { manifestId: manifest } }
+    : skipToken)
 
-  const { data: data3 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
-    variables: { manifestId: manifest }
-  })
+  const { data: data2 }: any = useSuspenseQuery(GET_THUMBNAIL_DESCRIPTORS_V2, manifest
+    ? { variables: { manifestId: manifest } }
+    : skipToken)
+
+  const { data: data3 }: any = useSuspenseQuery(GET_THUMBNAIL_DESCRIPTORS, manifest
+    ? { variables: { manifestId: manifest } }
+    : skipToken)
 
   const handleImageSelect = (thumbnail): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))

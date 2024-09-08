@@ -1,27 +1,27 @@
 import { Book, ChatBubble, ExpandMore, Image, Person } from '@mui/icons-material'
 import {
-  Card,
-  CardContent,
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  List,
-  ListSubheader,
-  Typography
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Card,
+    CardContent,
+    List,
+    ListSubheader,
+    Typography
 } from '@mui/material'
-import { ESCore, IHit } from '@react-discovery/core'
 import {
-  FieldLabel,
-  InnerHtmlValue,
-  buildEntityCountForType,
-  buildHighlightedValueForHit,
-  buildInnerHitCountForType,
-  getParentEntityByChildIdentifier
+    buildEntityCountForType,
+    buildHighlightedValueForHit,
+    buildInnerHitCountForType,
+    FieldLabel,
+    getParentEntityByChildIdentifier,
+    InnerHtmlValue
 } from '@react-discovery/components'
-import { IDisplayField, NestedEntityDisplay, useHitViewStyles } from '.'
+import { IHit, OSCore } from '@react-discovery/internal'
 import React, { Fragment, ReactElement } from 'react'
-import { Domain } from './enum'
 import { useTranslation } from 'react-i18next'
+import { IDisplayField, NestedEntityDisplay, useHitViewStyles } from '.'
+import { Domain } from './enum'
 
 interface IEntityDisplay {
   displayFields: IDisplayField[];
@@ -32,7 +32,7 @@ interface IEntityDisplay {
   useExpansion?: boolean;
 }
 
-const typeField = ESCore.enums.FieldConstants.TYPE_FIELD
+const typeField = OSCore.enums.FieldConstants.TYPE_FIELD
 
 export const EntityDisplay: React.FC<IEntityDisplay> = (props): ReactElement => {
   const classes: any = useHitViewStyles({})

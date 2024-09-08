@@ -1,26 +1,29 @@
-import {
-  AddToWorkspaceButton,
-  ArrowBackButton, ArrowForwardButton,
-  Domain, EntityDisplay,
-  HitViewOptionsMenu,
-  domainEntitySpec
-} from '.'
 import { Card, CardActions, CardContent, Theme } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
 import {
+  buildHighlightedValueForHit,
   FieldValueDisplay,
+  getFirstManifestFromHit,
   TitleIdHeader,
-  ValueDisplay,
-  buildHighlightedValueForHit, getFirstManifestFromHit
+  ValueDisplay
 } from '@react-discovery/components'
+import { getCurrentCollection } from '@react-discovery/configuration'
+import { SimpleImageViewer } from '@react-discovery/iiif'
+import { OSCore } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useParams } from 'react-router-dom'
-import { ESCore } from '@react-discovery/core'
-import { SimpleImageViewer } from '@react-discovery/iiif'
-import { getCurrentCollection } from '@react-discovery/configuration'
 import { v4 as uuidv4 } from 'uuid'
+import {
+  AddToWorkspaceButton,
+  ArrowBackButton,
+  ArrowForwardButton,
+  Domain,
+  domainEntitySpec,
+  EntityDisplay,
+  HitViewOptionsMenu
+} from '.'
 
 interface IDetailView {
   actions: any;
@@ -73,11 +76,11 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const currentCollection = getCurrentCollection()
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
   const { collection, id } = useParams()
-  const numFound = ESCore.state.getNumFound()
+  const numFound = OSCore.state.getNumFound()
   const isSingleton = numFound === 1
-  const hitIndex = ESCore.state.getHitIndexForId(id)
-  const currentHit = ESCore.state.getHitForIndex(hitIndex)
-  const searchFields = ESCore.state.getSearchFields()
+  const hitIndex = OSCore.state.getHitIndexForId(id)
+  const currentHit = OSCore.state.getHitForIndex(hitIndex)
+  const searchFields = OSCore.state.getSearchFields()
   const title = currentHit && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, currentHit) ||
     buildHighlightedValueForHit('title', currentHit))
   const manifest = currentHit && getFirstManifestFromHit(currentHit, Domain.MEDIA)

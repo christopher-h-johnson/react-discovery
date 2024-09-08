@@ -1,8 +1,8 @@
 import { GridOn, UnfoldLess, UnfoldMore } from '@mui/icons-material'
-import React, { ReactElement } from 'react'
 import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
-import { getViewType, setViewType } from '@react-discovery/configuration'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { getViewType } from '@react-discovery/configuration'
+import { setViewType, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const ViewSwitcherToggle: React.FC<any> = (): ReactElement => {

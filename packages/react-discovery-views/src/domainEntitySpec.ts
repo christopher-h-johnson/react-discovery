@@ -1,9 +1,9 @@
 import {
-  annotationDisplayFields,
-  beschreibungDisplayFields,
-  digitalisatDisplayFields,
-  facetDisplayFields,
-  personDisplayFields
+    annotationDisplayFields,
+    beschreibungDisplayFields,
+    digitalisatDisplayFields,
+    facetDisplayFields,
+    personDisplayFields
 } from './displayFields'
 import { Domain } from './enum'
 

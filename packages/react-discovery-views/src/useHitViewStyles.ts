@@ -1,5 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles'
 import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line

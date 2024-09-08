@@ -1,5 +1,5 @@
-import { ICollection, IDocType, IHitComponent, ILanguage, IRefinementListFilters } from '../..'
 import { useSelector } from 'react-redux'
+import { ICollection, IDocType, IHitComponent, ILanguage, IRefinementListFilters } from '../..'
 
 export const getCollections = (): string[] => {
   return useSelector((state: any): string[] => state.config.collections)

@@ -1,15 +1,14 @@
 import '@react-discovery/i18n'
-import { ThemeProvider, Theme, StyledEngineProvider, createTheme } from '@mui/material/styles'
-import { DiscoveryApp, Landing, ResultsList, Settings, Workspace } from './components'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap, setViewIdMap } from '@react-discovery/workspace'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { createTheme, StyledEngineProvider, Theme, ThemeProvider } from '@mui/material/styles'
+import { ElasticSearchProvider, setViewIdMap, store } from '@react-discovery/internal'
 import { DetailView } from '@react-discovery/views'
-import { ElasticSearchProvider } from '@react-discovery/core'
-import { Provider } from 'react-redux'
-import { createRoot } from 'react-dom/client'
+import { getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap } from '@react-discovery/workspace'
 import React from 'react'
-import { store } from './state'
+import { createRoot } from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { DiscoveryApp, Landing, ResultsList, Settings, Workspace } from './components'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line

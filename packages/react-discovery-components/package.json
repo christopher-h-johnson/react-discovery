@@ -4,8 +4,8 @@
     "name": "Christopher Johnson"
   },
   "dependencies": {
-    "@react-discovery/core": "*",
-    "@react-discovery/elasticsearch-app": "*"
+    "@react-discovery/configuration": "*",
+    "@react-discovery/internal": "*"
   },
   "keywords": [
     "solr",

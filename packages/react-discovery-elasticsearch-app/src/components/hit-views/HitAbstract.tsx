@@ -1,8 +1,8 @@
 import { Divider, List, ListItem, ListSubheader, Typography } from '@mui/material'
 import { FieldLabel, InnerHtmlValue } from '@react-discovery/components'
-import React, { ReactElement } from 'react'
-import { IHit } from '@react-discovery/core'
+import { IHit } from '@react-discovery/internal'
 import { useHitViewStyles } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 interface IHitAbstract {
   hit: IHit;

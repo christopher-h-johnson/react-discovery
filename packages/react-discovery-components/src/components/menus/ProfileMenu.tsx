@@ -1,6 +1,6 @@
+import { AccountCircle } from '@mui/icons-material'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import React, { ReactElement } from 'react'
-import { AccountCircle } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 
 export const ProfileMenu: React.FC<any> = (): ReactElement => {
@@ -57,5 +57,5 @@ export const ProfileMenu: React.FC<any> = (): ReactElement => {
       <AccountCircle />
     </IconButton>
     {renderMenu}
-  </>);
+  </>)
 }

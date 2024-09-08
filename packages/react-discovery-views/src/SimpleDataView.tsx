@@ -2,21 +2,17 @@ import { Card, CardActions, CardContent, Theme } from '@mui/material'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
 import {
-  Domain, EntityDisplay,
-  buildDocumentUri,
-  domainEntitySpec
-} from '.'
-import {
-  FieldValueDisplay,
-  TitleIdHeader,
-  ValueDisplay,
-  buildHighlightedValueForHit, getFirstManifestFromHit
+    buildHighlightedValueForHit,
+    FieldValueDisplay,
+    getFirstManifestFromHit,
+    TitleIdHeader,
+    ValueDisplay
 } from '@react-discovery/components'
-import React, { ReactElement, useEffect } from 'react'
 import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
-import { ESCore } from '@react-discovery/core'
 import { Thumbnail } from '@react-discovery/iiif'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement, useEffect } from 'react'
+import { buildDocumentUri, Domain, domainEntitySpec, EntityDisplay } from '.'
 
 interface ISimpleDataView {
   id: string;
@@ -48,7 +44,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
   const { id } = props
   const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
   const dispatch = useAppDispatch()
-  const docs = ESCore.state.getDocuments()
+  const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
   const docIndex = doc && doc._index
   const currentCollectionObj = getCollectionByKey(docIndex)
@@ -61,7 +57,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
 
   useEffect((): void => {
     if (id && !doc) {
-      dispatch(ESCore.state.fetchElasticSearchDocument.action({ url }))
+      dispatch(OSCore.state.fetchElasticSearchDocument.action({ url }))
     }
   }, [doc])
 

@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import OpenSeadragon from 'openseadragon'
 import makeStyles from '@mui/styles/makeStyles'
+import OpenSeadragon from 'openseadragon'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 
 export interface IOsdComponentProps {
   classes?: any;
@@ -17,6 +17,7 @@ const useStyles = makeStyles((): any => ({
 }))
 
 export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useStyles({})
   const [isInitialized, setIsInitialized] = useState(false)
   const [osd, setOsd] = useState(null)
@@ -68,7 +69,7 @@ export const OSDViewer: React.FC<IOsdComponentProps> = (props): ReactElement => 
         updateViewer(defaultOsdProps())
         setIsInitialized(true)
       }
-    })
+    }, [isInitialized, updateViewer, defaultOsdProps])
 
   return (
     <div

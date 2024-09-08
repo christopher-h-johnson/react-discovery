@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react'
 import { Box } from '@mui/material'
+import React, { ReactElement } from 'react'
 import { useFlexBoxStyles } from '../styles'
 
 export const FlexBox: React.FC<any> = (props): ReactElement => {

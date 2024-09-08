@@ -1,8 +1,8 @@
+import { MoreVert, MoreVertOutlined } from '@mui/icons-material'
 import { Badge, IconButton, Menu, MenuItem, Theme, Tooltip, Typography } from '@mui/material'
 import withStyles from '@mui/styles/withStyles'
-import { MoreVert, MoreVertOutlined } from '@mui/icons-material'
+import { useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
 import { useTranslation } from 'react-i18next'
 
 interface IHitViewOptionsMenu {

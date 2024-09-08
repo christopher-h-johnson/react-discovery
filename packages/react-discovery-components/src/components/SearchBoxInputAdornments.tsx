@@ -10,7 +10,7 @@ export const StartAdornment = (): ReactElement => {
   )
 }
 
-export const EndAdornment = (props): ReactElement => {
+export const EndAdornment = (props: any): ReactElement => {
   return (
     (<InputAdornment position="end">
       <IconButton
@@ -24,7 +24,7 @@ export const EndAdornment = (props): ReactElement => {
   );
 }
 
-export const SearchIconButton = (props): ReactElement => {
+export const SearchIconButton = (props: any): ReactElement => {
   return (
     (<IconButton edge="end" href='' onClick={props.onClick} size="large">
       <Search/>

@@ -1,12 +1,11 @@
 import { Divider, InputBase, Paper } from '@mui/material'
-import { EndAdornment, SearchIconButton } from './SearchBoxInputAdornments'
+import { getCurrentSearchContext } from '@react-discovery/configuration'
+import { OSCore, setSelectedIndex, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { getCurrentSearchContext, setSelectedIndex } from '@react-discovery/configuration'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { ESCore } from '@react-discovery/core'
-import { useSearchBoxStyles } from '../styles'
 import { useTranslation } from 'react-i18next'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useSearchBoxStyles } from '../styles'
+import { EndAdornment, SearchIconButton } from './SearchBoxInputAdornments'
 
 export const SearchBox: React.FC<any> = (): ReactElement => {
   const { t } = useTranslation()
@@ -24,7 +23,7 @@ export const SearchBox: React.FC<any> = (): ReactElement => {
 
   const handleClear = (): void => {
     setValues('')
-    dispatch(ESCore.state.setQueryInput({ stringInput: null }))
+    dispatch(OSCore.state.setQueryInput({ stringInput: null }))
   }
 
   const handleSubmit = (e): void => {
@@ -32,9 +31,9 @@ export const SearchBox: React.FC<any> = (): ReactElement => {
     if (pathname !== currentSearchContext) {
       navigation(currentSearchContext)
     }
-    dispatch(ESCore.state.setQueryInput({ stringInput: values }))
+    dispatch(OSCore.state.setQueryInput({ stringInput: values }))
     dispatch(setSelectedIndex({ selectedIndex: 0 }))
-    dispatch(ESCore.state.setFrom({ from: 0 }))
+    dispatch(OSCore.state.setFrom({ from: 0 }))
   }
 
   return (

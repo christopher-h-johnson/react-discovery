@@ -4,9 +4,9 @@
     "name": "Christopher Johnson"
   },
   "dependencies": {
-    "@react-discovery/elasticsearch-app": "*",
+    "@react-discovery/configuration": "*",
+    "@react-discovery/internal": "*",
     "@react-discovery/components": "*",
-    "@react-discovery/core": "*",
     "@react-discovery/iiif": "*",
     "@types/react-redux": "^7.1.0",
     "uuidv5": "^1.0.0"

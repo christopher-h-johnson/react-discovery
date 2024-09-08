@@ -1,21 +1,19 @@
+import { Tune } from '@mui/icons-material'
 import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material'
+import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
-import { ESCore } from '@react-discovery/core'
 import {
   GroupSelectedFilters,
   IOverridableStyledComponent,
   ItemListFlat,
   SortingListFlat
 } from '@react-discovery/components'
-import React, { ReactElement, useEffect } from 'react'
 import { getCollectionByKey, getCurrentCollection, getRefinementListFilters } from '@react-discovery/configuration'
-import { Tune } from '@mui/icons-material'
-import { useAppDispatch } from '../state'
-import { usePrevious } from '../hooks'
+import { OSCore, useAppDispatch, usePrevious } from '@react-discovery/internal'
+import React, { ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuidv4 } from 'uuid'
-import { Theme } from '@mui/material/styles'
 
 const AccordionComponent = withStyles({
   expanded: {},
@@ -115,10 +113,10 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
   useEffect((): void => {
     if (prevRefinementListFilters !== refinementListFilters) {
       const { refinementListFilters } = collectionObj
-      const aggs = ESCore.builders.buildAggs(refinementListFilters)
-      dispatch(ESCore.state.setAggs({ aggs }))
+      const aggs = OSCore.builders.buildAggs(refinementListFilters)
+      dispatch(OSCore.state.setAggs({ aggs }))
     }
-  }, [prevRefinementListFilters, refinementListFilters])
+  }, [collectionObj, dispatch, prevRefinementListFilters, refinementListFilters])
 
   const buildRefinementListFilters = (): ReactElement[] => {
     return Object.keys(refinementListFilters).map((id: any): ReactElement => (

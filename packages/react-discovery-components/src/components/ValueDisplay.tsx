@@ -1,9 +1,9 @@
-import React, { ReactElement } from 'react'
-import { buildDateFormat, buildHighlightedValueForHit } from '../utils'
-import { IHit } from '@react-discovery/core'
-import { InnerHtmlValue } from '.'
 import { Typography } from '@mui/material'
+import { IHit } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { InnerHtmlValue } from '.'
 import { useValueDisplayStyles } from '../styles'
+import { buildDateFormat, buildHighlightedValueForHit } from '../utils'
 
 interface IValueDisplay {
   field: string;

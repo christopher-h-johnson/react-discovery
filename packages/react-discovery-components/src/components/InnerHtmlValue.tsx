@@ -7,6 +7,7 @@ interface IInnerHtmlValue {
 }
 
 export const InnerHtmlValue: React.FC<IInnerHtmlValue> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useInnerHtmlValueStyles({})
   const { value } = props
   return (

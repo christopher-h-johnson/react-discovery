@@ -1,11 +1,11 @@
-import { AddToWorkspaceButton, Domain } from '@react-discovery/views'
 import { ImageListItemBar } from '@mui/material'
-import makeStyles from '@mui/styles/makeStyles'
-import React, { ReactElement } from 'react'
-import { getWorkspaceViewIdMap, setViewIdMap } from '@react-discovery/workspace'
-import { IHit } from '@react-discovery/core'
-import { InnerHtmlValue } from '@react-discovery/components'
 import { Theme } from '@mui/material/styles'
+import makeStyles from '@mui/styles/makeStyles'
+import { InnerHtmlValue } from '@react-discovery/components'
+import { IHit, setViewIdMap } from '@react-discovery/internal'
+import { AddToWorkspaceButton, Domain } from '@react-discovery/views'
+import { getWorkspaceViewIdMap } from '@react-discovery/workspace'
+import React, { ReactElement } from 'react'
 
 interface IImageGridListTitleBar {
   classes?: any;

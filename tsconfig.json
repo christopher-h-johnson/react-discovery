@@ -49,13 +49,13 @@
   ],
   "references": [
     {
+      "path": "packages/react-discovery-internal"
+    },
+    {
       "path": "packages/react-discovery-i18n"
     },
     {
       "path": "packages/react-discovery-configuration"
-    },
-    {
-      "path": "packages/react-discovery-core"
     },
     {
       "path": "packages/react-discovery-components"

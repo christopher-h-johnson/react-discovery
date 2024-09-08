@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react'
 import { Typography } from '@mui/material'
-import { useFieldLabelStyles } from '../styles'
+import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useFieldLabelStyles } from '../styles'
 
 interface IFieldLabel {
   classes?: any;

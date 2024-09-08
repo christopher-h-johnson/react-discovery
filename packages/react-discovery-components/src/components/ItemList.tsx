@@ -1,3 +1,4 @@
+import { ExpandMore } from '@mui/icons-material'
 import {
   Accordion,
   AccordionDetails,
@@ -8,12 +9,10 @@ import {
   ListItemText,
   Typography
 } from '@mui/material'
-import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { ExpandMore } from '@mui/icons-material'
-import { useAppDispatch } from '@react-discovery/elasticsearch-app'
-import { useItemListStyles } from '../styles'
 import { styled } from '@mui/material/styles'
+import { OSCore, useAppDispatch } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { useItemListStyles } from '../styles'
 
 export interface IItemListProps {
   classes?: any;
@@ -26,9 +25,9 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const classes: any = props.classes || useItemListStyles({})
   const dispatch = useAppDispatch()
   const { field, label } = props
-  const aggregation = ESCore.state.getAggregation(field)
-  const filters = ESCore.state.getFiltersForField(field)
-  const stringInput = ESCore.state.getStringInput()
+  const aggregation = OSCore.state.getAggregation(field)
+  const filters = OSCore.state.getFiltersForField(field)
+  const stringInput = OSCore.state.getStringInput()
   const [isExpanded, setExpanded] = React.useState(false)
 
   const CustomizedAccordionDetails = styled(AccordionDetails)`
@@ -44,9 +43,9 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
   const handleChange = (key): void => {
     const newFilters = filters && filters.length ? filters.filter((f): any => f !== key) : []
     newFilters.push(key)
-    dispatch(ESCore.state.setSelectedFilters({ field, filters: newFilters }))
-    dispatch(ESCore.state.setQueryInput({ stringInput }))
-    dispatch(ESCore.state.setFrom({ from: 0 }))
+    dispatch(OSCore.state.setSelectedFilters({ field, filters: newFilters }))
+    dispatch(OSCore.state.setQueryInput({ stringInput }))
+    dispatch(OSCore.state.setFrom({ from: 0 }))
   }
 
   const actions = (aggregation): ReactElement => {

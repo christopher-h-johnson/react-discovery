@@ -1,11 +1,11 @@
-import { Badge, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
 import { Description, Home, PictureInPicture, Search, Settings } from '@mui/icons-material'
-import { NavLink, useLocation } from 'react-router-dom'
-import React, { ReactElement, forwardRef, useEffect, useState } from 'react'
+import { Badge, ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material'
 import { getCurrentSearchContext } from '@react-discovery/configuration'
+import { usePrevious } from '@react-discovery/internal'
 import { getNumberOfWorkspaceNodes } from '@react-discovery/workspace'
-import { usePrevious } from '../hooks'
+import React, { forwardRef, ReactElement, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { NavLink, useLocation } from 'react-router-dom'
 
 export const DrawerListItems: React.FC<any> = (): ReactElement => {
   const [isInitialized, setIsInitialized] = useState(false)
@@ -16,7 +16,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
   const [selectedIndex, setSelectedIndex] = React.useState(0)
   const { t } = useTranslation('common')
 
-  const listItems = [
+  const listItems = useMemo(() => [
     {
       id: 'home',
       index: 0,
@@ -47,7 +47,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
       path: '/settings',
       text: 'Settings'
     }
-  ]
+  ], [currentSearchContext])
 
   useEffect((): any => {
     const pathname = location.pathname
@@ -61,7 +61,7 @@ export const DrawerListItems: React.FC<any> = (): ReactElement => {
     if (route !== prevRoute) {
       startItem && setSelectedIndex(startItem.index)
     }
-  }, [route, prevRoute])
+  }, [route, prevRoute, listItems, isInitialized])
 
   const buildListItemIcon = (item: string): any => {
     switch (item) {

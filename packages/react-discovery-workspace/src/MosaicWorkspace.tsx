@@ -1,19 +1,18 @@
-import { ESCore } from '@react-discovery/core'
-import {
-  Mosaic,
-  MosaicNode,
-  MosaicParent,
-  MosaicWindow,
-  createBalancedTreeFromLeaves,
-  getLeaves
-} from 'react-mosaic-component'
-import React, { lazy, ReactElement, Suspense, useEffect } from 'react'
-import { getWorkspaceLayout, getWorkspaceViewIdMap, removeViewId, setWorkspaceLayout } from './state'
-import { ZeroState } from '.'
-import { createRandomNode } from './utils'
 import makeStyles from '@mui/styles/makeStyles'
-import { useAppDispatch, usePrevious } from '@react-discovery/elasticsearch-app'
+import { OSCore, removeViewId, setWorkspaceLayout, useAppDispatch, usePrevious } from '@react-discovery/internal'
+import React, { lazy, ReactElement, Suspense, useEffect } from 'react'
+import {
+    createBalancedTreeFromLeaves,
+    getLeaves,
+    Mosaic,
+    MosaicNode,
+    MosaicParent,
+    MosaicWindow
+} from 'react-mosaic-component'
+import { ZeroState } from '.'
+import { getWorkspaceLayout, getWorkspaceViewIdMap } from './state'
 import { useMosaicStyles } from './styles'
+import { createRandomNode } from './utils'
 
 export interface IWorkspaceMosaic {
   currentNode?: MosaicNode<number> | null;
@@ -41,7 +40,7 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
   const dispatch = useAppDispatch()
   useMosaicStyles({})
   const classes = useStyles({})
-  const hits = ESCore.state.getHits()
+  const hits = OSCore.state.getHits()
   const nodes = hits.hits.map((hit) => hit.id)
   const createNode = (): string => nodes && createRandomNode(nodes)
   const workspaceLayout: MosaicParent<string> = getWorkspaceLayout()

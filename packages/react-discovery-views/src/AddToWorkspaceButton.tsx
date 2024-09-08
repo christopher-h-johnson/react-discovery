@@ -1,15 +1,14 @@
 import { CheckCircle, CheckCircleOutline } from '@mui/icons-material'
-import { IHit } from '@react-discovery/core'
-import { usePrevious } from '@react-discovery/elasticsearch-app'
 import { IconButton, Tooltip } from '@mui/material'
+import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
-import React, { ReactElement, useEffect, useRef } from 'react'
-import { Domain } from './enum'
-import { useDispatch } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import { Theme } from '@mui/material/styles'
 import { Instance } from '@popperjs/core'
+import { IHit, usePrevious } from '@react-discovery/internal'
+import React, { ReactElement, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { Domain } from './enum'
 
 interface IAddToWorkspaceButton {
   actions: any;

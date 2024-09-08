@@ -1,6 +1,6 @@
+import { usePrevious } from '@react-discovery/internal'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { ImageServices } from '.'
-import { usePrevious } from '@react-discovery/elasticsearch-app'
 
 interface ISimpleImageViewer {
   classes?: any;
@@ -18,7 +18,7 @@ export const SimpleImageViewer: React.FC<ISimpleImageViewer> = (props): ReactEle
       setIsInitialized(true)
       setCurrentManifest(manifest)
     }
-  }, [manifest])
+  }, [isInitialized, manifest, prevManifest])
 
   return (
         <ImageServices manifest={currentManifest}/>

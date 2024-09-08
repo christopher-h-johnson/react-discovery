@@ -1,8 +1,8 @@
 import MuiDrawer from '@mui/material/Drawer'
 import MuiList from '@mui/material/List'
+import { CSSObject, styled, Theme } from '@mui/material/styles'
 import React, { ReactElement } from 'react'
 import { DrawerListItems } from './DrawerListItems'
-import { styled, Theme, CSSObject } from '@mui/material/styles'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line

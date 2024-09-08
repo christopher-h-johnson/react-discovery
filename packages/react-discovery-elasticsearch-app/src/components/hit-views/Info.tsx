@@ -1,9 +1,9 @@
-import { Domain, useHitViewStyles } from '@react-discovery/views'
-import { ESCore, IHit } from '@react-discovery/core'
-import React, { ReactElement } from 'react'
 import { CardContent } from '@mui/material'
 import { FieldValueDisplay } from '@react-discovery/components'
 import { getHitComponentConfig } from '@react-discovery/configuration'
+import { IHit, OSCore } from '@react-discovery/internal'
+import { Domain, useHitViewStyles } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
 
 interface IInfo {
   hit: IHit;
@@ -13,7 +13,7 @@ export const Info: React.FC<IInfo> = (props): ReactElement => {
   const classes: any = useHitViewStyles({})
   const componentConfig = getHitComponentConfig(Domain.INFO)
   const filteredFields = componentConfig && componentConfig.filteredFields
-  const searchFields = ESCore.state.getSearchFields()
+  const searchFields = OSCore.state.getSearchFields()
   const { hit } = props
   const displayFields = searchFields.filter((sf): boolean => filteredFields.includes(sf.label))
 

@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material'
-import React, { ReactElement } from 'react'
 import { getCollectionByKey, getCurrentCollection } from '@react-discovery/configuration'
-import { ESCore } from '@react-discovery/core'
+import { OSCore } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const HitStats: React.FC<any> = (): ReactElement => {
-  const numFound = ESCore.state.getNumFound()
+  const numFound = OSCore.state.getNumFound()
   const currentCollection = getCurrentCollection()
   const currentCollectionObj = getCollectionByKey(currentCollection)
   const { t } = useTranslation()

@@ -1,12 +1,12 @@
 import { CircularProgress, Grid } from '@mui/material'
-import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { ViewTypeSwitcher } from '.'
 import { useMinWidthResultsGridStyles } from '@react-discovery/components'
+import { OSCore } from '@react-discovery/internal'
+import React, { ReactElement } from 'react'
+import { ViewTypeSwitcher } from '.'
 
 export const MinWidthResultsGrid: React.FC<any> = (): ReactElement => {
   const classes: any = useMinWidthResultsGridStyles({})
-  const hits = ESCore.state.getHits()
+  const hits = OSCore.state.getHits()
   return (
     (<Grid
       item xs={12}

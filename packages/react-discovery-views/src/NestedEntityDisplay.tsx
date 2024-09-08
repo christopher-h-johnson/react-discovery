@@ -1,25 +1,27 @@
+import { ExpandMore } from '@mui/icons-material'
 import {
-  CardContent,
-  Divider,
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  List, ListSubheader,
-  Typography
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    CardContent,
+    Divider,
+    List,
+    ListSubheader,
+    Typography
 } from '@mui/material'
 import {
-  InnerHtmlValue,
-  buildEntityCountForType,
-  buildHighlightedValueForHit, buildInnerHitCountForType
+    buildEntityCountForType,
+    buildHighlightedValueForHit,
+    buildInnerHitCountForType,
+    InnerHtmlValue
 } from '@react-discovery/components'
+import { OSCore } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
-import { ESCore } from '@react-discovery/core'
-import { ExpandMore } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 import { IDisplayField } from '.'
 import { useHitViewStyles } from './useHitViewStyles'
-import { useTranslation } from 'react-i18next'
 
-const typeField = ESCore.enums.FieldConstants.TYPE_FIELD
+const typeField = OSCore.enums.FieldConstants.TYPE_FIELD
 
 interface INestedEntityDisplay {
   displayFields: IDisplayField[];

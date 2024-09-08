@@ -1,8 +1,8 @@
+import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
+import { CircularProgress } from '@mui/material'
 import React, { ReactElement, Suspense } from 'react'
 import { OSDViewer } from '.'
 import { buildTileSources } from '../utils'
-import { gql, skipToken, useSuspenseQuery } from '@apollo/client'
-import { CircularProgress } from '@mui/material'
 
 interface IImageServices {
   classes?: any;
@@ -26,18 +26,16 @@ const GET_IMAGE_SERVICES_V2 = gql`
 
 export const ImageServices: React.FC<IImageServices> = (props): ReactElement => {
   const { classes, manifest } = props
-  const response = useSuspenseQuery(GET_IMAGE_SERVICES, manifest
+  const response: any = useSuspenseQuery(GET_IMAGE_SERVICES, manifest
     ? { variables: { manifestId: manifest, type: 'ImageService2' } }
     : skipToken)
 
-  const responsev2 = useSuspenseQuery(GET_IMAGE_SERVICES_V2, manifest
+  const responsev2: any = useSuspenseQuery(GET_IMAGE_SERVICES_V2, manifest
     ? { variables: { manifestId: manifest } }
     : skipToken)
 
-  // @ts-ignore
   const imageServices = response && response.data && response.data.imageServices
 
-  // @ts-ignore
   const imageServicesv2 = responsev2 && responsev2.data && responsev2.data.imageServicesv2NoProfile
 
   return imageServices

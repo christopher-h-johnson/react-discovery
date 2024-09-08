@@ -1,17 +1,16 @@
+import { Close } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
 import withStyles from '@mui/styles/withStyles'
-import React, { ReactElement } from 'react'
-import { SingleImageOSDViewer, buildTileSourceForGridViewerImage } from '@react-discovery/iiif'
-import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail, setCurrentGridViewerObject } from '@react-discovery/configuration'
-import { Close } from '@mui/icons-material'
-import { ESCore } from '@react-discovery/core'
-import { ViewTypeSwitcher } from './ViewTypeSwitcher'
-import { useAppDispatch } from '../state'
-import { v4 as uuidv4 } from 'uuid'
 import { buildHighlightedValueForHit, TitleIdHeader } from '@react-discovery/components'
+import { getCurrentGridViewerObjectId, getCurrentGridViewerObjectThumbnail } from '@react-discovery/configuration'
+import { buildTileSourceForGridViewerImage, SingleImageOSDViewer } from '@react-discovery/iiif'
+import { OSCore, setCurrentGridViewerObject, useAppDispatch } from '@react-discovery/internal'
 import { Domain } from '@react-discovery/views'
+import React, { ReactElement } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { ViewTypeSwitcher } from './ViewTypeSwitcher'
 
 const useStyles = makeStyles((): any => ({
   closeIcon: {
@@ -51,7 +50,7 @@ export const ImageGridViewerItem = (classes) => {
   const currentGridViewerObjectThumbnail = getCurrentGridViewerObjectThumbnail()
   const image = currentGridViewerObjectThumbnail && buildTileSourceForGridViewerImage(currentGridViewerObjectThumbnail)
   const id = getCurrentGridViewerObjectId()
-  const hit = ESCore.state.getHitForId(id)
+  const hit = OSCore.state.getHitForId(id)
   const title = hit && (buildHighlightedValueForHit('title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit))
   const dispatch = useAppDispatch()
 

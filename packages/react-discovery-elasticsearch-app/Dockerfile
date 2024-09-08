@@ -20,7 +20,6 @@ RUN git clone https://github.com/christopher-h-johnson/react-discovery.git ./
 RUN git checkout ${CIRCLE_BRANCH}
 RUN npm i npm@latest -g
 RUN npm install
-RUN npm run compile --workspace=packages/react-discovery-elasticsearch-app
 RUN npm run build
 RUN npm run build --workspace=packages/react-discovery-elasticsearch-app
 RUN npm i -g serve
