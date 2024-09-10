@@ -3,12 +3,12 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Grid,
   List,
   ListItemButton,
   ListItemText,
   Typography
 } from '@mui/material'
+import Grid from '@mui/material/Grid2'
 import { styled } from '@mui/material/styles'
 import { OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
@@ -107,7 +107,7 @@ export const ItemList: React.FC<IItemListProps> = (props): ReactElement => {
       </AccordionSummary>
       <CustomizedAccordionDetails>
         <Grid container spacing={2}>
-          <Grid item>
+          <Grid>
             <List
               component="nav"
               style={{ width: '100%' }}

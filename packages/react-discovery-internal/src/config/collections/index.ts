@@ -5,6 +5,7 @@ import deepmerge from 'deepmerge'
 // import { harvard } from './harvard'
 // import { hsp2 } from './hsp2'
 import { nga } from './nga'
+import { sni } from './sni'
 // import { ox1 } from './ox'
 // import { ubl } from './ubl'
-export const collections = deepmerge.all([nga])
+export const collections = deepmerge.all([nga, sni])

@@ -7,4 +7,4 @@ screenshots/
 .nyc
 .idea
 *.pem
-
+test-data/
