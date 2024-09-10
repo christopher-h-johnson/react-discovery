@@ -81,7 +81,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const currentHit = OSCore.state.getHitForIndex(hitIndex)
   const searchFields = OSCore.state.getSearchFields()
   const title = currentHit && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, currentHit) ||
-    buildHighlightedValueForHit('title', currentHit))
+    buildHighlightedValueForHit('Title', currentHit))
   const manifest = currentHit && getFirstManifestFromHit(currentHit, Domain.MEDIA)
   const item = {
     [Domain.MEDIA_TITLE_FIELD]: title,

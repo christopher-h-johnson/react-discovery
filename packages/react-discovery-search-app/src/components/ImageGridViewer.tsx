@@ -56,7 +56,7 @@ export const ImageGridViewerItem = (classes) => {
   const image = currentGridViewerObjectThumbnail && buildTileSourceForGridViewerImage(currentGridViewerObjectThumbnail)
   const id = getCurrentGridViewerObjectId()
   const hit = OSCore.state.getHitForId(id)
-  const title = hit && (buildHighlightedValueForHit('title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit))
+  const title = hit && (buildHighlightedValueForHit('Title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit))
   const dispatch = useAppDispatch()
 
   const handleRemove = (): void => {

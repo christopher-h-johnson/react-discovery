@@ -30,6 +30,11 @@ export const sni: IConfig = {
           size: 10
         },
         3: {
+          field: 'Collection.keyword',
+          label: 'Collection',
+          size: 10
+        },
+        4: {
           field: 'Date.keyword',
           label: 'Date',
           size: 10
@@ -42,13 +47,13 @@ export const sni: IConfig = {
           type: null
         },
         {
-          field: 'Title',
-          label: 'Title',
+          field: 'Artist',
+          label: 'Artist',
           type: null
         },
         {
-          field: 'Artist',
-          label: 'Artist',
+          field: 'Origin',
+          label: 'Origin',
           type: null
         },
         {
@@ -57,8 +62,23 @@ export const sni: IConfig = {
           type: null
         },
         {
-          field: 'Period',
-          label: 'Period',
+          field: 'Exhibition History',
+          label: 'Exhibition History',
+          type: null
+        },
+        {
+          field: 'Description',
+          label: 'Description',
+          type: null
+        },
+        {
+          field: 'Title',
+          label: 'Title',
+          type: null
+        },
+        {
+          field: 'Dimensions',
+          label: 'Dimensions',
           type: null
         },
         {
@@ -72,8 +92,18 @@ export const sni: IConfig = {
           type: null
         },
         {
+          field: 'Inscriptions',
+          label: 'Inscriptions',
+          type: null
+        },
+        {
           field: 'Medium',
           label: 'Medium',
+          type: null
+        },
+        {
+          field: 'Period',
+          label: 'Period',
           type: null
         },
         {
@@ -84,6 +114,16 @@ export const sni: IConfig = {
         {
           field: 'Topic',
           label: 'Topic',
+          type: null
+        },
+        {
+          field: 'Guid',
+          label: 'Guid',
+          type: null
+        },
+        {
+          field: 'attribution',
+          label: 'Attribution',
           type: null
         },
         {

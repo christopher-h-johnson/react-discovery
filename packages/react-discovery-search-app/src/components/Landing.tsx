@@ -58,15 +58,14 @@ export const Landing: React.FC<any> = (): ReactElement => {
 
   return (<>
     <Grid
-      alignItems="center"
       container
-      direction="column"
-      justifyContent="center"
       spacing={3}
     >
-      <Grid style={{ display: 'flex' }} size={8}>
+      <Grid display="flex" size={2}/>
+      <Grid justifyContent="center" display="flex" size={7}>
         {buildCards(cards)}
       </Grid>
+      <Grid display="flex" size="grow"/>
     </Grid>
   </>)
 }

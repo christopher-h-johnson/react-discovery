@@ -1,6 +1,6 @@
 import { Shuffle } from '@mui/icons-material'
 import { IconButton, Tooltip } from '@mui/material'
-import { IElasticSearchQuery, OSCore, setInitialState, useAppDispatch } from '@react-discovery/internal'
+import { OSCore, setFrom, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { IOverridableStyledComponent } from '..'
@@ -19,16 +19,7 @@ export const RandomizerButton: React.FC<IOverridableStyledComponent> = (props): 
 
   const handleChange = (): void => {
     const randomFrom = (Math.floor(Math.random() * (maxPages - 1) + 1) + 1) * size
-    const initialQueryState: IElasticSearchQuery = {
-      aggs: {},
-      filters: {},
-      from: randomFrom,
-      searchFields: [],
-      size,
-      sortFields: [],
-      stringInput: ''
-    }
-    dispatch(setInitialState({ initialState: initialQueryState }))
+    dispatch(setFrom({ from: randomFrom }))
   }
 
   return (

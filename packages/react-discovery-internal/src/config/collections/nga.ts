@@ -68,12 +68,12 @@ export const nga: IConfig = {
         },
         {
           field: 'attribution',
-          label: 'attribution',
+          label: 'Attribution',
           type: null
         },
         {
           field: 'description',
-          label: 'description',
+          label: 'Description',
           type: null
         },
         {

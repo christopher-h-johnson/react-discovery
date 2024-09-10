@@ -26,7 +26,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
   const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && (hit._source.id || hit.id)
-  const title = buildHighlightedValueForHit('title', hit)
+  const title = buildHighlightedValueForHit('Title', hit)
   const manifest = hit && getFirstManifestFromHit(hit, Domain.MEDIA)
   const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
   const item = {

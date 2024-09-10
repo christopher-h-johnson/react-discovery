@@ -39,7 +39,7 @@ export const WindowAppBar = (props: any): ReactElement => {
   const { dataId, id, removeViewId } = props
   const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[dataId] : null
-  const title = doc && (buildHighlightedValueForHit('titel_t', doc) || buildHighlightedValueForHit('title', doc))
+  const title = doc && (buildHighlightedValueForHit('titel_t', doc) || buildHighlightedValueForHit('Title', doc))
   const dispatch = useAppDispatch()
 
   const handleRemove = (): void => {
