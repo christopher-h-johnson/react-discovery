@@ -15,6 +15,7 @@ const SET_FROM = 'SET_FROM'
 const SET_SIZE = 'SET_SIZE'
 const SET_QUERY_INPUT = 'SET_QUERY_INPUT'
 const SET_TYPE_DEF = 'SET_TYPE_DEF'
+const SET_INITIAL_STATE = 'SET_INITIAL_STATE'
 
 export const setAggs = actionCreator<{aggs: IAggRecord}>(SET_AGGS)
 export const setGroupField = actionCreator<{groupField: string}>(SET_GROUP_FIELD)
@@ -27,3 +28,4 @@ export const setTypeDef = actionCreator<{typeDef: string}>(SET_TYPE_DEF)
 export const setSearchFields = actionCreator<{searchFields}>(SET_SEARCH_FIELDS)
 export const setSortFields = actionCreator<{sortFields}>(SET_SORT_FIELDS)
 export const setSelectedFilters = actionCreator<{field: string; filters: string[]}>(SET_SELECTED_FILTERS)
+export const setInitialState = actionCreator<{initialState: any}>(SET_INITIAL_STATE)

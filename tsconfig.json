@@ -67,7 +67,7 @@
       "path": "packages/react-discovery-workspace"
     },
     {
-      "path": "packages/react-discovery-elasticsearch-app"
+      "path": "packages/react-discovery-search-app"
     }
   ]
 }

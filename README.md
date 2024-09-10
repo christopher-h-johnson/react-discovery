@@ -35,5 +35,6 @@ REACT_APP_SEARCH_APOLLO_SERVER=http://localhost:4000
  $ npm start
 ```
 
-
+### DEMO SITE
+http://ec2-3-88-32-73.compute-1.amazonaws.com/
 

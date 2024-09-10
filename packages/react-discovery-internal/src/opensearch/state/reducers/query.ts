@@ -6,6 +6,7 @@ import {
   setGroupField,
   setQueryFields,
   setQueryInput,
+  setInitialState,
   setSearchFields,
   setSelectedFilters,
   setSize,
@@ -13,7 +14,10 @@ import {
   setTypeDef
 } from '../actions'
 
-export const query = (initialState): ReducerBuilder<IElasticSearchQuery> => reducerWithInitialState(initialState)
+export const query = (initialState: any): ReducerBuilder<IElasticSearchQuery> => reducerWithInitialState(initialState)
+  .case(setInitialState, (_state, { initialState }): ReducerBuilder<IElasticSearchQuery> => ({
+    ...initialState
+  }))
   .case(setAggs, (state, { aggs }): ReducerBuilder<IElasticSearchQuery> => ({
     ...state,
     aggs
