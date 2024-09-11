@@ -114,6 +114,9 @@
   "license": "Apache 2.0",
   "name": "react-discovery",
   "private": true,
+  "release": {
+    "branches": ["main"]
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:christopher-h-johnson/react-discovery.git"
