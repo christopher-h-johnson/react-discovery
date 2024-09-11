@@ -8,3 +8,5 @@ screenshots/
 .idea
 *.pem
 test-data/
+.terraform/
+.docker*

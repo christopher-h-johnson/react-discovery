@@ -1,0 +1,112 @@
+name: Docker image build and publish
+on:
+  workflow_call:
+    inputs:
+      working-dir:
+        description: working directory
+        required: true
+        type: string
+      apply:
+        required: true
+        type: boolean
+      environment:
+        required: true
+        type: string
+      docker_build_dir:
+        description: Docker build directory (default = '.')
+        default: "packages/react-discovery-search-app"
+        type: string
+      ecr_repo_name:
+        description: name of repo
+        type: string
+        default: "christopher-h-johnson_react-discovery"
+      image_tag:
+        description: Tag to apply to images.
+        type: string
+        default: latest
+      aws_account_id:
+        description: AWS Account ID
+        type: string
+        default: 177981160483
+      aws_region:
+        description: Target AWS Region
+        default: "us-east-1"
+        type: string
+
+# concurrency required to avoid terraform lock contention during ECR provisioning
+concurrency: ci-${{ github.repository }}-docker-pipeline
+
+jobs:
+  terragrunt-plan:
+    runs-on: ubuntu-latest
+    env:
+      tf_version: '1.9.5'
+      tg_version: '0.67.4'
+      CI: true
+    permissions:
+      id-token: write
+      contents: read
+
+    outputs:
+      image_tag: ${{ steps.build-publish.outputs.image_tag }}
+      full_image: ${{ steps.build-publish.outputs.full_image }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ inputs.aws_account_id }}:role/Github-OIDC-ECR
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+      - name: Plan
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tf_version: ${{ env.tf_version }}
+          tg_version: ${{ env.tg_version }}
+          tg_dir: ${{ inputs.working-dir }}
+          tg_command: 'plan'
+
+      - name: Deploy
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tf_version: ${{ env.tf_version }}
+          tg_version: ${{ env.tg_version }}
+          tg_dir: ${{ inputs.working-dir }}
+          tg_command: 'apply'
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registries: ${{ inputs.aws_account_id }}
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-publish
+        working-directory: ${{ inputs.docker_build_dir }}
+        shell: bash
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ inputs.ecr_repo_name }}
+          IMAGE_TAG: ${{ inputs.image_tag }}
+          REACT_APP_SEARCH_API_USERNAME: ${{ secrets.REACT_APP_SEARCH_API_USERNAME }}
+          REACT_APP_SEARCH_API_PASSWORD: ${{ secrets.REACT_APP_SEARCH_API_PASSWORD }}
+          REACT_APP_SEARCH_API_HOST: https://search-iiif-discovery-qcugn4peovc66qej7i724v4fbq.aos.us-east-1.on.aws/
+          REACT_APP_SEARCH_APOLLO_SERVER: http://ec2-3-88-32-73.compute-1.amazonaws.com:4000/
+          REACT_APP_SEARCH_API_COLLECTION: nga
+        run: >
+          docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          --build-arg REACT_APP_SEARCH_API_HOST="$REACT_APP_SEARCH_API_HOST" 
+          --build-arg REACT_APP_SEARCH_API_COLLECTION="$REACT_APP_SEARCH_API_COLLECTION"
+          --build-arg REACT_APP_SEARCH_API_USERNAME="$REACT_APP_SEARCH_API_USERNAME"
+          --build-arg REACT_APP_SEARCH_API_PASSWORD="$REACT_APP_SEARCH_API_PASSWORD" 
+          --build-arg REACT_APP_SEARCH_APOLLO_SERVER="$REACT_APP_SEARCH_APOLLO_SERVER" .
+          && docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          && echo "IMAGE $IMAGE_TAG is pushed to $ECR_REGISTRY/$ECR_REPOSITORY"
+          && echo "image_tag=$IMAGE_TAG" 
+          && echo "full_image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

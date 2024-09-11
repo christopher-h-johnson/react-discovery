@@ -1,0 +1,16 @@
+---
+name: "[CI] Run Terragrunt for each environment"
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+
+jobs:
+  ci-dev:
+    uses: ./.github/workflows/workflow.yml
+    with:
+      working-dir: 'deployments/dev'
+      apply: ${{ github.ref_name == 'master' }}
+      environment: dev
+    secrets: inherit
