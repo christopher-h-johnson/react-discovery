@@ -37,7 +37,7 @@ on:
 concurrency: ci-${{ github.repository }}-docker-pipeline
 
 jobs:
-  terragrunt-plan:
+  terraform-docker:
     runs-on: ubuntu-latest
     env:
       tf_version: '1.9.5'
