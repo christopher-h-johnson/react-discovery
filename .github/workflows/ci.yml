@@ -4,7 +4,6 @@ name: "[CI] Run Terragrunt for each environment"
 on:
   push:
     branches: ["master"]
-  pull_request:
 
 jobs:
   ci-dev:
