@@ -7,6 +7,7 @@ import {
   setCurrentSelectedTab,
   setHitComponent,
   setIsPersisted,
+  setIsSorted,
   setItemViewType,
   setRefinementListFilterSize,
   setSelectedIndex,
@@ -21,6 +22,10 @@ export const config = (initialState): ReducerBuilder<IConfig> => reducerWithInit
   .case(setIsPersisted, (state, { isPersisted }): ReducerBuilder<IConfig> => ({
     ...state,
     isPersisted
+  }))
+  .case(setIsSorted, (state, { isSorted }): ReducerBuilder<IConfig> => ({
+    ...state,
+    isSorted
   }))
   .case(setHitComponent, (state, { currentHitComponent }): ReducerBuilder<IConfig> => ({
     ...state,

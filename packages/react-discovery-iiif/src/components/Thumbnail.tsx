@@ -11,6 +11,7 @@ import React, { ReactElement } from 'react'
 import { buildThumbnailReference } from '../utils'
 
 interface IThumbnail {
+  apiVersion?: string;
   classes?: any;
   id: string;
   image?: string;
@@ -44,20 +45,24 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useThumbnailStyles({})
   const dispatch = useAppDispatch()
-  const { id, manifest, menuComponent, thumbnail } = props
+  const { apiVersion, id, manifest, menuComponent, thumbnail } = props
   const currentGridViewerThumbnail = getCurrentGridViewerObjectThumbnail()
   const thumbnailLink = buildThumbnailReference(thumbnail)
+
   const { data }: any = useSuspenseQuery(GET_THUMBNAIL, !thumbnail && manifest
     ? { variables: { manifestId: manifest } }
     : skipToken)
 
+  const response: any = apiVersion === '3' && manifest
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    ? useQuery(GET_THUMBNAIL_DESCRIPTORS, {
+      variables: { manifestId: manifest }
+    })
+    : null
+
   const { data: data2 }: any = useSuspenseQuery(GET_THUMBNAIL_DESCRIPTORS_V2, manifest
     ? { variables: { manifestId: manifest } }
     : skipToken)
-
-  const { data: data3 } = manifest && useQuery(GET_THUMBNAIL_DESCRIPTORS, {
-    variables: { manifestId: manifest }
-  })
 
   const handleImageSelect = (thumbnail): void => {
     dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))
@@ -71,10 +76,10 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
     return data && data.manifest && data.manifest.thumbnail.filter((t): boolean => t.id === currentGridViewerThumbnail).length
   }
 
-  return data && data3
+  return data && response && response.data
     ? (
     <div className={clsx(classes.cover, { [classes.coverBorder]: isSelectedInThumbnails() })}>
-      {data.manifest && data3.manifest
+      {data.manifest && response.data.manifest
         ? data.manifest.thumbnail.map(
           (t, i) =>
           <CardActionArea
@@ -86,7 +91,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
               className={classes.media}
               component="img"
               image={t.id}
-              title={data3.manifest && (data3.manifest.label || data3.manifest.summary)}
+              title={response.data.manifest && (response.data.manifest.label || response.data.manifest.summary)}
             />
           </CardActionArea>)
         : null

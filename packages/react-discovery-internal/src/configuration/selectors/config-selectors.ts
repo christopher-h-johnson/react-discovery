@@ -51,6 +51,10 @@ export const getIsPersisted = (): boolean => {
   return useSelector((state: any): boolean => state.config.isPersisted)
 }
 
+export const getIsSorted = (): boolean => {
+  return useSelector((state: any): boolean => state.config.isSorted)
+}
+
 export const getViewType = (): string => {
   return useSelector((state: any): string => state.config.viewType)
 }

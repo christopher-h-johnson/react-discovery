@@ -70,6 +70,7 @@ export interface IConfig {
     itemViews?: IItemViews;
     isHighlighted?: boolean;
     isPersisted?: boolean;
+    isSorted?: boolean;
     languages?: ILanguage[];
     rootContext?: string;
     selectedIndex?: number;

@@ -6,6 +6,7 @@ import {
   getCollections,
   getCurrentCollection,
   getCurrentSearchContext,
+  getIsSorted,
   setCurrentCollection,
   setSelectedIndex
 } from '../../configuration'
@@ -32,17 +33,15 @@ export const OpenSearchProvider: React.FC<IElasticSearchProvider> = (props): Rea
   const { useHistory } = props
   const from = getFrom()
   const size = getSize()
+  const isSorted = getIsSorted()
   const navigate = useNavigate()
   const route = useLocation()
   const [params] = useSearchParams()
   const pathname = route.pathname
   const stringInput = getStringInput()
-  // const query: IElasticSearchQuery = getDefaultQuery()
-  // const queryObj = queryBuilder(query)
-  const randomQuery = getFunctionRandomQuery()
-  const randomQueryObj = functionQueryBuilder(randomQuery)
-  const json = JSON.stringify(randomQueryObj)
-  // const json = JSON.stringify(queryObj)
+  const query = getFunctionRandomQuery()
+  const queryObj = functionQueryBuilder(query, isSorted)
+  const json = JSON.stringify(queryObj)
   const prevJson = usePrevious(json)
   const collections = getCollections()
   const currentCollection = getCurrentCollection()

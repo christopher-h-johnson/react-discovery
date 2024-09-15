@@ -13,6 +13,7 @@ export const en = {
     resultsFound: 'results found',
     search: 'Search...',
     setCollection: 'Set Collection',
+    setIsSorted: 'Set Randomize',
     setSize: 'Set Result Size',
     showInner: 'Show Inner',
     simple: 'Simple',
