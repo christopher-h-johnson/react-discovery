@@ -1,5 +1,5 @@
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
-import { Divider, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material'
+import { Divider, IconButton, List, ListItemButton, ListItemText, Typography } from '@mui/material'
 import { ISortField, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -62,11 +62,10 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
           aria-label="Sort Descending"
           className={classes.button}
           data-testid='sorting-order-desc'
-          href=''
           onClick={(): void => handleSortOrder('desc')}
           size='small'
         >
-          <ArrowUpward/>
+          <ArrowUpward fontSize='inherit'/>
         </IconButton>)
     } else {
       return (
@@ -74,11 +73,10 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
           aria-label="Sort Ascending"
           className={classes.button}
           data-testid='sorting-order-asc'
-          href=''
           onClick={(): void => handleSortOrder('asc')}
           size='small'
         >
-          <ArrowDownward/>
+          <ArrowDownward fontSize='inherit'/>
         </IconButton>)
     }
   }
@@ -86,7 +84,7 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
   const actions = (): any => {
     return sortFields.map((sf, i): any => {
       return (
-        <ListItem
+        <ListItemButton
           component='div'
           data-testid={`item-${i}`}
           dense
@@ -108,7 +106,7 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
               </Typography>
             }
           />
-        </ListItem>
+        </ListItemButton>
       )
     })
   }
@@ -131,7 +129,7 @@ export const SortingListFlat: React.FC<IOverridableStyledComponent> = (props): R
         <div style={{ flexGrow: 1 }}/>
         {buildSortOrderButton()}
       </FlexBox>
-      <Divider style={{ margin: 12, marginLeft: 0 }} variant="fullWidth"/>
+      <Divider style={{ margin: 12, marginTop: 8, marginLeft: 0 }} variant="fullWidth"/>
       {actions()}
     </List>
       )

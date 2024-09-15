@@ -1,8 +1,8 @@
 import { IConfig } from '../../configuration'
 
-export const getty: IConfig = {
+export const gty: IConfig = {
   collections: {
-    gt3: {
+    gty: {
       hitComponents: [
         {
           defaultOption: true,
@@ -20,18 +20,18 @@ export const getty: IConfig = {
       primaryTypeField: 'collections.keyword',
       refinementListFilters: {
         1: {
-          field: 'Place Created.keyword',
-          label: 'Place',
+          field: 'Artist/Maker.keyword',
+          label: 'Artist',
           size: 10
         },
         2: {
-          field: 'Object Type.keyword',
-          label: 'Object Type',
+          field: 'Material.keyword',
+          label: 'Material',
           size: 10
         },
         3: {
-          field: 'Medium.keyword',
-          label: 'Medium',
+          field: 'Date.keyword',
+          label: 'Date',
           size: 10
         }
       },
@@ -42,28 +42,13 @@ export const getty: IConfig = {
           type: null
         },
         {
-          field: 'Artist',
+          field: 'Artist/Maker',
           label: 'Artist',
           type: null
         },
         {
-          field: 'Birthplace',
-          label: 'Birthplace',
-          type: null
-        },
-        {
-          field: 'Collection',
-          label: 'Collection',
-          type: null
-        },
-        {
-          field: 'Culture & Date',
-          label: 'Culture & Date',
-          type: null
-        },
-        {
-          field: 'description',
-          label: 'description',
+          field: 'Title',
+          label: 'Title',
           type: null
         },
         {
@@ -72,18 +57,28 @@ export const getty: IConfig = {
           type: null
         },
         {
-          field: 'Gallery Label (created)',
-          label: 'Gallery Label (created)',
+          field: 'Material',
+          label: 'Material',
           type: null
         },
         {
-          field: 'Inscription',
-          label: 'Inscription',
+          field: 'Date',
+          label: 'Date',
           type: null
         },
         {
-          field: 'Markings',
-          label: 'Markings',
+          field: 'Accession Number',
+          label: 'Accession Number',
+          type: null
+        },
+        {
+          field: 'license',
+          label: 'License',
+          type: null
+        },
+        {
+          field: 'related',
+          label: 'Related',
           type: null
         },
         {
@@ -92,80 +87,25 @@ export const getty: IConfig = {
           type: null
         },
         {
-          field: 'Medium',
-          label: 'Medium',
-          type: null
-        },
-        {
-          field: 'Object Number',
-          label: 'Object Number',
-          type: null
-        },
-        {
-          field: 'Object Type',
-          label: 'Object Type',
-          type: null
-        },
-        {
-          field: 'Place Created',
-          label: 'Place Created',
-          type: null
-        },
-        {
-          field: 'Place Depicted',
-          label: 'Place Depicted',
-          type: null
-        },
-        {
-          field: 'Place Found',
-          label: 'Place Found',
-          type: null
-        },
-        {
-          field: 'Rights Statement',
-          label: 'Rights Statement',
-          type: null
-        },
-        {
-          field: 'Signed',
-          label: 'Signed',
-          type: null
-        },
-        {
-          field: 'related',
-          label: 'related',
-          type: null
-        },
-        {
           field: 'thumbnail',
           label: 'thumbnail',
-          type: null
-        },
-        {
-          field: 'title',
-          label: 'title',
-          type: null
-        },
-        {
-          field: 'within',
-          label: 'within',
           type: null
         }
       ],
       sortFields: [
         {
-          field: 'title.keyword',
+          field: 'Title.keyword',
           label: 'Title',
           order: 'asc'
         },
         {
-          field: 'Artist.keyword',
+          field: 'Artist/Maker.keyword',
           label: 'Artist',
           order: 'asc'
         },
         {
-          field: 'Object Number.keyword',
-          label: 'Object Number',
+          field: 'Date.keyword',
+          label: 'Date',
           order: 'asc'
         }
       ]

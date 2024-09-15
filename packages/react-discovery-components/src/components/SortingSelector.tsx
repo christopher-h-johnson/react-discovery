@@ -3,7 +3,7 @@ import { FormControl, IconButton, Input, InputLabel, NativeSelect } from '@mui/m
 import { ISortField, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import { IOverridableStyledComponent } from '..'
+import { IOverridableStyledComponent, ItemList } from '..'
 import { useSortingSelectorStyles } from '../styles'
 
 export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): ReactElement => {
@@ -69,10 +69,10 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
           data-testid='sorting-order-desc'
           href=''
           onClick={(): void => handleSortOrder('desc')}
-          size="large">
+          size="medium">
           <ArrowUpward/>
         </IconButton>)
-      );
+      )
     } else {
       return (
         (<IconButton
@@ -81,7 +81,7 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
           data-testid='sorting-order-asc'
           href=''
           onClick={(): void => handleSortOrder('asc')}
-          size="large">
+          size="medium">
           <ArrowDownward/>
         </IconButton>)
       )
@@ -97,7 +97,6 @@ export const SortingSelector: React.FC<IOverridableStyledComponent> = (props): R
       >
         <InputLabel shrink htmlFor="sort-native-simple">Sort By</InputLabel>
         <NativeSelect
-          input={<Input id="sort-native-simple" name="sort" />}
           onChange={handleChange}
           value={selectorValue}
         >

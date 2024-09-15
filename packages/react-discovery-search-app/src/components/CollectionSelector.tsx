@@ -70,7 +70,7 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
   const indexMap = getIndexNames()
 
   const buildSelectOptions = (): any => {
-    return Array.from(indexMap, ([key, value]) =>
+    return Array.from(indexMap, ([key, value]: any) =>
       <MenuItem
         component='li'
         key={key}
@@ -88,16 +88,6 @@ export const CollectionSelector: React.FC<any> = (): ReactElement => {
   return (
     <FormControl>
       <Select
-        MenuProps={{
-          anchorOrigin: {
-            horizontal: 'left',
-            vertical: 'bottom'
-          }
-        }}
-        inputProps={{
-          id: 'index-native',
-          name: 'currentIndex'
-        }}
         onChange={handleIndexChange}
         value={currentCollection}
       >

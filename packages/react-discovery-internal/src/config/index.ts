@@ -8,6 +8,7 @@ export const rootConfig: IConfig = {
   currentCollection,
   currentLanguage: 'en',
   itemViews: {},
+  isSorted: false,
   languages: [
     {
       label: 'Deutsch',
