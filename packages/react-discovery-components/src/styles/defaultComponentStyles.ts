@@ -17,7 +17,7 @@ export const useFacetViewSwitcherStyles = makeStyles((theme: Theme): any =>
 )
 
 export const useFieldLabelStyles = makeStyles((): any => ({
-  fieldLabel: { margin: '0 20px 0 10px', minWidth: 180 }
+  fieldLabel: { minWidth: 180 }
 }))
 
 export const useFlexBoxStyles = makeStyles((): any => ({

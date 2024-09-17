@@ -128,12 +128,12 @@ export const sni: IConfig = {
         },
         {
           field: 'manifest',
-          label: 'manifest',
+          label: 'Manifest',
           type: null
         },
         {
           field: 'thumbnail',
-          label: 'thumbnail',
+          label: 'Thumbnail',
           type: null
         }
       ],
