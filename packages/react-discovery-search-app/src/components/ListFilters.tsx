@@ -12,6 +12,7 @@ import {
 import {
   getCollectionByKey,
   getCurrentCollection,
+  getIsSorted,
   getRefinementListFilters,
   OSCore,
   useAppDispatch,
@@ -105,6 +106,7 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
   const classes: any = useStyles({})
   const currentCollection = getCurrentCollection()
   const collectionObj = getCollectionByKey(currentCollection)
+  const isSorted = getIsSorted()
   const refinementListFilters = getRefinementListFilters()
   const prevRefinementListFilters = usePrevious(refinementListFilters)
   const { t } = useTranslation(['common', 'vocab'])
@@ -135,6 +137,14 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
       />))
   }
 
+  const buildSortingList = (): ReactElement => {
+    return isSorted
+      ? (
+      <SortingListFlat/>
+        )
+      : null
+  }
+
   return (
     <AccordionComponent
       expanded={expanded}
@@ -158,7 +168,7 @@ export const ListFilters: React.FC<IOverridableStyledComponent> = (): ReactEleme
       </AccordionSummaryComponent>
       <AccordionDetailsComponent>
         {buildRefinementListFilters()}
-        <SortingListFlat/>
+        {buildSortingList()}
       </AccordionDetailsComponent>
     </AccordionComponent>)
 }
