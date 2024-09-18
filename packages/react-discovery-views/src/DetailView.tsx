@@ -1,5 +1,5 @@
 import { Close, Info } from '@mui/icons-material'
-import { Box, Card, CardActions, CardContent, CssBaseline, Divider, Drawer, IconButton, Theme } from '@mui/material'
+import { Box, Card, CardContent, CssBaseline, Divider, Drawer, IconButton, Theme, Typography } from '@mui/material'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Grid from '@mui/material/Grid2'
 import { styled } from '@mui/material/styles'
@@ -105,8 +105,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
   justifyContent: 'flex-start',
+  minHeight: 48,
   top: 60
 }))
 
@@ -211,7 +211,8 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
 
   const buildDetailView = (): ReactElement => {
     return (
-       <Grid>
+       <Grid container>
+         <Grid size='grow'>
           <Card className={classes.root}>
             <TitleIdHeader
               addButton={addButton}
@@ -219,8 +220,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
               optionsMenu={optionsMenu}
               title={title}
             />
-            <div style={{ display: 'flex' }}>
-              <div className={classes.details}>
+             <div className={classes.details}>
                 <ValueDisplay
                   field={Domain.DOC_SUBTITLE_FIELD}
                   hit={currentHit}
@@ -237,8 +237,9 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
                   </CardContent>)}
                {/* currentCollection === defaultCollection ? buildCardActions(domainEntitySpec) : null */}
               </div>
-            </div>
           </Card>
+         </Grid>
+         <Grid size={1}/>
         </Grid>
     )
   }
@@ -262,7 +263,6 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
           </div>
         </AppBar>
         <Main open={open}>
-          <DrawerHeader/>
           <Grid
             container
             key={uuidv4()}
@@ -296,6 +296,9 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
             <IconButton onClick={handleDrawerClose}>
               <Close />
             </IconButton>
+            <Typography variant="h6">
+              Info
+            </Typography>
           </DrawerHeader>
           <Divider />
           {buildDetailView()}

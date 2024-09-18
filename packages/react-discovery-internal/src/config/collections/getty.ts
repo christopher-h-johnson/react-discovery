@@ -16,7 +16,7 @@ export const gty: IConfig = {
           type: 'grid'
         }
       ],
-      name: 'Getty',
+      name: 'J. Paul Getty Trust',
       primaryTypeField: 'collections.keyword',
       refinementListFilters: {
         1: {
