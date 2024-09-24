@@ -60,7 +60,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
     }
   }, [dispatch, doc, id, url])
 
-  const buildCardActions = (cardActions): ReactElement[] => {
+  /*  const buildCardActions = (cardActions): ReactElement[] => {
     return cardActions.map((item, i): ReactElement =>
       <CardActions
         disableSpacing
@@ -75,7 +75,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
         />
       </CardActions>
     )
-  }
+  } */
 
   const buildKulturObjekt = (): ReactElement => {
     return (
@@ -106,7 +106,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
                 ? <FieldValueDisplay field={field} hit={doc}/>
                 : null}
               </CardContent>)}
-            {docIndex === defaultCollection ? buildCardActions(domainEntitySpec) : null}
+            { /* docIndex === defaultCollection ? buildCardActions(domainEntitySpec) : null */ }
           </div>
         </div>
       </Card>

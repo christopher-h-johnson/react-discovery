@@ -4,9 +4,10 @@ import deepmerge from 'deepmerge'
 // import { getty } from './getty'
 // import { harvard } from './harvard'
 // import { hsp2 } from './hsp2'
+import { maps } from './maps'
 import { nga } from './nga'
 import { sni } from './sni'
 import { gty } from './getty'
 // import { ox1 } from './ox'
 // import { ubl } from './ubl'
-export const collections = deepmerge.all([gty, nga, sni])
+export const collections = deepmerge.all([gty, maps, nga, sni])

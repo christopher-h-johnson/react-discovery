@@ -23,13 +23,15 @@
     "@react-discovery/iiif": "*",
     "@react-discovery/views": "*",
     "@react-discovery/workspace": "*",
+    "apollo-link-rest": "^0.9.0",
     "classnames": "^2.2.6",
     "clsx": "^1.0.4",
     "deepmerge": "^3.2.0",
     "downshift": "^3.2.10",
     "i18next": "^23.14.0",
     "redux-observable": "^3.0.0-rc.2",
-    "serve": "^14.2.3"
+    "serve": "^14.2.3",
+    "p-throttle": "^6.2.0"
   },
   "name": "@react-discovery/search-app",
   "private": true,
