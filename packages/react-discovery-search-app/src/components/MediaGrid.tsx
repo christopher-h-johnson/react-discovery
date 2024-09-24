@@ -60,6 +60,7 @@ export const MediaGrid: React.FC<any> = (props): ReactElement => {
   const entities = hit && hit._source.entities && hit._source.entities
   const media = entities && entities.filter((entity): boolean => entity[typeField] === Domain.MEDIA)
   const thumbnail = hit && hit._source && hit._source.thumbnail
+  const label = hit && hit._source && (hit._source.label || hit._source['Full Title'])
 
   const buildMediaGrid = (): ReactElement[] => {
     return media.map((item, i): ReactElement => (
@@ -70,6 +71,7 @@ export const MediaGrid: React.FC<any> = (props): ReactElement => {
         <Thumbnail
           classes={classes}
           id={id}
+          label={label}
           manifest={item[Domain.MANIFEST_ID_FIELD]}
           thumbnail={thumbnail}
         />

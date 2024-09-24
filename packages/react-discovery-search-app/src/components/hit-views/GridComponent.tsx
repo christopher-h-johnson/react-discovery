@@ -98,6 +98,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
   const { t } = useTranslation()
   const [currentManifestNodes, setManifestNodes] = React.useState([])
   const nodeCount = currentManifestNodes.filter((node): boolean => node === item[Domain.MANIFEST_ID_FIELD])
+  const label = hit && hit._source && (hit._source.label || hit._source['Full Title'])
 
   const popperRef = useRef<Instance>(null)
   const areaRef = useRef<HTMLDivElement>(null)
@@ -161,13 +162,14 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
       <Thumbnail
         classes={classes}
         id={id}
+        label={label}
         manifest={manifest}
         thumbnail={thumbnail}
       />
       <Typography
         color='textSecondary'
         variant='subtitle2'>
-        <InnerHtmlValue classes={classes} value={item[Domain.MEDIA_TITLE_FIELD]}/>
+        <InnerHtmlValue classes={classes} value={item[Domain.MEDIA_TITLE_FIELD] || label}/>
       </Typography>
     </ImageListItem>)
   )

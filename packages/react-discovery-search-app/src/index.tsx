@@ -1,5 +1,6 @@
 import '@react-discovery/i18n'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, HttpLink, InMemoryCache } from '@apollo/client'
+import { RestLink } from 'apollo-link-rest'
 import { createTheme, StyledEngineProvider, Theme, ThemeProvider } from '@mui/material/styles'
 import { OpenSearchProvider, setViewIdMap, store } from '@react-discovery/internal'
 import { DetailView } from '@react-discovery/views'
@@ -9,6 +10,7 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { DiscoveryApp, Landing, ResultsList, Settings, Workspace } from './components'
+import pThrottle from 'p-throttle'
 
 declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line
@@ -64,9 +66,20 @@ const router = createBrowserRouter([
   }
 ])
 
-const client = new ApolloClient({
+const throttle = pThrottle({ limit: 20, interval: 1000 })
+
+const restLink = new RestLink({
   uri: process.env.REACT_APP_SEARCH_APOLLO_SERVER,
-  cache: new InMemoryCache()
+  customFetch: throttle((uri, config) => {
+    return fetch(uri, config)
+  })
+})
+
+const httpLink = createHttpLink({ uri: process.env.REACT_APP_SEARCH_APOLLO_SERVER + '/graphql' })
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: ApolloLink.from([restLink, httpLink])
 })
 
 const root = createRoot(document.getElementById('app'))

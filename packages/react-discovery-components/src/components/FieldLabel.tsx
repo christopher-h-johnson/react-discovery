@@ -9,6 +9,7 @@ interface IFieldLabel {
 }
 
 export const FieldLabel: React.FC<IFieldLabel> = (props): ReactElement => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useFieldLabelStyles({})
   const { t } = useTranslation('vocab')
   const { label } = props

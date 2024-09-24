@@ -17,6 +17,7 @@ export const ThumbnailGrid: React.FC<IThumbnailGrid> = (props): ReactElement => 
   const { hit, id, item, manifest } = props
   const thumbnailClasses: any = useThumbnailStyles({})
   const thumbnail = hit && hit._source && hit._source.thumbnail
+  const label = hit && hit._source && (hit._source.label || hit._source['Full Title'])
   return hit && item
     ? (
     <Grid className={thumbnailClasses.root}>
@@ -27,6 +28,7 @@ export const ThumbnailGrid: React.FC<IThumbnailGrid> = (props): ReactElement => 
           <Thumbnail
             classes={thumbnailClasses}
             id={id}
+            label={label}
             manifest={manifest}
             thumbnail={thumbnail}
           />
