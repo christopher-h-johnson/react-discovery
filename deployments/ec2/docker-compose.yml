@@ -11,8 +11,8 @@ services:
       - discovery-app-net
   discovery-app:
     environment:
-      - REACT_APP_SEARCH_APOLLO_SERVER=http://ec2-3-88-32-73.compute-1.amazonaws.com:4000
-    image: 177981160483.dkr.ecr.us-east-1.amazonaws.com/christopher-h-johnson/react-discovery:latest
+      - REACT_APP_SEARCH_APOLLO_SERVER=https://apollo.chj.llc
+    image: 177981160483.dkr.ecr.us-east-1.amazonaws.com/christopher-h-johnson_react-discovery:latest
     ports:
       - "3000:3000"
     networks:
@@ -26,4 +26,5 @@ services:
 
 networks:
   discovery-app-net:
+
 

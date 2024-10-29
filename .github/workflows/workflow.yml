@@ -97,8 +97,8 @@ jobs:
           REACT_APP_SEARCH_API_USERNAME: ${{ secrets.REACT_APP_SEARCH_API_USERNAME }}
           REACT_APP_SEARCH_API_PASSWORD: ${{ secrets.REACT_APP_SEARCH_API_PASSWORD }}
           REACT_APP_SEARCH_API_HOST: https://search-iiif-discovery-qcugn4peovc66qej7i724v4fbq.aos.us-east-1.on.aws/
-          REACT_APP_SEARCH_APOLLO_SERVER: http://ec2-3-88-32-73.compute-1.amazonaws.com:4000/
-          REACT_APP_SEARCH_API_COLLECTION: gty
+          REACT_APP_SEARCH_APOLLO_SERVER: https://apollo.chj.llc
+          REACT_APP_SEARCH_API_COLLECTION: maps
         run: >
           docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           --build-arg REACT_APP_SEARCH_API_HOST="$REACT_APP_SEARCH_API_HOST" 

@@ -10,3 +10,4 @@ screenshots/
 test-data/
 .terraform/
 .docker*
+*.key
