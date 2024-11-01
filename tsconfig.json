@@ -49,6 +49,9 @@
   ],
   "references": [
     {
+      "path": "packages/react-discovery-firebase"
+    },
+    {
       "path": "packages/react-discovery-internal"
     },
     {
