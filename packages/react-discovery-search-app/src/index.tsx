@@ -1,7 +1,8 @@
 import '@react-discovery/i18n'
-import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloLink, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 import { RestLink } from 'apollo-link-rest'
 import { createTheme, StyledEngineProvider, Theme, ThemeProvider } from '@mui/material/styles'
+import { SignIn } from '@react-discovery/firebase'
 import { OpenSearchProvider, setViewIdMap, store } from '@react-discovery/internal'
 import { DetailView } from '@react-discovery/views'
 import { getNumberOfWorkspaceNodesForId, getWorkspaceViewIdMap } from '@react-discovery/workspace'
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
         <OpenSearchProvider useHistory={true}>
             <DiscoveryApp component={<Settings/>}/>
         </OpenSearchProvider>
+    )
+  },
+  {
+    path: '/signin',
+    element: (
+      <OpenSearchProvider useHistory={true}>
+        <DiscoveryApp component={<SignIn/>}/>
+      </OpenSearchProvider>
     )
   },
   {

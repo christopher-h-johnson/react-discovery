@@ -3,6 +3,7 @@ import { AppBar, Badge, IconButton, Typography } from '@mui/material'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
 import { LanguageSelectionMenu, ProfileMenu, RandomizerButton, ResetButton, SearchBox } from '@react-discovery/components'
+import { AuthProvider } from '@react-discovery/firebase'
 import { Domain } from '@react-discovery/views'
 import React, { ReactElement } from 'react'
 
@@ -108,7 +109,9 @@ export const SearchAppBar: React.FC<any> = (props): ReactElement => {
               <Bookmark/>
             </Badge>
           </IconButton>
-          <ProfileMenu/>
+          <AuthProvider>
+            <ProfileMenu/>
+          </AuthProvider>
         </div>
       </div>
     </AppBar>)

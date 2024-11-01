@@ -8,6 +8,8 @@ export const en = {
     expertSearch: 'Expert Search',
     grid: 'Grid',
     itemsInWorkspace: 'Items In Workspace',
+    login: 'Sign In',
+    logout: 'Sign Out',
     moreOptions: 'More Options',
     profile: 'Profile',
     resultsFound: 'results found',
