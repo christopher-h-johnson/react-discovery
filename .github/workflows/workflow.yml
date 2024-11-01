@@ -96,6 +96,7 @@ jobs:
           IMAGE_TAG: ${{ inputs.image_tag }}
           REACT_APP_SEARCH_API_USERNAME: ${{ secrets.REACT_APP_SEARCH_API_USERNAME }}
           REACT_APP_SEARCH_API_PASSWORD: ${{ secrets.REACT_APP_SEARCH_API_PASSWORD }}
+          REACT_APP_FIREBASE_KEY: ${{ secrets.REACT_APP_FIREBASE_KEY }}
           REACT_APP_SEARCH_API_HOST: https://search-iiif-discovery-qcugn4peovc66qej7i724v4fbq.aos.us-east-1.on.aws/
           REACT_APP_SEARCH_APOLLO_SERVER: https://apollo.chj.llc
           REACT_APP_SEARCH_API_COLLECTION: maps
@@ -106,7 +107,8 @@ jobs:
           --build-arg REACT_APP_SEARCH_API_HOST="$REACT_APP_SEARCH_API_HOST" 
           --build-arg REACT_APP_SEARCH_API_COLLECTION="$REACT_APP_SEARCH_API_COLLECTION"
           --build-arg REACT_APP_SEARCH_API_USERNAME="$REACT_APP_SEARCH_API_USERNAME"
-          --build-arg REACT_APP_SEARCH_API_PASSWORD="$REACT_APP_SEARCH_API_PASSWORD" 
+          --build-arg REACT_APP_SEARCH_API_PASSWORD="$REACT_APP_SEARCH_API_PASSWORD"
+          --build-arg REACT_APP_FIREBASE_KEY="$REACT_APP_FIREBASE_KEY" 
           --build-arg REACT_APP_SEARCH_APOLLO_SERVER="$REACT_APP_SEARCH_APOLLO_SERVER" .
           && docker push "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           && echo "IMAGE $IMAGE_TAG is pushed to $ECR_REGISTRY/$ECR_REPOSITORY"
