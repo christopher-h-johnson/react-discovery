@@ -1,8 +1,8 @@
 import { IConfig } from '../../configuration'
 
-export const cambridge: IConfig = {
+export const global: IConfig = {
   collections: {
-    cambridge: {
+    global: {
       hitComponents: [
         {
           defaultOption: true,
@@ -16,7 +16,7 @@ export const cambridge: IConfig = {
           type: 'grid'
         }
       ],
-      name: 'Cambridge University',
+      name: 'Global Collection (WIP)',
       primaryTypeField: 'collections.keyword',
       refinementListFilters: {
         1: {
@@ -30,8 +30,8 @@ export const cambridge: IConfig = {
           size: 10
         },
         3: {
-          field: 'Origin Place.keyword',
-          label: 'Origin Place',
+          field: 'Artist.keyword',
+          label: 'Artist',
           size: 10
         }
       },
@@ -47,8 +47,33 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Accession Number',
+          label: 'Accession Number',
+          type: null
+        },
+        {
+          field: 'Access Note / Rights',
+          label: 'Access Note / Rights',
+          type: null
+        },
+        {
+          field: 'Accession Number',
+          label: 'Accession Number',
+          type: null
+        },
+        {
+          field: 'Accompanying Material',
+          label: 'Accompanying Material',
+          type: null
+        },
+        {
           field: 'Acquisition',
           label: 'Acquisition',
+          type: null
+        },
+        {
+          field: 'Additional Forms',
+          label: 'Additional Forms',
           type: null
         },
         {
@@ -62,6 +87,31 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Arrangement',
+          label: 'Arrangement',
+          type: null
+        },
+        {
+          field: 'Artist',
+          label: 'Artist',
+          type: null
+        },
+        {
+          field: 'Artist / Maker',
+          label: 'Artist / Maker',
+          type: null
+        },
+        {
+          field: 'Artists',
+          label: 'Artists',
+          type: null
+        },
+        {
+          field: 'Associated Date',
+          label: 'Associated Date',
+          type: null
+        },
+        {
           field: 'Associated Name(s)',
           label: 'Associated Name(s)',
           type: null
@@ -69,6 +119,11 @@ export const cambridge: IConfig = {
         {
           field: 'Associated Person(s)',
           label: 'Associated Person(s)',
+          type: null
+        },
+        {
+          field: 'Associated Place',
+          label: 'Associated Place',
           type: null
         },
         {
@@ -82,13 +137,33 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Attributed Author',
+          label: 'Attributed Author',
+          type: null
+        },
+        {
           field: 'attribution',
           label: 'Attribution',
           type: null
         },
         {
+          field: 'Attribution',
+          label: 'Attribution',
+          type: null
+        },
+        {
+          field: 'Author',
+          label: 'Author',
+          type: null
+        },
+        {
           field: 'Author(s)',
           label: 'Author(s)',
+          type: null
+        },
+        {
+          field: 'Authors',
+          label: 'Authors',
           type: null
         },
         {
@@ -104,6 +179,21 @@ export const cambridge: IConfig = {
         {
           field: 'Binding',
           label: 'Binding',
+          type: null
+        },
+        {
+          field: 'Caption',
+          label: 'Caption',
+          type: null
+        },
+        {
+          field: 'Category',
+          label: 'Category',
+          type: null
+        },
+        {
+          field: 'City',
+          label: 'City',
           type: null
         },
         {
@@ -127,6 +217,26 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Country',
+          label: 'Country',
+          type: null
+        },
+        {
+          field: 'Created by',
+          label: 'Created by',
+          type: null
+        },
+        {
+          field: 'Creation Year',
+          label: 'Creation Year',
+          type: null
+        },
+        {
+          field: 'Creator',
+          label: 'Creator',
+          type: null
+        },
+        {
           field: 'Creator(s)',
           label: 'Creator(s)',
           type: null
@@ -134,6 +244,11 @@ export const cambridge: IConfig = {
         {
           field: 'Data Source(s)',
           label: 'Data Source(s)',
+          type: null
+        },
+        {
+          field: 'Date',
+          label: 'Date',
           type: null
         },
         {
@@ -154,6 +269,11 @@ export const cambridge: IConfig = {
         {
           field: 'Decoration',
           label: 'Decoration',
+          type: null
+        },
+        {
+          field: 'Description',
+          label: 'Description',
           type: null
         },
         {
@@ -207,8 +327,23 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Full Title',
+          label: 'Full Title',
+          type: null
+        },
+        {
           field: 'Funding',
           label: 'Funding',
+          type: null
+        },
+        {
+          field: 'Inscription',
+          label: 'Inscription',
+          type: null
+        },
+        {
+          field: 'Inscriptions',
+          label: 'Inscriptions',
           type: null
         },
         {
@@ -219,6 +354,11 @@ export const cambridge: IConfig = {
         {
           field: 'Layout',
           label: 'Layout',
+          type: null
+        },
+        {
+          field: 'Location',
+          label: 'Location',
           type: null
         },
         {
@@ -237,8 +377,23 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Medium',
+          label: 'Medium',
+          type: null
+        },
+        {
           field: 'Music notation',
           label: 'Music notation',
+          type: null
+        },
+        {
+          field: 'Note',
+          label: 'Note',
+          type: null
+        },
+        {
+          field: 'Notes',
+          label: 'Notes',
           type: null
         },
         {
@@ -252,8 +407,18 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Original artist',
+          label: 'Original artist',
+          type: null
+        },
+        {
           field: 'Origin Place',
           label: 'Origin Place',
+          type: null
+        },
+        {
+          field: 'Painter',
+          label: 'Painter',
           type: null
         },
         {
@@ -267,13 +432,33 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Place',
+          label: 'Place',
+          type: null
+        },
+        {
+          field: 'Place made',
+          label: 'Place made',
+          type: null
+        },
+        {
           field: 'Place of Publication',
           label: 'Place of Publication',
           type: null
         },
         {
+          field: 'Primary Title',
+          label: 'Primary Title',
+          type: null
+        },
+        {
           field: 'Provenance',
           label: 'Provenance',
+          type: null
+        },
+        {
+          field: 'Pub Date',
+          label: 'Pub Date',
           type: null
         },
         {
@@ -284,6 +469,11 @@ export const cambridge: IConfig = {
         {
           field: 'Recipient(s)',
           label: 'Recipient(s)',
+          type: null
+        },
+        {
+          field: 'Region',
+          label: 'Region',
           type: null
         },
         {
@@ -299,6 +489,16 @@ export const cambridge: IConfig = {
         {
           field: 'seeAlso',
           label: 'seeAlso',
+          type: null
+        },
+        {
+          field: 'Style',
+          label: 'Style',
+          type: null
+        },
+        {
+          field: 'Subject',
+          label: 'Subject',
           type: null
         },
         {
@@ -327,8 +527,23 @@ export const cambridge: IConfig = {
           type: null
         },
         {
+          field: 'Topic',
+          label: 'Topic',
+          type: null
+        },
+        {
+          field: 'Type',
+          label: 'Type',
+          type: null
+        },
+        {
           field: 'Uniform Title',
           label: 'Uniform Title',
+          type: null
+        },
+        {
+          field: 'World Area',
+          label: 'World Area',
           type: null
         }
       ],
