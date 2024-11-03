@@ -8,6 +8,7 @@ import { nga } from './nga'
 import { sni } from './sni'
 import { gty } from './getty'
 import { cambridge } from './cambridge'
+import { global } from './global'
 // import { ox1 } from './ox'
 // import { ubl } from './ubl'
-export const collections = deepmerge.all([cambridge, gty, maps, nga, sni])
+export const collections = deepmerge.all([cambridge, global, gty, maps, nga, sni])

@@ -30,10 +30,21 @@ export const global: IConfig = {
           size: 10
         },
         3: {
+          field: 'Material.keyword',
+          label: 'Material',
+          size: 10
+        },
+        4: {
           field: 'Artist.keyword',
           label: 'Artist',
           size: 10
+        },
+        5: {
+          field: 'Type.keyword',
+          label: 'Type',
+          size: 10
         }
+
       },
       searchFields: [
         {

@@ -16,11 +16,11 @@ interface ITitleIdHeader {
   optionsMenu?: ReactElement;
   title: string;
   id: string;
+  index?: string;
 }
 
 export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => {
-  const { addButton, docIndex, id, optionsMenu, title } = props
-  const currentCollection = docIndex || getCurrentCollection()
+  const { addButton, docIndex, id, index, optionsMenu, title } = props
   const rootContext = getRootContext()
   const docIndexContext = rootContext + '/' + docIndex
   const currentSearchContext = (docIndex && docIndexContext) || getCurrentSearchContext()
@@ -33,12 +33,12 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
   }
 
   const buildTitleHeaderForPathName = (): ReactElement => {
-    if (pathname === currentSearchContext) {
+    if (pathname === currentSearchContext || pathname.includes('global')) {
       return (
         <FlexBox>
           <Link
             data-testid='detail-link'
-            to={`/detail/${currentCollection}/${id}`}
+            to={`/detail/${index}/${id}`}
           >
             <CardHeader style={{ width: '100%' }} title={<InnerHtmlValue value={title}/>}/>
           </Link>

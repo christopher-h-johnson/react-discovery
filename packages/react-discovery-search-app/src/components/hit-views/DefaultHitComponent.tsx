@@ -26,6 +26,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
   const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && (hit._source.id || hit.id)
+  const index = hit && hit.index
   const title = buildHighlightedValueForHit('Title', hit)
   const manifest = hit && getFirstManifestFromHit(hit, Domain.MEDIA)
   const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
@@ -61,7 +62,7 @@ const DefaultHitComponent: React.FC<IDefaultItemComponent> = (props: IDefaultIte
             </div>
           </div>
         </Grid>
-        <ThumbnailGrid hit={hit} id={id} item={item} manifest={manifest}/>
+        <ThumbnailGrid hit={hit} id={id} index={index} item={item} manifest={manifest}/>
       </Grid>
     </Card>)
   )
