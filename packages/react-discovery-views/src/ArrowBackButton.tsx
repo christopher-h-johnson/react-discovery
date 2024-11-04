@@ -24,18 +24,17 @@ const useStyles = makeStyles((theme: Theme): any =>
 )
 
 export const ArrowBackButton: React.FC<IArrowBackButton> = (props): ReactElement => {
-  const { collection, hitIndex } = props
+  const { hitIndex } = props
   const classes: any = useStyles({})
-  const currentCollection = getCurrentCollection()
   const dispatch = useAppDispatch()
   const navigation = useNavigate()
   const prevHit = OSCore.state.getHitForIndex(Math.max(0, hitIndex - 1))
   const prevHitId = prevHit && prevHit.id
-
+  const prevHitDocIndex = prevHit && prevHit.index
   const handleGetPrevDoc = (): void => {
-    const url = buildDocumentUri(collection, prevHitId)
+    const url = buildDocumentUri(prevHitDocIndex, prevHitId)
     dispatch(OSCore.state.fetchElasticSearchDocument.action({ url }))
-    navigation(`/detail/${currentCollection}/${prevHitId}`)
+    navigation(`/detail/${prevHitDocIndex}/${prevHitId}`)
   }
 
   return (

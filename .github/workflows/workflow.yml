@@ -99,7 +99,7 @@ jobs:
           REACT_APP_FIREBASE_KEY: ${{ secrets.REACT_APP_FIREBASE_KEY }}
           REACT_APP_SEARCH_API_HOST: https://search-iiif-discovery-qcugn4peovc66qej7i724v4fbq.aos.us-east-1.on.aws/
           REACT_APP_SEARCH_APOLLO_SERVER: https://apollo.chj.llc
-          REACT_APP_SEARCH_API_COLLECTION: maps
+          REACT_APP_SEARCH_API_COLLECTION: global
           REACT_APP_SIGNIN_SUCCESS_URL: https://discovery.chj.llc
         run: >
           docker build -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

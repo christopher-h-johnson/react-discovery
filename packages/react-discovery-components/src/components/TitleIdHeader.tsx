@@ -20,10 +20,10 @@ interface ITitleIdHeader {
 }
 
 export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => {
-  const { addButton, docIndex, id, index, optionsMenu, title } = props
+  const { addButton, id, index, optionsMenu, title } = props
   const rootContext = getRootContext()
-  const docIndexContext = rootContext + '/' + docIndex
-  const currentSearchContext = (docIndex && docIndexContext) || getCurrentSearchContext()
+  const docIndexContext = rootContext + '/' + index
+  const currentSearchContext = (index && docIndexContext) || getCurrentSearchContext()
   const dispatch = useAppDispatch()
   const route = useLocation()
   const pathname = route.pathname

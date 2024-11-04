@@ -16,7 +16,7 @@ export const global: IConfig = {
           type: 'grid'
         }
       ],
-      name: 'Global Collection (WIP)',
+      name: 'Global Collection',
       primaryTypeField: 'collections.keyword',
       refinementListFilters: {
         1: {
@@ -43,6 +43,11 @@ export const global: IConfig = {
           field: 'Type.keyword',
           label: 'Type',
           size: 10
+        },
+        6: {
+          field: 'Topic.keyword',
+          label: 'Topic',
+          size: 10
         }
       },
       searchFields: [
@@ -54,11 +59,6 @@ export const global: IConfig = {
         {
           field: 'Abstract',
           label: 'Abstract',
-          type: null
-        },
-        {
-          field: 'Accession Number',
-          label: 'Accession Number',
           type: null
         },
         {
@@ -107,8 +107,8 @@ export const global: IConfig = {
           type: null
         },
         {
-          field: 'Artist / Maker',
-          label: 'Artist / Maker',
+          field: 'Artist/Maker',
+          label: 'Artist/Maker',
           type: null
         },
         {
@@ -297,8 +297,18 @@ export const global: IConfig = {
           type: null
         },
         {
+          field: 'Dimensions',
+          label: 'Dimensions',
+          type: null
+        },
+        {
           field: 'Donor(s)',
           label: 'Donor(s)',
+          type: null
+        },
+        {
+          field: 'Engraver or Printer',
+          label: 'Engraver or Printer',
           type: null
         },
         {
@@ -367,6 +377,11 @@ export const global: IConfig = {
           type: null
         },
         {
+          field: 'List No',
+          label: 'List No',
+          type: null
+        },
+        {
           field: 'Location',
           label: 'Location',
           type: null
@@ -409,6 +424,16 @@ export const global: IConfig = {
         {
           field: 'Note(s)',
           label: 'Note(s)',
+          type: null
+        },
+        {
+          field: 'Obj Width cm',
+          label: 'Obj Width cm',
+          type: null
+        },
+        {
+          field: 'Obj Height cm',
+          label: 'Obj Height cm',
           type: null
         },
         {
@@ -474,6 +499,31 @@ export const global: IConfig = {
         {
           field: 'Publisher',
           label: 'Publisher',
+          type: null
+        },
+        {
+          field: 'Publisher Location',
+          label: 'Publisher Location',
+          type: null
+        },
+        {
+          field: 'Pub Maps',
+          label: 'Pub Maps',
+          type: null
+        },
+        {
+          field: 'Pub Note',
+          label: 'Pub Note',
+          type: null
+        },
+        {
+          field: 'Pub Reference',
+          label: 'Pub Reference',
+          type: null
+        },
+        {
+          field: 'Pub Title',
+          label: 'Pub Title',
           type: null
         },
         {

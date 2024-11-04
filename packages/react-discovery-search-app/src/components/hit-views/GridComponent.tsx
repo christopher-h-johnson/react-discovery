@@ -115,7 +115,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
     if (popperRef.current != null) {
       popperRef.current.update()
     }
-    dispatch(setViewIdMap({ id, manifest, type: 'image' }))
+    dispatch(setViewIdMap({ id, index, manifest, type: 'image' }))
   }
 
   return (

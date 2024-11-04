@@ -5,16 +5,16 @@ import { buildDocumentUri } from './utils'
 
 interface ISimpleImageView {
   id: string;
+  index?: string;
   manifest: string;
 }
 
 export const SimpleImageView: React.FC<ISimpleImageView> = (props): ReactElement => {
-  const { id, manifest } = props
+  const { id, index, manifest } = props
   const dispatch = useAppDispatch()
   const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
-  const currentCollection = getCurrentCollection()
-  const url = buildDocumentUri(currentCollection, id)
+  const url = buildDocumentUri(index, id)
 
   useEffect((): void => {
     if (!doc) {

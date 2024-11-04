@@ -9,12 +9,13 @@ import {
   ValueDisplay
 } from '@react-discovery/components'
 import { Thumbnail } from '@react-discovery/iiif'
-import { getCollectionByKey, getCurrentCollection, OSCore, useAppDispatch } from '@react-discovery/internal'
+import { getCollectionByKey, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
 import { buildDocumentUri, Domain, domainEntitySpec, EntityDisplay } from '.'
 
 interface ISimpleDataView {
   id: string;
+  index?: string;
 }
 
 const useStyles = makeStyles((theme: Theme): any =>
@@ -40,17 +41,14 @@ const useStyles = makeStyles((theme: Theme): any =>
 
 export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement => {
   const classes: any = useStyles({})
-  const { id } = props
-  const defaultCollection = process.env.REACT_APP_SEARCH_API_COLLECTION
+  const { id, index } = props
   const dispatch = useAppDispatch()
   const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
-  const docIndex = doc && doc._index
-  const currentCollectionObj = getCollectionByKey(docIndex)
-  const currentCollection = getCurrentCollection()
-  const url = buildDocumentUri(currentCollection, id)
+  const currentCollectionObj = getCollectionByKey(index)
+  const url = buildDocumentUri(index, id)
   const searchFields = currentCollectionObj && currentCollectionObj.searchFields
-  const title = doc && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, doc) || buildHighlightedValueForHit('title', doc))
+  const title = doc && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, doc) || buildHighlightedValueForHit('Title', doc))
   const manifest = doc && getFirstManifestFromHit(doc, Domain.MEDIA)
   const thumbnail = doc && doc._source && doc._source.thumbnail
 
@@ -81,7 +79,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
     return (
       <Card className={classes.root}>
         <TitleIdHeader
-          docIndex={docIndex}
+          docIndex={index}
           id={id}
           title={title}
         />

@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme: Theme): any =>
 export const ArrowForwardButton: React.FC<IArrowBackButton> = (props): ReactElement => {
   const { collection, hitIndex } = props
   const classes: any = useStyles({})
-  const currentCollection = getCurrentCollection()
   const navigation = useNavigate()
   const numFound = OSCore.state.getNumFound()
 
@@ -35,12 +34,13 @@ export const ArrowForwardButton: React.FC<IArrowBackButton> = (props): ReactElem
   const nextIndex = hitIndex + 1 <= indexConstraint ? hitIndex + 1 : indexConstraint
   const nextHit = OSCore.state.getHitForIndex(nextIndex)
   const nextHitId = nextHit && nextHit.id
+  const nextHitDocIndex = nextHit && nextHit.index
   const dispatch = useAppDispatch()
 
   const handleGetNextDoc = (): void => {
-    const url = buildDocumentUri(collection, nextHitId)
+    const url = buildDocumentUri(nextHitDocIndex, nextHitId)
     dispatch(OSCore.state.fetchElasticSearchDocument.action({ url }))
-    navigation(`/detail/${currentCollection}/${nextHitId}`)
+    navigation(`/detail/${nextHitDocIndex}/${nextHitId}`)
   }
 
   return (
