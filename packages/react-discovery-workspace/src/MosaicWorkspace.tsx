@@ -41,7 +41,7 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
   useMosaicStyles({})
   const classes = useStyles({})
   const hits = OSCore.state.getHits()
-  const nodes = hits.hits.map((hit) => hit.id)
+  const nodes = hits.hits.map(({ id, index }) => ({ id, index }))
   const createNode = (): string => nodes && createRandomNode(nodes)
   const workspaceLayout: MosaicParent<string> = getWorkspaceLayout()
 
