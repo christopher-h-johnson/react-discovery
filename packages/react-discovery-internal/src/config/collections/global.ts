@@ -44,7 +44,6 @@ export const global: IConfig = {
           label: 'Type',
           size: 10
         }
-
       },
       searchFields: [
         {
