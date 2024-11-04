@@ -33,7 +33,7 @@ export const ZeroState: React.FC<any> = (props): ReactElement => {
   const { createNode } = props
   const handleAddToWorkspace = (): any => {
     Promise.resolve(createNode())
-      .then((node) => dispatch(setViewIdMap({ id: node, manifest: null, type: 'data' })))
+      .then((node) => dispatch(setViewIdMap({ id: node.id, index: node.index, manifest: null, type: 'data' })))
       .catch(noop)
   }
 
