@@ -15,6 +15,7 @@ interface IThumbnail {
   classes?: any;
   id: string;
   image?: string;
+  index?: string;
   label?: string;
   manifest?: string;
   menuComponent?: ReactElement;
@@ -46,7 +47,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const classes: any = props.classes || useThumbnailStyles({})
   const dispatch = useAppDispatch()
-  const { apiVersion, id, label, manifest, menuComponent, thumbnail } = props
+  const { apiVersion, id, index, label, manifest, menuComponent, thumbnail } = props
   const currentGridViewerThumbnail = getCurrentGridViewerObjectThumbnail()
   const thumbnailLink = buildThumbnailReference(thumbnail)
 
@@ -66,7 +67,7 @@ export const Thumbnail: React.FC<IThumbnail> = (props): ReactElement => {
     : skipToken) */
 
   const handleImageSelect = (thumbnail): void => {
-    dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, thumbnail } }))
+    dispatch(setCurrentGridViewerObject({ gridViewerObject: { id, index, thumbnail } }))
   }
 
   const isSelected = (): boolean => {

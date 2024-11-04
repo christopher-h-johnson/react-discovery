@@ -72,6 +72,7 @@ export interface IAggregations {
 export interface IHit {
     id?: string;
     _id?: string;
+    index?: string;
     _source: any;
     highlight?: any;
     highlighting?: any;

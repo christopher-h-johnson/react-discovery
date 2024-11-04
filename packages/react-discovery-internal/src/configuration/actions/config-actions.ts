@@ -23,5 +23,5 @@ export const setItemViewType = actionCreator<{id: string; itemViewType: string}>
 export const setCurrentCollection = actionCreator<{currentCollection: string}>(SET_CURRENT_COLLECTION)
 export const setCurrentSelectedTab = actionCreator<{currentSelectedTab: number; id: string}>(SET_CURRENT_SELECTED_TAB)
 export const setRefinementListFilterSize = actionCreator<{currentCollection: string; filterName: string; size: number}>(SET_REFINEMENT_LIST_FILTER_SIZE)
-export const setCurrentGridViewerObject = actionCreator<{gridViewerObject: {id, thumbnail}}>(SET_CURRENT_GRID_VIEWER_OBJECT)
+export const setCurrentGridViewerObject = actionCreator<{gridViewerObject: {id, index, thumbnail}}>(SET_CURRENT_GRID_VIEWER_OBJECT)
 export const setIsSorted = actionCreator<{isSorted: boolean}>(SET_IS_SORTED)

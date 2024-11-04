@@ -35,6 +35,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
   const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && hit._source.id
+  const docIndex = hit && hit.index
   const itemViewType = hit && getItemViewType(id)
   const viewType = getViewType()
   const title = buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit)
@@ -83,7 +84,7 @@ const Kulturobjekt: React.FC<IDefaultItemComponent> = (props): ReactElement => {
         return defaultDisplay()
     }
   }
-  const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
+  const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id} index={docIndex}/>
 
   return hit && viewType !== 'expanded'
     ? (

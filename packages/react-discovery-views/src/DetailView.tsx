@@ -172,6 +172,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
   const isSingleton = numFound === 1
   const hitIndex = OSCore.state.getHitIndexForId(id)
   const currentHit = OSCore.state.getHitForIndex(hitIndex)
+  const docIndex = currentHit && currentHit.index
   const searchFields = OSCore.state.getSearchFields()
   const title = currentHit && (buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, currentHit) ||
     buildHighlightedValueForHit('Title', currentHit))
@@ -206,7 +207,7 @@ export const DetailView: React.FC<IDetailView> = (props): ReactElement => {
     )
   }
 
-  const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
+  const optionsMenu = id && <HitViewOptionsMenu actions={optionsMenuActions} id={id} index={docIndex}/>
   const addButton = currentHit && <AddToWorkspaceButton actions={addToWorkspaceButtonActions} classes={classes} hit={currentHit} item={item}/>
 
   const buildDetailView = (): ReactElement => {

@@ -44,6 +44,7 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
   const classes: any = props.classes || useStyles({})
   const { hit, item } = props
   const id = hit && (hit._source.id || hit.id)
+  const index = hit && hit.index
   const dispatch = useDispatch()
   const viewIdMap = getWorkspaceViewIdMap()
   const prevViewIdMap = usePrevious(viewIdMap)
@@ -65,7 +66,7 @@ export const AddToWorkspaceButton: React.FC<IAddToWorkspaceButton> = (props): Re
     if (popperRef.current != null) {
       popperRef.current.update()
     }
-    dispatch(setViewIdMap({ id, manifest, type: 'image' }))
+    dispatch(setViewIdMap({ id, index, manifest, type: 'image' }))
   }
 
   return (

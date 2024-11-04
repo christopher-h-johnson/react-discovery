@@ -4,7 +4,7 @@ export enum Domain {
   DESCRIPTION = 'Beschreibung',
   DESCRIPTION_TITLE_FIELD = 'beschreibungTitle_t',
   MEDIA = 'Digitalisat',
-  DOC_TITLE_FIELD = 'titel_t',
+  DOC_TITLE_FIELD = 'title',
   DOC_SUBTITLE_FIELD = 'subtitel_t',
   INFO = 'Info',
   MANIFEST_ID_FIELD = 'digitalisatManifestId_s',

@@ -56,6 +56,7 @@ export const ImageGridViewerItem = (classes) => {
   const image = currentGridViewerObjectThumbnail && buildTileSourceForGridViewerImage(currentGridViewerObjectThumbnail)
   const id = getCurrentGridViewerObjectId()
   const hit = OSCore.state.getHitForId(id)
+  const index = hit && hit.index
   const title = hit && (buildHighlightedValueForHit('Title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit) || buildHighlightedValueForHit('title', hit))
   const dispatch = useAppDispatch()
 
@@ -85,6 +86,7 @@ export const ImageGridViewerItem = (classes) => {
           <SingleImageOSDViewer image={image} key={uuidv4()}/>
           <TitleIdHeader
               id={id}
+              index={index}
               title={title}
           />
         </Grid>

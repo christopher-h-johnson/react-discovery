@@ -29,7 +29,8 @@ const buildInnerHits = (hit): IHit[] => {
         _source: hit._source,
         field: key,
         highlighting: buildInnerHitHighlight(hit.highlight),
-        id: hit._id
+        id: hit._id,
+        index: hit._index
       }
     })
   })
@@ -42,6 +43,7 @@ const buildDocs = (result): IHit[] => {
       _source: hit._source,
       highlighting: hit.highlight || {},
       id: hit._id,
+      index: hit._index,
       innerHits: hit.inner_hits ? buildInnerHits(hit) : []
     }
   })

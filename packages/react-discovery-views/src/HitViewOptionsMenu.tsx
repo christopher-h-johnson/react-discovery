@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 interface IHitViewOptionsMenu {
   actions: any;
   id: string;
+  index: string;
 }
 
 const StyledBadge = withStyles((theme: Theme) => ({
@@ -19,7 +20,7 @@ const StyledBadge = withStyles((theme: Theme) => ({
 }))(Badge)
 
 export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactElement => {
-  const { actions, id } = props
+  const { actions, id, index } = props
   const { getNumberOfWorkspaceNodesForId, setViewIdMap } = actions
   const nodeCount = getNumberOfWorkspaceNodesForId(id)
   const { t } = useTranslation()
@@ -34,7 +35,7 @@ export const HitViewOptionsMenu: React.FC<IHitViewOptionsMenu> = (props): ReactE
   const handleAddToWorkspace = (key): void => {
     switch (key) {
       case 'addDataToWorkspace':
-        dispatch(setViewIdMap({ id, type: 'data' }))
+        dispatch(setViewIdMap({ id, index, type: 'data' }))
     }
     setAnchorEl(null)
   }

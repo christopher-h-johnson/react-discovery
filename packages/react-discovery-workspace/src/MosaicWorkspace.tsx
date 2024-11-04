@@ -65,6 +65,7 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
 
   const renderTile = (id, path): ReactElement => {
     const dataId = Object.keys(viewIdMap).length && viewIdMap[id] && viewIdMap[id].id
+    const docIndex = Object.keys(viewIdMap).length && viewIdMap[id] && viewIdMap[id].index
     const manifest = Object.keys(viewIdMap).length && viewIdMap[id] && viewIdMap[id].manifest
     const type = Object.keys(viewIdMap).length && viewIdMap[id] && viewIdMap[id].type
     const WindowAppBar = windowAppBar
@@ -81,6 +82,7 @@ export const MosaicWorkspace: React.FC<IWorkspaceMosaic> = (props): ReactElement
         <Suspense fallback={'loading'}>
           <Component
             id={dataId}
+            index={docIndex}
             key={id}
             manifest={manifest}
             viewType={type}

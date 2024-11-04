@@ -86,6 +86,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
   const dispatch = useAppDispatch()
   const { hit } = props
   const id = hit && (hit._source.id || hit.id)
+  const index = hit && hit.index
   const title = buildHighlightedValueForHit('Title', hit) || buildHighlightedValueForHit(Domain.DOC_TITLE_FIELD, hit)
   const manifest = hit && getFirstManifestFromHit(hit, Domain.MEDIA)
   const item = {
@@ -114,7 +115,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
     if (popperRef.current != null) {
       popperRef.current.update()
     }
-    dispatch(setViewIdMap({ id, manifest, type: 'image' }))
+    dispatch(setViewIdMap({ id, index, manifest, type: 'image' }))
   }
 
   return (
@@ -162,6 +163,7 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
       <Thumbnail
         classes={classes}
         id={id}
+        index={index}
         label={label}
         manifest={manifest}
         thumbnail={thumbnail}

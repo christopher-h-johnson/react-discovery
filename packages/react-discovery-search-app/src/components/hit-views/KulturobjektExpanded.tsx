@@ -38,6 +38,7 @@ const KulturobjektExpanded: React.FC<IDefaultItemComponent> = (props): ReactElem
   const searchFields = OSCore.state.getSearchFields()
   const { hit, i } = props
   const id = hit && hit._source.id
+  const docIndex = hit && hit.index
   const itemViewType = hit && getItemViewType(id)
   const viewType = getViewType()
   const entities = hit && hit._source.entities && hit._source.entities
@@ -66,7 +67,7 @@ const KulturobjektExpanded: React.FC<IDefaultItemComponent> = (props): ReactElem
       </CardActions>
     )
   }
-  const optionsMenu = <HitViewOptionsMenu actions={optionsMenuActions} id={id}/>
+  const optionsMenu = <HitViewOptionsMenu actions={optionsMenuActions} id={id} index={docIndex}/>
 
   return hit && (itemViewType === 'info' || viewType === 'expanded')
     ? (
