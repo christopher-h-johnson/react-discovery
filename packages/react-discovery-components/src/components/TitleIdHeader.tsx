@@ -1,7 +1,5 @@
 import { CardHeader } from '@mui/material'
 import {
-  getCurrentCollection,
-  getCurrentSearchContext,
   getRootContext,
   OSCore,
   useAppDispatch
@@ -23,7 +21,7 @@ export const TitleIdHeader: React.FC<ITitleIdHeader> = (props): ReactElement => 
   const { addButton, id, index, optionsMenu, title } = props
   const rootContext = getRootContext()
   const docIndexContext = rootContext + '/' + index
-  const currentSearchContext = (index && docIndexContext) || getCurrentSearchContext()
+  const currentSearchContext = index && docIndexContext
   const dispatch = useAppDispatch()
   const route = useLocation()
   const pathname = route.pathname
