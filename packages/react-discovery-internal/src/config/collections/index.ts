@@ -1,4 +1,3 @@
-// import { cambridge } from './cambridge'
 import deepmerge from 'deepmerge'
 // import { ecodices } from './ecodices'
 // import { getty } from './getty'
@@ -8,6 +7,7 @@ import { maps } from './maps'
 import { nga } from './nga'
 import { sni } from './sni'
 import { gty } from './getty'
+import { cambridge } from './cambridge'
 // import { ox1 } from './ox'
 // import { ubl } from './ubl'
-export const collections = deepmerge.all([gty, maps, nga, sni])
+export const collections = deepmerge.all([cambridge, gty, maps, nga, sni])

@@ -7,7 +7,6 @@
     "@react-discovery/internal": "*"
   },
   "keywords": [
-    "solr",
     "react",
     "redux",
     "material-ui ",
