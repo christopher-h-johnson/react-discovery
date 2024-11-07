@@ -50,7 +50,7 @@ export const store: any = configureStore({
     response: OSCore.state.response,
     workspace: workspaceReducer
   },
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.REACT_APP_ENV === 'development'
 })
 
 export type RootState = ReturnType<typeof store.getState>
