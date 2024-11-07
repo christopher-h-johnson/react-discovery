@@ -3,9 +3,9 @@ import { IConfig } from '../'
 import {
   setCurrentCollection,
   setCurrentGridViewerObject,
+  setCurrentHitComponent,
   setCurrentLanguage,
   setCurrentSelectedTab,
-  setHitComponent,
   setIsPersisted,
   setIsSorted,
   setItemViewType,
@@ -27,7 +27,7 @@ export const config = (initialState): ReducerBuilder<IConfig> => reducerWithInit
     ...state,
     isSorted
   }))
-  .case(setHitComponent, (state, { currentHitComponent }): ReducerBuilder<IConfig> => ({
+  .case(setCurrentHitComponent, (state, { currentHitComponent }): ReducerBuilder<IConfig> => ({
     ...state,
     currentHitComponent
   }))

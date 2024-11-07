@@ -8,6 +8,7 @@ export const de = {
     expertSearch: 'Expertensuche',
     grid: 'Grid',
     itemsInWorkspace: 'Items In Workspace',
+    list: 'List',
     moreOptions: 'More Options',
     profile: 'Profil',
     resultsFound: 'treffer gefunden',

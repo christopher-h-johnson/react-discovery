@@ -48,6 +48,11 @@ export const global: IConfig = {
           field: 'Topic.keyword',
           label: 'Topic',
           size: 10
+        },
+        7: {
+          field: 'Classification.keyword',
+          label: 'Classification',
+          size: 10
         }
       },
       searchFields: [

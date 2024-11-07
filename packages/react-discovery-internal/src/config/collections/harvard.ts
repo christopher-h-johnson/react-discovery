@@ -2,7 +2,7 @@ import { IConfig } from '../../configuration'
 
 export const harvard: IConfig = {
   collections: {
-    hvd2: {
+    harvard: {
       hitComponents: [
         {
           defaultOption: true,
