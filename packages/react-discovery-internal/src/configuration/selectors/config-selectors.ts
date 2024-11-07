@@ -42,6 +42,10 @@ export const getHitComponents = (): IHitComponent[] => {
   return useSelector((state: any): IHitComponent[] => state.config.collections[state.config.currentCollection].hitComponents)
 }
 
+export const getCurrentHitComponent = (): IHitComponent[] => {
+  return useSelector((state: any): IHitComponent[] => state.config.currentHitComponent)
+}
+
 export const getHitComponentConfig = (type): IHitComponent => {
   return useSelector((state: any): IHitComponent => state.config.collections[state.config.currentCollection].hitComponents &&
     state.config.collections[state.config.currentCollection].hitComponents.filter((hc) => hc.hitComponent === type)[0])

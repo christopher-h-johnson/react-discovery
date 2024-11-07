@@ -65,6 +65,7 @@ export type ICollectionRecord = Record<string, ICollection>
 
 export interface IConfig {
     currentCollection?: string;
+    currentHitComponent?: string;
     currentLanguage?: string;
     collections: ICollectionRecord;
     itemViews?: IItemViews;

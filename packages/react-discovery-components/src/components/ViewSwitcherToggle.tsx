@@ -1,4 +1,4 @@
-import { GridOn, UnfoldLess, UnfoldMore } from '@mui/icons-material'
+import { GridOn, Toc } from '@mui/icons-material'
 import { ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
 import { getViewType, setViewType, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement } from 'react'
@@ -10,20 +10,20 @@ export const ViewSwitcherToggle: React.FC<any> = (): ReactElement => {
   const { t } = useTranslation()
 
   // eslint-disable-next-line no-empty-pattern
-  const handleChange = ({}, viewType): void => {
-    dispatch(setViewType({ viewType }))
+  const handleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    viewType: string | null
+  ) => {
+    if (viewType != null) {
+      dispatch(setViewType({ viewType }))
+    }
   }
 
   return (
     <ToggleButtonGroup value={viewType} exclusive onChange={handleChange}>
-      <ToggleButton value="compact">
-        <Tooltip title={t('unfoldLess')}>
-          <UnfoldLess/>
-        </Tooltip>
-      </ToggleButton>
-      <ToggleButton value="expanded">
-        <Tooltip title={t('unfoldMore')}>
-          <UnfoldMore/>
+      <ToggleButton value="list">
+        <Tooltip title={t('list')}>
+          <Toc/>
         </Tooltip>
       </ToggleButton>
       <ToggleButton value="grid">
