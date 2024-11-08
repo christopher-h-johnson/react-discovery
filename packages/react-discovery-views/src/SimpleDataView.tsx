@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, Theme } from '@mui/material'
+import { Card, CardContent, Theme } from '@mui/material'
 import createStyles from '@mui/styles/createStyles'
 import makeStyles from '@mui/styles/makeStyles'
 import {
@@ -11,7 +11,7 @@ import {
 import { Thumbnail } from '@react-discovery/iiif'
 import { getCollectionByKey, OSCore, useAppDispatch } from '@react-discovery/internal'
 import React, { ReactElement, useEffect } from 'react'
-import { buildDocumentUri, Domain, domainEntitySpec, EntityDisplay } from '.'
+import { buildDocumentUri, Domain } from '.'
 
 interface ISimpleDataView {
   id: string;
@@ -45,6 +45,7 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
   const dispatch = useAppDispatch()
   const docs = OSCore.state.getDocuments()
   const doc = Object.keys(docs).length ? docs[id] : null
+  const docIndex = (doc && doc._index) || index
   const currentCollectionObj = getCollectionByKey(index)
   const url = buildDocumentUri(index, id)
   const searchFields = currentCollectionObj && currentCollectionObj.searchFields
@@ -58,28 +59,11 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
     }
   }, [dispatch, doc, id, url])
 
-  /*  const buildCardActions = (cardActions): ReactElement[] => {
-    return cardActions.map((item, i): ReactElement =>
-      <CardActions
-        disableSpacing
-        key={i}
-      >
-        <EntityDisplay
-          displayFields={item.displayFields}
-          hit={doc}
-          isNested={item.isNested}
-          nestedDisplayFields={item.nestedDisplayFields}
-          type={item.type}
-        />
-      </CardActions>
-    )
-  } */
-
   const buildKulturObjekt = (): ReactElement => {
     return (
       <Card className={classes.root}>
         <TitleIdHeader
-          docIndex={index}
+          index={docIndex}
           id={id}
           title={title}
         />
@@ -104,7 +88,6 @@ export const SimpleDataView: React.FC<ISimpleDataView> = (props): ReactElement =
                 ? <FieldValueDisplay field={field} hit={doc}/>
                 : null}
               </CardContent>)}
-            { /* docIndex === defaultCollection ? buildCardActions(domainEntitySpec) : null */ }
           </div>
         </div>
       </Card>

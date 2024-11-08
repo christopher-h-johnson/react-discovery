@@ -9,7 +9,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { FlexBox, InnerHtmlValue } from '.'
 
 interface ITitleIdHeader {
-  docIndex?: string;
   addButton?: ReactElement;
   optionsMenu?: ReactElement;
   title: string;
