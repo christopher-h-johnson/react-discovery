@@ -20,13 +20,13 @@ export const global: IConfig = {
       primaryTypeField: 'collections.keyword',
       refinementListFilters: {
         1: {
-          field: 'Subject(s).keyword',
-          label: 'Subject',
+          field: 'Artist.keyword',
+          label: 'Artist',
           size: 10
         },
         2: {
-          field: 'Format.keyword',
-          label: 'Format',
+          field: 'Classification.keyword',
+          label: 'Classification',
           size: 10
         },
         3: {
@@ -35,23 +35,18 @@ export const global: IConfig = {
           size: 10
         },
         4: {
-          field: 'Artist.keyword',
-          label: 'Artist',
+          field: 'Subject(s).keyword',
+          label: 'Subject',
           size: 10
         },
         5: {
-          field: 'Type.keyword',
-          label: 'Type',
-          size: 10
-        },
-        6: {
           field: 'Topic.keyword',
           label: 'Topic',
           size: 10
         },
-        7: {
-          field: 'Classification.keyword',
-          label: 'Classification',
+        6: {
+          field: 'Type.keyword',
+          label: 'Type',
           size: 10
         }
       },
@@ -459,6 +454,11 @@ export const global: IConfig = {
         {
           field: 'Painter',
           label: 'Painter',
+          type: null
+        },
+        {
+          field: 'People',
+          label: 'People',
           type: null
         },
         {
