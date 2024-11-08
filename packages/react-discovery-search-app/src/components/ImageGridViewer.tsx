@@ -2,7 +2,6 @@ import { Close } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 import Grid from '@mui/material/Grid2'
 import makeStyles from '@mui/styles/makeStyles'
-import withStyles from '@mui/styles/withStyles'
 import { buildHighlightedValueForHit, TitleIdHeader } from '@react-discovery/components'
 import { buildTileSourceForGridViewerImage, SingleImageOSDViewer } from '@react-discovery/iiif'
 import {
@@ -45,12 +44,6 @@ const useStyles = makeStyles((): any => ({
   }
 }))
 
-const ColoredButton = withStyles(() => ({
-  root: {
-    color: 'white'
-  }
-}))(IconButton)
-
 export const ImageGridViewerItem = (classes) => {
   const currentGridViewerObjectThumbnail = getCurrentGridViewerObjectThumbnail()
   const image = currentGridViewerObjectThumbnail && buildTileSourceForGridViewerImage(currentGridViewerObjectThumbnail)
@@ -67,14 +60,18 @@ export const ImageGridViewerItem = (classes) => {
   const buildCloseIcon = (): ReactElement => {
     return (
         <div className={classes.closeIcon}>
-          <ColoredButton
+          <IconButton
               aria-label="Remove"
               className={classes.menuButton}
               color="primary"
               edge="start"
-              onClick={handleRemove}>
+              onClick={handleRemove}
+              sx={{
+                color: 'white'
+              }}
+          >
             <Close/>
-          </ColoredButton>
+          </IconButton>
         </div>
     )
   }

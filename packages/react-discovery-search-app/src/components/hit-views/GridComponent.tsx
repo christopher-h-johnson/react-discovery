@@ -2,7 +2,6 @@ import { CheckCircle, CheckCircleOutline } from '@mui/icons-material'
 import { IconButton, ImageListItem, Tooltip, Typography } from '@mui/material'
 import { Theme } from '@mui/material/styles'
 import makeStyles from '@mui/styles/makeStyles'
-import withStyles from '@mui/styles/withStyles'
 import { Instance } from '@popperjs/core'
 import { buildHighlightedValueForHit, getFirstManifestFromHit, InnerHtmlValue } from '@react-discovery/components'
 import { Thumbnail } from '@react-discovery/iiif'
@@ -70,16 +69,6 @@ const useStyles = makeStyles((theme): any => ({
     padding: 10
   }
 }))
-
-const HoverButton = withStyles(() => ({
-  root: {
-    '&:hover': {
-      opacity: 1
-    },
-    color: 'white',
-    opacity: 0
-  }
-}))(IconButton)
 
 const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactElement => {
   const classes: any = useStyles({})
@@ -151,12 +140,20 @@ const GridComponent: React.FC<IGridComponent> = (props: IGridComponent): ReactEl
             size="large">
               <CheckCircle className={classes.title}/>
             </IconButton>
-            : <HoverButton
+            : <IconButton
               aria-label={`star ${item[Domain.MEDIA_TITLE_FIELD]}`}
               onClick={(): void => handleAddToWorkspace(item[Domain.MANIFEST_ID_FIELD])}
+              size="large"
+              sx={{
+                '&:hover': {
+                  opacity: 1
+                },
+                color: 'white',
+                opacity: 0
+              }}
             >
               <CheckCircleOutline className={classes.title}/>
-            </HoverButton>
+            </IconButton>
           }
         </Tooltip>
       </div>
